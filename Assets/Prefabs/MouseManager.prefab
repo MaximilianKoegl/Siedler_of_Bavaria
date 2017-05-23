@@ -53,3 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forrest: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516, type: 2}
   house: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
+  house_two: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
+  house_three: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80,
+    type: 2}
+  m_building_menu: {fileID: 0}
