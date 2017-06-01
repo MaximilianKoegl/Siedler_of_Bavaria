@@ -82,8 +82,6 @@ public class Building_Menu : MonoBehaviour {
     public void onBuildingSelected(int count)
     {
         building_Number = count;
-        Debug.Log(count);
-        Debug.Log(building_Number);
     }
 
     //Gibt Gebäude Index weiter 

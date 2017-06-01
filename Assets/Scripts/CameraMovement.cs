@@ -20,8 +20,6 @@ public class CameraMovement : MonoBehaviour {
 
 	void Update () {
 
-		float scroll = Input.GetAxis("Mouse ScrollWheel");
-		transform.Translate(0, scroll * zoomSpeed, scroll * zoomSpeed, Space.World);
 
 		if (Input.GetKey(KeyCode.RightArrow)){
 			transform.position += Vector3.right * speed * Time.deltaTime;

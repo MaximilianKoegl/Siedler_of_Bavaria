@@ -12,6 +12,7 @@ public class MouseManager : MonoBehaviour {
     private GameObject selectedHouse;
 
     public Building_Menu m_building_menu;
+    public Resources_Counter m_resources_counter;
 
     private string house_name;
     private int[] resources_counter = new int[] { 0, 0, 0, 0 };
@@ -59,59 +60,111 @@ public class MouseManager : MonoBehaviour {
 
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         RaycastHit hitInfo;
 
         //Überprüft ob auf die Bayernfläche geklickt wird
-        if (!EventSystem.current.IsPointerOverGameObject()) {   
+        if (!EventSystem.current.IsPointerOverGameObject()) {
 
-            //Startet Raycast 
+           //Startet Raycast 
             if (Physics.Raycast(ray, out hitInfo))                                                                                             
             {
                 GameObject ourHitObject = hitInfo.collider.transform.gameObject;
-
                 onHouseSwitch();
 
-                
+                if (Input.GetMouseButtonDown(0))
+                {
+                    GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
 
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        MeshRenderer mr = ourHitObject.GetComponentInChildren<MeshRenderer>();
-                        GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
-                        
                     //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
                     if (selectedHouse != null)
                     {
                         //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
-                        if (ourHitObject.transform.name == "Hexagon" && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool())
+                        if (ourHitObject.transform.name == "Hexagon" && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
                         {
 
-                            GameObject house_go = (GameObject)Instantiate(selectedHouse, parentHitObject.transform.position, Quaternion.identity);
-
-                            //Erhöht Anzahl der bestimmen Hausart
-                            resources_counter[counter_position] += 1;
-
-                            //Setzt Namen des Hauses
-                            house_go.name = house_name;
-
-                            //Fügt dem Ortsobjekt das Haus als Child hinzu
-                            house_go.transform.parent = parentHitObject.transform;
+                            buildHouse(parentHitObject);
+                            m_resources_counter.reduceMaterials(house_name);
 
                         }
                     }
 
-                        //Überprüft ob auf Hexagon geklickt wurde, ob etwas auf dem Hexagon gebaut ist und ob das Entferntool aktiviert wurde
-                        if(ourHitObject.transform.name == "Hexagon" && parentHitObject.transform.childCount >= 2 && m_building_menu.getDestroyBool())
-                        {
-                        GameObject clickedHouse = parentHitObject.transform.GetChild(1).gameObject;
+                    //Überprüft ob Entferntool aktiviert wurde
+                    if (m_building_menu.getDestroyBool())
+                    {
+                        destroyBuilding(ourHitObject, parentHitObject);
 
-                        Destroy(clickedHouse);
-                        }
                     }
-                
-            }
 
+                    if (!m_building_menu.getDestroyBool())
+                    {
+                        presentBuildingInfo(ourHitObject);
+                    }
+                }
+            }              
+        }
+    }
 
+    void presentBuildingInfo(GameObject hitObject)
+    {
+        switch (hitObject.tag)
+        {
+            case ("Woodcutter"):
+
+                Debug.Log("Woodcutter clicked");
+
+                break;
+            case ("Ironfeeder"):
+
+                Debug.Log("Ironfeeder clicked");
+
+                break;
+            case ("Stonefeeder"):
+
+                Debug.Log("Stonefeeder clicked");
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    void buildHouse(GameObject parentHitObj)
+    {
+        GameObject house_go = (GameObject)Instantiate(selectedHouse, parentHitObj.transform.position, Quaternion.identity);
+
+        //Erhöht Anzahl der bestimmen Hausart
+        resources_counter[counter_position] += 1;
+
+        //Setzt Namen des Hauses
+        house_go.name = house_name;
+        house_go.transform.GetChild(0).tag = house_name;
+
+        //Fügt dem Ortsobjekt das Haus als Child hinzu
+        house_go.transform.parent = parentHitObj.transform;
+    }
+
+    //Sucht den Tag der geklickten Objekte und zerstört diese
+    void destroyBuilding(GameObject hitObject, GameObject parentObject)
+    {
+        switch (hitObject.tag)
+        {
+            case ("Woodcutter"):
+                resources_counter[0] -= 1;
+                Destroy(parentObject);
+
+                break;
+            case ("Ironfeeder"):
+                resources_counter[1] -= 1;
+                Destroy(parentObject);
+
+                break;
+            case ("Stonefeeder"):
+                resources_counter[2] -= 1;
+                Destroy(parentObject);
+
+                break;
+            default:
+                break;
         }
 
 	}

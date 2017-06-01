@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 33455006084613112}
   - component: {fileID: 23498258006040046}
   - component: {fileID: 95857224493687712}
+  - component: {fileID: 64127411879253496}
   m_Layer: 0
   m_Name: house_try
   m_TagString: Untagged
@@ -109,6 +110,20 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740329325127456}
+  m_Mesh: {fileID: 4300000, guid: c84aab946a32ec245ba47f541502ee0e, type: 3}
+--- !u!64 &64127411879253496
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740329325127456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: c84aab946a32ec245ba47f541502ee0e, type: 3}
 --- !u!95 &95857224493687712
 Animator:
