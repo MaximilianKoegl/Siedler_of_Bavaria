@@ -17,6 +17,7 @@ public class Building_Menu : MonoBehaviour {
     public Button fifth_building;
 
     public Texture2D cursorTexture;
+    public Texture2D cursorMoveTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
@@ -100,13 +101,27 @@ public class Building_Menu : MonoBehaviour {
     public void activateDestroy()
     {
         destroyIsActivated = !destroyIsActivated;
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        changeCursorToHammer();
         if (!destroyIsActivated)
         {
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
         }
     }
-        
+
+    public void fakeAnimationDestroy()
+    {
+        Cursor.SetCursor(cursorMoveTexture, hotSpot, cursorMode);
+        Invoke("changeCursorToHammer", 0.22f);
+
+
+    }
+
+    void changeCursorToHammer()
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+    }
+
     //Gibt den zustand des Destroy-Button weiter
     public bool getDestroyBool()
     {

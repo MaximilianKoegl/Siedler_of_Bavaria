@@ -146,6 +146,7 @@ public class MouseManager : MonoBehaviour {
     //Sucht den Tag der geklickten Objekte und zerstört diese
     void destroyBuilding(GameObject hitObject, GameObject parentObject)
     {
+        m_building_menu.fakeAnimationDestroy();
         switch (hitObject.tag)
         {
             case ("Woodcutter"):

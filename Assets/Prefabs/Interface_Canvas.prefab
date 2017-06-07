@@ -3571,7 +3571,8 @@ MonoBehaviour:
   third_building: {fileID: 114180512657187028}
   fourth_building: {fileID: 114992374771995614}
   fifth_building: {fileID: 114923836369220938}
-  cursorTexture: {fileID: 2800000, guid: 3aaf2920bf2e45d46905f42cc02796a1, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 661b06d0200e6054caf43a04db4fe339, type: 3}
+  cursorMoveTexture: {fileID: 2800000, guid: 4c7ee750d23e9ff4fae55d89348d66a2, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
 --- !u!114 &114902765657731388
@@ -4832,7 +4833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -49.999985, y: -66.60994}
+  m_AnchoredPosition: {x: -50.000046, y: -66.60989}
   m_SizeDelta: {x: 58.4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224238411920388450
