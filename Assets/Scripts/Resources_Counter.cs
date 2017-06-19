@@ -24,7 +24,7 @@ public class Resources_Counter : MonoBehaviour {
         stoneCount = 100;
         foodCount = 1000;
 
-        InvokeRepeating("updateCounters", 1.0f, 1.0f);
+        InvokeRepeating("updateCounters", 2.0f, 1.0f);
 	}
 	
 	// Update is called once per frame
@@ -43,5 +43,53 @@ public class Resources_Counter : MonoBehaviour {
         stoneCount += 100 * resourcesCounter[2];
         foodCount += 100 * resourcesCounter[3];
     }
-    
+
+    //Gibt weiter ob genügend Rohstoffe für ein Gebäude vorhanden sind
+    public bool checkBuildingCosts(string buildingName)
+    {
+        switch (buildingName)
+        {
+            case ("Woodcutter"):
+                if(woodCount >= 100)
+                {
+                    return true;
+                }
+
+                return false;
+
+            case ("Ironfeeder"):
+                if (woodCount >= 500)
+                {
+                    return true;
+                }
+
+                return false;
+            case ("Stonefeeder"):
+                if(woodCount >= 300 && ironCount >= 100)
+                {
+                    return true;
+                }
+
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    public void reduceMaterials(string buildingName)
+    {
+        switch (buildingName)
+        {
+            case ("Woodcutter"):
+                woodCount -= 100;
+                break;
+            case ("Ironfeeder"):
+                woodCount -= 500;
+                break;
+            case ("Stonefeeder"):
+                woodCount -= 300;
+                ironCount -= 100;
+                break;
+        }
+    }
 }

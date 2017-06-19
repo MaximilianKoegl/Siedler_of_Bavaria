@@ -57,3 +57,4 @@ MonoBehaviour:
   house_three: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80,
     type: 2}
   m_building_menu: {fileID: 0}
+  m_resources_counter: {fileID: 0}

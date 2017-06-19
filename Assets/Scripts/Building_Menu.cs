@@ -16,6 +16,11 @@ public class Building_Menu : MonoBehaviour {
     public Button fourth_building;
     public Button fifth_building;
 
+    public Texture2D cursorTexture;
+    public Texture2D cursorMoveTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+
     private bool isShowing;
     private bool destroyIsActivated;
     private int building_Number;
@@ -47,6 +52,7 @@ public class Building_Menu : MonoBehaviour {
         isShowing = !isShowing;
         buildingCanvas.SetActive(isShowing);
         building_Number = 0;
+        Debug.Log(transform);
         
 
     }
@@ -82,8 +88,6 @@ public class Building_Menu : MonoBehaviour {
     public void onBuildingSelected(int count)
     {
         building_Number = count;
-        Debug.Log(count);
-        Debug.Log(building_Number);
     }
 
     //Gibt Gebäude Index weiter 
@@ -97,8 +101,27 @@ public class Building_Menu : MonoBehaviour {
     public void activateDestroy()
     {
         destroyIsActivated = !destroyIsActivated;
+        changeCursorToHammer();
+        if (!destroyIsActivated)
+        {
+            Cursor.SetCursor(null, Vector2.zero, cursorMode);
+        }
     }
-        
+
+    public void fakeAnimationDestroy()
+    {
+        Cursor.SetCursor(cursorMoveTexture, hotSpot, cursorMode);
+        Invoke("changeCursorToHammer", 0.22f);
+
+
+    }
+
+    void changeCursorToHammer()
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+    }
+
     //Gibt den zustand des Destroy-Button weiter
     public bool getDestroyBool()
     {
