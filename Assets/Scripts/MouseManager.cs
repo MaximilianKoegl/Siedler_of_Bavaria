@@ -13,6 +13,7 @@ public class MouseManager : MonoBehaviour {
 
     public Building_Menu m_building_menu;
     public Resources_Counter m_resources_counter;
+    public PopUpManager m_popup_manager;
 
     private string house_name;
     private int[] resources_counter = new int[] { 0, 0, 0, 0 };
@@ -85,6 +86,12 @@ public class MouseManager : MonoBehaviour {
                             buildHouse(parentHitObject);
                             m_resources_counter.reduceMaterials(house_name);
 
+                            // #NEW: Falls es das erste Haus dieser Art ist
+                            if (resources_counter[counter_position] == 1)
+                            {
+                                m_popup_manager.onFirstTimeBuild(house_name);
+                            }
+
                         }
                     }
 
@@ -109,17 +116,17 @@ public class MouseManager : MonoBehaviour {
         switch (hitObject.tag)
         {
             case ("Woodcutter"):
-
+                m_popup_manager.onFirstTimeBuild("Woodcutter");
                 Debug.Log("Woodcutter clicked");
 
                 break;
             case ("Ironfeeder"):
-
+                m_popup_manager.onFirstTimeBuild("Ironfeeder");
                 Debug.Log("Ironfeeder clicked");
 
                 break;
             case ("Stonefeeder"):
-
+                m_popup_manager.onFirstTimeBuild("Ironfeeder");
                 Debug.Log("Stonefeeder clicked");
 
                 break;
