@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseManager : MonoBehaviour {
+public class MouseManager : Photon.MonoBehaviour {
 
     public GameObject forrest;
     public GameObject house;
@@ -18,6 +18,25 @@ public class MouseManager : MonoBehaviour {
     private string house_name;
     private int[] resources_counter = new int[] { 0, 0, 0, 0 };
     private int counter_position;
+
+    //Empfängt und sendet die Daten für die gebauten Häuser
+
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        Debug.Log("Serializing");
+        if (stream.isWriting)
+        {
+            Debug.Log("Writing " + Input.mousePosition);
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            Vector3 pos = (Vector3)stream.ReceiveNext();
+            addObjects(pos);
+            Debug.Log("Receiving Reading " + pos);
+        }
+    }
 
     //Gibt Anzahl der momentan gebauten Gebäude weiter, als Rohstoff Multiplikator
     public int[] getResourcesCounter()          
@@ -51,27 +70,41 @@ public class MouseManager : MonoBehaviour {
                 
         }
     }
-    // Use this for initialization
+
+
+    // initialization of GameObjects
     void Start () {
-   
-	}
+        //get All Objects with Tag "BuildingMenuManager", first object is taken, component "Building_Menu" as building_menu
+
+        m_building_menu = GameObject.FindGameObjectWithTag("BuildingMenuManager").GetComponent<Building_Menu>();
+        
+        m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
+        
+        m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        addObjects(Input.mousePosition);
+    }
 
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    void addObjects(Vector3 position)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(position);
         RaycastHit hitInfo;
 
         //Überprüft ob auf die Bayernfläche geklickt wird
-        if (!EventSystem.current.IsPointerOverGameObject()) {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
 
-           //Startet Raycast 
-            if (Physics.Raycast(ray, out hitInfo))                                                                                             
+            //Startet Raycast 
+            Debug.Log(Physics.Raycast(ray, out hitInfo));
+            if (Physics.Raycast(ray, out hitInfo))
             {
                 GameObject ourHitObject = hitInfo.collider.transform.gameObject;
                 onHouseSwitch();
-
+                Debug.Log(selectedHouse);
                 if (Input.GetMouseButtonDown(0))
                 {
                     GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
@@ -86,7 +119,6 @@ public class MouseManager : MonoBehaviour {
                             buildHouse(parentHitObject);
                             m_resources_counter.reduceMaterials(house_name);
 
-                            // #NEW: Falls es das erste Haus dieser Art ist
                             if (resources_counter[counter_position] == 1)
                             {
                                 m_popup_manager.onFirstTimeBuild(house_name);
@@ -107,7 +139,7 @@ public class MouseManager : MonoBehaviour {
                         presentBuildingInfo(ourHitObject);
                     }
                 }
-            }              
+            }
         }
     }
 
@@ -137,7 +169,9 @@ public class MouseManager : MonoBehaviour {
 
     void buildHouse(GameObject parentHitObj)
     {
-        GameObject house_go = (GameObject)Instantiate(selectedHouse, parentHitObj.transform.position, Quaternion.identity);
+
+        //Haus bauen im Netzwerk
+        GameObject house_go = (GameObject) PhotonNetwork.Instantiate(selectedHouse.name, parentHitObj.transform.position, Quaternion.identity, 0);
 
         //Erhöht Anzahl der bestimmen Hausart
         resources_counter[counter_position] += 1;
@@ -158,17 +192,17 @@ public class MouseManager : MonoBehaviour {
         {
             case ("Woodcutter"):
                 resources_counter[0] -= 1;
-                Destroy(parentObject);
+                PhotonNetwork.Destroy(parentObject);
 
                 break;
             case ("Ironfeeder"):
                 resources_counter[1] -= 1;
-                Destroy(parentObject);
+                PhotonNetwork.Destroy(parentObject);
 
                 break;
             case ("Stonefeeder"):
                 resources_counter[2] -= 1;
-                Destroy(parentObject);
+                PhotonNetwork.Destroy(parentObject);
 
                 break;
             default:

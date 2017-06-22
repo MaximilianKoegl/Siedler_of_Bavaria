@@ -24,6 +24,8 @@ public class Resources_Counter : MonoBehaviour {
         stoneCount = 100;
         foodCount = 1000;
 
+        m_mouseManager = GameObject.FindGameObjectWithTag("MouseManager").GetComponent<MouseManager>();
+
         InvokeRepeating("updateCounters", 2.0f, 1.0f);
 	}
 	

@@ -7,6 +7,10 @@ TagManager:
   - Woodcutter
   - Ironfeeder
   - Stonefeeder
+  - MouseManager
+  - PopUpManager
+  - ResourceManager
+  - BuildingMenuManager
   layers:
   - Default
   - TransparentFX
