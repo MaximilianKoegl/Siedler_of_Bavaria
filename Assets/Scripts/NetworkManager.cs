@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class NetworkManager : Photon.MonoBehaviour {
 
-    private const string roomName = "Bavarian Museeum";
+    private const string roomName = "Bavarian Museum";
     private RoomInfo[] roomsList;
     private TypedLobby lobbyName = new TypedLobby("New_Lobby", LobbyType.Default);
     public GameObject cameraPrefab;
     public GameObject mouseManagerPrefab;
     public GameObject interfacePrefab;
+
+    public Transform spawnPointOne;
+    public Transform spawnPointTwo;
+    public Transform spawnPointThree;
+    public Transform spawnPointFour;
+    public Transform spawnPointFive;
+    public Transform spawnPointSix;
+    public Transform spawnPointSeven;
 
     // Use this for initialization
     void Start () {
@@ -29,25 +37,15 @@ public class NetworkManager : Photon.MonoBehaviour {
         }
         else if (PhotonNetwork.room == null)
         {
-            // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!)
-            //PhotonNetwork.CreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
+            // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
 
+            
             if (GUI.Button(new Rect(100, 250, 250, 100), "Join " + roomName))
             {
-                PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
-            }
 
-            // Join Room
-            /*if (roomsList != null)
-            {
-                for (int i = 0; i < roomsList.Length; i++)
-                {
-                    if (GUI.Button(new Rect(100, 250 + (110 * i), 250, 100), "Join " + roomsList[i].Name))
-                    {
-                        PhotonNetwork.JoinRoom(roomsList[i].Name);
-                    }
-                }
-            }*/
+                PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
+
+            }
         }
     }
 
@@ -77,10 +75,188 @@ public class NetworkManager : Photon.MonoBehaviour {
     {
         Debug.Log("Connected to Room");
         // Spawn player
-        Instantiate(cameraPrefab, Vector3.up * 5, Quaternion.identity);
-        Instantiate(interfacePrefab, Vector3.up * 5, Quaternion.identity);
-        PhotonNetwork.Instantiate(mouseManagerPrefab.name, Vector3.up * 5, Quaternion.identity, 0);
+        checkPlayers(PhotonNetwork.countOfPlayers);
 
 
+    }
+
+
+    //überprüft anzahl der spieler und weißt neuem Spieler entsprechende Stadt zu
+    private void checkPlayers(int playerNumber)
+    {
+        switch (PhotonNetwork.countOfPlayers)
+        {
+            case (1):
+                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+                {
+                    //wenn stadt schon vorhanden, dann nächste stadt
+                    //wenn nicht, initialisierung
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Augsburg"))
+                    {
+                        playerNumber += 1;
+                        if(playerNumber == 8)
+                        {
+                            playerNumber = 1;
+                        }
+                        
+                        checkPlayers(playerNumber);
+                        break;
+                    }
+                    else
+                    {
+                        Instantiate(cameraPrefab, spawnPointOne.position, spawnPointOne.rotation);
+                        Instantiate(interfacePrefab, spawnPointOne.position, spawnPointOne.rotation);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointOne.position, spawnPointOne.rotation, 0);
+                        PhotonNetwork.playerName = "Augsburg";
+                        break;
+                    }
+                }
+                
+                break;
+            case (2):
+                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+                {
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Würzburg"))
+                    {
+                        playerNumber += 1;
+                        if (playerNumber == 8)
+                        {
+                            playerNumber = 1;
+                        }
+                        
+                        checkPlayers(playerNumber);
+                        break;
+                    }
+                    else
+                    {
+                        Instantiate(cameraPrefab, spawnPointTwo.position, spawnPointTwo.rotation);
+                        Instantiate(interfacePrefab, spawnPointTwo.position, spawnPointTwo.rotation);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointTwo.position, spawnPointTwo.rotation, 0);
+                        PhotonNetwork.playerName = "Würzburg";
+                        break;
+                    }
+                }                
+                break;
+            case (3):
+                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+                {
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Landshut"))
+                    {
+                        playerNumber += 1;
+                        if (playerNumber == 8)
+                        {
+                            playerNumber = 1;
+                        }
+
+                        checkPlayers(playerNumber);
+                        break;
+                    }
+                    else
+                    {
+                        Instantiate(cameraPrefab, spawnPointThree.position, spawnPointThree.rotation);
+                        Instantiate(interfacePrefab, spawnPointThree.position, spawnPointThree.rotation);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointThree.position, spawnPointThree.rotation, 0);
+                        PhotonNetwork.playerName = "Landshut";
+                        break;
+                    }
+                }
+                break;
+            case (4):
+                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+                {
+                    if (PhotonNetwork.playerList[i].NickName.Equals("München"))
+                    {
+                        playerNumber += 1;
+                        if (playerNumber == 8)
+                        {
+                            playerNumber = 1;
+                        }
+
+                        checkPlayers(playerNumber);
+                        break;
+                    }
+                    else
+                    {
+                        Instantiate(cameraPrefab, spawnPointFour.position, spawnPointFour.rotation);
+                        Instantiate(interfacePrefab, spawnPointFour.position, spawnPointFour.rotation);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointFour.position, spawnPointFour.rotation, 0);
+                        PhotonNetwork.playerName = "München";
+                        break;
+                    }
+                }
+                break;
+            case (5):
+                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+                {
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Regensburg"))
+                    {
+                        playerNumber += 1;
+                        if (playerNumber == 8)
+                        {
+                            playerNumber = 1;
+                        }
+
+                        checkPlayers(playerNumber);
+                        break;
+                    }
+                    else
+                    {
+                        Instantiate(cameraPrefab, spawnPointFive.position, spawnPointFive.rotation);
+                        Instantiate(interfacePrefab, spawnPointFive.position, spawnPointFive.rotation);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointFive.position, spawnPointFive.rotation, 0);
+                        PhotonNetwork.playerName = "Regensburg";
+                        break;
+                    }
+                }
+                break;
+            case (6):
+                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+                {
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Bayreuth"))
+                    {
+                        playerNumber += 1;
+                        if (playerNumber == 8)
+                        {
+                            playerNumber = 1;
+                        }
+
+                        checkPlayers(playerNumber);
+                        break;
+                    }
+                    else
+                    {
+                        Instantiate(cameraPrefab, spawnPointSix.position, spawnPointSix.rotation);
+                        Instantiate(interfacePrefab, spawnPointSix.position, spawnPointSix.rotation);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointSix.position, spawnPointSix.rotation, 0);
+                        PhotonNetwork.playerName = "Bayreuth";
+                        break;
+                    }
+                }
+                break;
+            case (7):
+                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+                {
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Ansbach"))
+                    {
+                        playerNumber += 1;
+                        if (playerNumber == 8)
+                        {
+                            playerNumber = 1;
+                        }
+
+                        checkPlayers(playerNumber);
+                        break;
+                    }
+                    else
+                    {
+                        Instantiate(cameraPrefab, spawnPointSeven.position, spawnPointSeven.rotation);
+                        Instantiate(interfacePrefab, spawnPointSeven.position, spawnPointSeven.rotation);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointSeven.position, spawnPointSeven.rotation, 0);
+                        PhotonNetwork.playerName = "Ansbach";
+                        break;
+                    }
+                }
+                break;
+        }
     }
 }

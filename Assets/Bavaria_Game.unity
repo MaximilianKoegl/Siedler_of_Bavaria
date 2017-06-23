@@ -327,6 +327,20 @@ MonoBehaviour:
     type: 2}
   interfacePrefab: {fileID: 1737083422499922, guid: 09704502b90333d42b335449e2491d15,
     type: 2}
+  spawnPointOne: {fileID: 4789886356177448, guid: 24a3bdb04a54b0247b049fb85e5acb40,
+    type: 2}
+  spawnPointTwo: {fileID: 4130913919422942, guid: 4e6c5c357ec6516419a2ac03471b1ef1,
+    type: 2}
+  spawnPointThree: {fileID: 4829574530558238, guid: d1a3a52cf1db2de469fc540535a808ac,
+    type: 2}
+  spawnPointFour: {fileID: 4701203210345394, guid: e4ff2486b728b9a4a8e62f586bfa295d,
+    type: 2}
+  spawnPointFive: {fileID: 4208677316570414, guid: 51349ea5e8c7f9442aa3f4eda4039413,
+    type: 2}
+  spawnPointSix: {fileID: 4350685264868926, guid: 59392240365bcee47ad84e228d844457,
+    type: 2}
+  spawnPointSeven: {fileID: 4457130366173060, guid: 1e7c90dcb8d189b4eba310efd4e885aa,
+    type: 2}
 --- !u!4 &1380617629
 Transform:
   m_ObjectHideFlags: 0
