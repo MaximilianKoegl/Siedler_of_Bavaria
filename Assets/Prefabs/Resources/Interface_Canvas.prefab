@@ -1289,9 +1289,9 @@ MonoBehaviour:
   fifth_building: {fileID: 114670190802147592}
   cursorTexture: {fileID: 2800000, guid: 661b06d0200e6054caf43a04db4fe339, type: 3}
   cursorMoveTexture: {fileID: 2800000, guid: 4c7ee750d23e9ff4fae55d89348d66a2, type: 3}
-  cursorTextureHouse1: {fileID: 2800000, guid: 446ad3018f882b64abcbdabfa65ae539, type: 3}
-  cursorTextureHouse2: {fileID: 2800000, guid: a632382d33b63754ba090f619c9635a6, type: 3}
-  cursorTextureHouse3: {fileID: 2800000, guid: a7a6d18e053fb3348beb275005115f5c, type: 3}
+  cursorTextureHouse1: {fileID: 2800000, guid: c9928b9c597bbf941aa0d6c0961e60da, type: 3}
+  cursorTextureHouse2: {fileID: 2800000, guid: f84225703d06a41499cff58d27f0e755, type: 3}
+  cursorTextureHouse3: {fileID: 2800000, guid: d5b54d10dac947845a4ee619898e56d2, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
 --- !u!114 &114029118586300750

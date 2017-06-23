@@ -102,6 +102,7 @@ public class MouseManager : Photon.MonoBehaviour {
             if (Physics.Raycast(ray, out hitInfo))
             {
                 GameObject ourHitObject = hitInfo.collider.transform.gameObject;
+                
                 onHouseSwitch();
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -181,6 +182,11 @@ public class MouseManager : Photon.MonoBehaviour {
 
         //Fügt dem Ortsobjekt das Haus als Child hinzu
         house_go.transform.parent = parentHitObj.transform;
+
+        MeshRenderer mr = parentHitObj.GetComponentInChildren<MeshRenderer>();
+        mr.material.color = Color.red;
+
+
     }
 
     //Sucht den Tag der geklickten Objekte und zerstört diese
