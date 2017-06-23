@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e7a31756bd5e7c64d81056b8a428db3e
+timeCreated: 1498250620
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Capture it 2
+  fontNames:
+  - CaptureIt2
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -20,6 +20,11 @@ public class NetworkManager : Photon.MonoBehaviour {
     public Transform spawnPointSix;
     public Transform spawnPointSeven;
 
+    public Font captureIt2;
+
+    private GUIStyle guiStyle = new GUIStyle(); //create a new variable
+
+
     bool showGui = true;
 
     // Use this for initialization
@@ -37,6 +42,9 @@ public class NetworkManager : Photon.MonoBehaviour {
         if (showGui)
         {
             GUI.Box(new Rect(-5, -5, Screen.width + 10, Screen.height + 10), backgroundImage);
+            guiStyle.fontSize = 40;
+            guiStyle.font = captureIt2;
+            GUI.Label(new Rect(Screen.width/2 - 200, 75, 200, 50), "Siedler of Bavaria", guiStyle);
             if (!PhotonNetwork.connected)
             {
                 GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
@@ -46,7 +54,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                 // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
 
 
-                if (GUI.Button(new Rect(100, 100, 250, 100), "Join " + roomName))
+                if (GUI.Button(new Rect(Screen.width/2 - 125, Screen.height/2 - 50, 250, 100), "Hier klicken um am Spiel teilzunehmen!"))
                 {
 
                     PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
