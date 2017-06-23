@@ -18,6 +18,9 @@ public class Building_Menu : MonoBehaviour {
 
     public Texture2D cursorTexture;
     public Texture2D cursorMoveTexture;
+    public Texture2D cursorTextureHouse1;
+    public Texture2D cursorTextureHouse2;
+    public Texture2D cursorTextureHouse3;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
@@ -59,6 +62,7 @@ public class Building_Menu : MonoBehaviour {
     public void deactivateBuildMode()
     {
         building_Number = 0;
+        changeCursor(null);
     }
 
     //Aktion die ausgeführt wird wenn auf die Erste Epoche im Baumenu geklickt wird
@@ -92,6 +96,17 @@ public class Building_Menu : MonoBehaviour {
     public void onBuildingSelected(int count)
     {
         building_Number = count;
+        switch (building_Number)
+        {
+            case (1):
+                changeCursor(cursorTextureHouse1); break;
+            case (2):
+                changeCursor(cursorTextureHouse2); break;
+            case (3):
+                changeCursor(cursorTextureHouse3); break;
+            default: changeCursor(null);break;
+        }
+        
     }
 
     //Gibt Gebäude Index weiter 
@@ -117,6 +132,12 @@ public class Building_Menu : MonoBehaviour {
         Cursor.SetCursor(cursorMoveTexture, hotSpot, cursorMode);
         Invoke("changeCursorToHammer", 0.22f);
 
+
+    }
+
+    void changeCursor(Texture2D cursorTexture)
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
     }
 
