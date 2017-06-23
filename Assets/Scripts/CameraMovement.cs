@@ -18,7 +18,12 @@ public class CameraMovement : MonoBehaviour {
 	float rotationY = 0.0f;
 	float rotationX = 0.0f;
 
-	void Update () {
+    private void Start()
+    {
+        rotationX = transform.rotation.eulerAngles.y;
+    }
+
+    void Update () {
 
 
 		if (Input.GetKey(KeyCode.RightArrow)){

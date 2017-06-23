@@ -53,8 +53,12 @@ public class Building_Menu : MonoBehaviour {
         buildingCanvas.SetActive(isShowing);
         building_Number = 0;
         Debug.Log(transform);
-        
+       
+    }
 
+    public void deactivateBuildMode()
+    {
+        building_Number = 0;
     }
 
     //Aktion die ausgeführt wird wenn auf die Erste Epoche im Baumenu geklickt wird

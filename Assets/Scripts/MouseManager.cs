@@ -99,12 +99,10 @@ public class MouseManager : Photon.MonoBehaviour {
         {
 
             //Startet Raycast 
-            Debug.Log(Physics.Raycast(ray, out hitInfo));
             if (Physics.Raycast(ray, out hitInfo))
             {
                 GameObject ourHitObject = hitInfo.collider.transform.gameObject;
                 onHouseSwitch();
-                Debug.Log(selectedHouse);
                 if (Input.GetMouseButtonDown(0))
                 {
                     GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
@@ -118,6 +116,7 @@ public class MouseManager : Photon.MonoBehaviour {
 
                             buildHouse(parentHitObject);
                             m_resources_counter.reduceMaterials(house_name);
+                            m_building_menu.deactivateBuildMode();
 
                             if (resources_counter[counter_position] == 1)
                             {
