@@ -81,6 +81,10 @@ public class MouseManager : Photon.MonoBehaviour {
         m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
         
         m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
+
+
+        string playerName = PhotonNetwork.playerName;
+        m_popup_manager.OnGameStartInfo(playerName);
     }
 	
 	// Update is called once per frame
@@ -178,6 +182,7 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 
+    //bauen des Hauses
     void buildHouse(GameObject parentHitObj)
     {
 

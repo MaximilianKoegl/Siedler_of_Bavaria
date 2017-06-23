@@ -26,9 +26,21 @@ public class PopUpManager : MonoBehaviour {
         popUpInfo.SetActive(false);
     }
 
+    public void OnGameStartInfo(String name)
+    {
+
+        Text text = popUpInfo.GetComponentInChildren<Text>();
+        text.text = name;
+        popUpInfo.SetActive(true);
+    }
+
     //Erzeugt ein Pop Up
     public void onFirstTimeBuild(string name)
     {
+        
+        Text text = popUpInfo.GetComponentInChildren<Text>();
+        String info = name + " - Infos";
+        text.text = info;
         popUpInfo.SetActive(true);
         //popUpClass.HouseName = name;
         switch (name)
