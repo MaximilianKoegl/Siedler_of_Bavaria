@@ -20,6 +20,12 @@ public class PopUpManager : MonoBehaviour {
 		
 	}
 
+    //Pop Up schließen
+    public void onClosePopUp()
+    {
+        popUpInfo.SetActive(false);
+    }
+
     //Erzeugt ein Pop Up
     public void onFirstTimeBuild(string name)
     {

@@ -10,6 +10,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     public GameObject cameraPrefab;
     public GameObject mouseManagerPrefab;
     public GameObject interfacePrefab;
+    public Texture2D backgroundImage;
 
     public Transform spawnPointOne;
     public Transform spawnPointTwo;
@@ -18,6 +19,8 @@ public class NetworkManager : Photon.MonoBehaviour {
     public Transform spawnPointFive;
     public Transform spawnPointSix;
     public Transform spawnPointSeven;
+
+    bool showGui = true;
 
     // Use this for initialization
     void Start () {
@@ -31,20 +34,24 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     void OnGUI()
     {
-        if (!PhotonNetwork.connected)
+        if (showGui)
         {
-            GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
-        }
-        else if (PhotonNetwork.room == null)
-        {
-            // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
-
-            
-            if (GUI.Button(new Rect(100, 250, 250, 100), "Join " + roomName))
+            GUI.Box(new Rect(-5, -5, Screen.width + 10, Screen.height + 10), backgroundImage);
+            if (!PhotonNetwork.connected)
             {
+                GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+            }
+            else if (PhotonNetwork.room == null)
+            {
+                // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
 
-                PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
 
+                if (GUI.Button(new Rect(100, 100, 250, 100), "Join " + roomName))
+                {
+
+                    PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
+                    showGui = false;
+                }
             }
         }
     }

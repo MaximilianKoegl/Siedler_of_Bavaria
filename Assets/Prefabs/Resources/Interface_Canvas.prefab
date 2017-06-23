@@ -1294,6 +1294,7 @@ MonoBehaviour:
   cursorTextureHouse3: {fileID: 2800000, guid: d5b54d10dac947845a4ee619898e56d2, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  m_popup_manager: {fileID: 114660749207932700}
 --- !u!114 &114029118586300750
 MonoBehaviour:
   m_ObjectHideFlags: 1

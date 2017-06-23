@@ -327,6 +327,7 @@ MonoBehaviour:
     type: 2}
   interfacePrefab: {fileID: 1737083422499922, guid: 09704502b90333d42b335449e2491d15,
     type: 2}
+  backgroundImage: {fileID: 2800000, guid: 280af1fbccc76ca43b814d7276df7b5c, type: 3}
   spawnPointOne: {fileID: 4789886356177448, guid: 24a3bdb04a54b0247b049fb85e5acb40,
     type: 2}
   spawnPointTwo: {fileID: 4130913919422942, guid: 4e6c5c357ec6516419a2ac03471b1ef1,

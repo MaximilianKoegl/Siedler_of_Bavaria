@@ -106,6 +106,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 onHouseSwitch();
                 if (Input.GetMouseButtonDown(0))
                 {
+                    m_popup_manager.onClosePopUp();
                     GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
 
                     //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
@@ -130,14 +131,24 @@ public class MouseManager : Photon.MonoBehaviour {
                     //Überprüft ob Entferntool aktiviert wurde
                     if (m_building_menu.getDestroyBool())
                     {
+                       
                         destroyBuilding(ourHitObject, parentHitObject);
-
+                        
                     }
 
                     if (!m_building_menu.getDestroyBool())
                     {
                         presentBuildingInfo(ourHitObject);
+                        m_building_menu.deactivateBuildMode();
                     }
+                }
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    m_building_menu.deactivateBuildMode();
+                    m_popup_manager.onClosePopUp();
                 }
             }
         }
@@ -183,6 +194,7 @@ public class MouseManager : Photon.MonoBehaviour {
         //Fügt dem Ortsobjekt das Haus als Child hinzu
         house_go.transform.parent = parentHitObj.transform;
 
+
         MeshRenderer mr = parentHitObj.GetComponentInChildren<MeshRenderer>();
         mr.material.color = Color.red;
 
@@ -192,25 +204,30 @@ public class MouseManager : Photon.MonoBehaviour {
     //Sucht den Tag der geklickten Objekte und zerstört diese
     void destroyBuilding(GameObject hitObject, GameObject parentObject)
     {
-        m_building_menu.fakeAnimationDestroy();
+
+        MeshRenderer mr = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
         switch (hitObject.tag)
         {
             case ("Woodcutter"):
                 resources_counter[0] -= 1;
+                m_building_menu.fakeAnimationDestroy();
+                mr.material.color = Color.white;
                 PhotonNetwork.Destroy(parentObject);
-
                 break;
             case ("Ironfeeder"):
                 resources_counter[1] -= 1;
+                m_building_menu.fakeAnimationDestroy();
+                mr.material.color = Color.white;
                 PhotonNetwork.Destroy(parentObject);
-
                 break;
             case ("Stonefeeder"):
                 resources_counter[2] -= 1;
+                m_building_menu.fakeAnimationDestroy();
+                mr.material.color = Color.white;
                 PhotonNetwork.Destroy(parentObject);
-
                 break;
             default:
+                m_building_menu.activateDestroy();
                 break;
         }
 

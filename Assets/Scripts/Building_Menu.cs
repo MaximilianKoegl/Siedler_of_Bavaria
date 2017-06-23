@@ -24,6 +24,10 @@ public class Building_Menu : MonoBehaviour {
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    public PopUpManager m_popup_manager;
+
+    
+
     private bool isShowing;
     private bool destroyIsActivated;
     private int building_Number;
@@ -44,7 +48,7 @@ public class Building_Menu : MonoBehaviour {
         fifth_building.onClick.AddListener(() => { onBuildingSelected(5); });
 
 
-
+        m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
 
 
     }
@@ -52,11 +56,14 @@ public class Building_Menu : MonoBehaviour {
     //Aktion die ausgeführt wird wenn der Plusbutton für das Baumenu geklickt wird
     public void onClickedPlusButton()
     {
+        deactivateBuildMode();
         isShowing = !isShowing;
         buildingCanvas.SetActive(isShowing);
         building_Number = 0;
         Debug.Log(transform);
-       
+
+        m_popup_manager.onClosePopUp();
+
     }
 
     public void deactivateBuildMode()
@@ -96,6 +103,7 @@ public class Building_Menu : MonoBehaviour {
     public void onBuildingSelected(int count)
     {
         building_Number = count;
+        m_popup_manager.onClosePopUp();
         switch (building_Number)
         {
             case (1):
