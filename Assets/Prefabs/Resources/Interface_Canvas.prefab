@@ -1289,7 +1289,7 @@ MonoBehaviour:
   fifth_building: {fileID: 114670190802147592}
   cursorTexture: {fileID: 2800000, guid: 661b06d0200e6054caf43a04db4fe339, type: 3}
   cursorMoveTexture: {fileID: 2800000, guid: 4c7ee750d23e9ff4fae55d89348d66a2, type: 3}
-  cursorTextureHouse1: {fileID: 2800000, guid: c9928b9c597bbf941aa0d6c0961e60da, type: 3}
+  cursorTextureHouse1: {fileID: 2800000, guid: 1c0070a6e6eacd64a8669a1c0d8e66dc, type: 3}
   cursorTextureHouse2: {fileID: 2800000, guid: f84225703d06a41499cff58d27f0e755, type: 3}
   cursorTextureHouse3: {fileID: 2800000, guid: d5b54d10dac947845a4ee619898e56d2, type: 3}
   cursorMode: 0
@@ -1744,7 +1744,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 446ad3018f882b64abcbdabfa65ae539, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 133f323aa2d481448b885797e3219581, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
