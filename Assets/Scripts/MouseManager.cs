@@ -6,10 +6,13 @@ using UnityEngine.EventSystems;
 public class MouseManager : Photon.MonoBehaviour {
 
     public GameObject forrest;
-    public GameObject house;
+    public GameObject haupthaus;
+    public GameObject holzfäller;
     public GameObject house_two;
     public GameObject house_three;
     private GameObject selectedHouse;
+
+    public GameObject Augsburg;
 
     public Building_Menu m_building_menu;
     public Resources_Counter m_resources_counter;
@@ -51,7 +54,7 @@ public class MouseManager : Photon.MonoBehaviour {
 
         switch (m)                                                      
         {
-            case (1): selectedHouse = house;
+            case (1): selectedHouse = holzfäller;
                 house_name = "Woodcutter";
                 counter_position = 0;
 
@@ -85,6 +88,8 @@ public class MouseManager : Photon.MonoBehaviour {
 
         string playerName = PhotonNetwork.playerName;
         m_popup_manager.OnGameStartInfo(playerName);
+
+        //buildHouseStart(Augsburg);
     }
 	
 	// Update is called once per frame
@@ -173,8 +178,13 @@ public class MouseManager : Photon.MonoBehaviour {
 
                 break;
             case ("Stonefeeder"):
-                m_popup_manager.onFirstTimeBuild("Ironfeeder");
+                m_popup_manager.onFirstTimeBuild("Stonefeeder");
                 Debug.Log("Stonefeeder clicked");
+
+                break;
+            case ("Dorfzentrum"):
+                m_popup_manager.onFirstTimeBuild("Dorfzentrum");
+                Debug.Log("Dorfzentrum clicked");
 
                 break;
             default:
@@ -206,29 +216,57 @@ public class MouseManager : Photon.MonoBehaviour {
 
     }
 
+
+    //bauen des Hauses
+    void buildHouseStart(GameObject parentHitObj)
+    {
+
+        //Haus bauen im Netzwerk
+        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, parentHitObj.transform.position, Quaternion.identity, 0);
+
+        //Erhöht Anzahl der bestimmen Hausart
+        //resources_counter[counter_position] += 1;
+
+        //Setzt Namen des Hauses
+        house_go.name = "Dorfzentrum";
+        house_go.transform.GetChild(0).tag = "Dorfzentrum";
+
+        //Fügt dem Ortsobjekt das Haus als Child hinzu
+        house_go.transform.parent = parentHitObj.transform;
+
+
+        MeshRenderer mr = parentHitObj.GetComponentInChildren<MeshRenderer>();
+        mr.material.color = Color.red;
+
+
+    }
+
     //Sucht den Tag der geklickten Objekte und zerstört diese
     void destroyBuilding(GameObject hitObject, GameObject parentObject)
     {
 
-        MeshRenderer mr = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+        
         switch (hitObject.tag)
         {
             case ("Woodcutter"):
                 resources_counter[0] -= 1;
                 m_building_menu.fakeAnimationDestroy();
+                MeshRenderer mr = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                 mr.material.color = Color.white;
                 PhotonNetwork.Destroy(parentObject);
                 break;
             case ("Ironfeeder"):
                 resources_counter[1] -= 1;
                 m_building_menu.fakeAnimationDestroy();
-                mr.material.color = Color.white;
+                MeshRenderer mr1 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                mr1.material.color = Color.white;
                 PhotonNetwork.Destroy(parentObject);
                 break;
             case ("Stonefeeder"):
                 resources_counter[2] -= 1;
                 m_building_menu.fakeAnimationDestroy();
-                mr.material.color = Color.white;
+                MeshRenderer mr2 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                mr2.material.color = Color.white;
                 PhotonNetwork.Destroy(parentObject);
                 break;
             default:

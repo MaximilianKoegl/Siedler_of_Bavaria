@@ -12,6 +12,13 @@ public class NetworkManager : Photon.MonoBehaviour {
     public GameObject interfacePrefab;
     public Texture2D backgroundImage;
 
+    public GameObject spawnPointOneHex;
+    public GameObject spawnPointTwoHex;
+    public GameObject spawnPointThreeHex;
+    public GameObject spawnPointFourHex;
+    public GameObject spawnPointFiveHex;
+    public GameObject spawnPointSixHex;
+    public GameObject spawnPointSevenHex;
     public Transform spawnPointOne;
     public Transform spawnPointTwo;
     public Transform spawnPointThree;
@@ -19,6 +26,8 @@ public class NetworkManager : Photon.MonoBehaviour {
     public Transform spawnPointFive;
     public Transform spawnPointSix;
     public Transform spawnPointSeven;
+
+    public GameObject haupthaus;
 
     public Font captureIt2;
 
@@ -121,8 +130,14 @@ public class NetworkManager : Photon.MonoBehaviour {
                     {
                         Instantiate(cameraPrefab, spawnPointOne.position, spawnPointOne.rotation);
                         Instantiate(interfacePrefab, spawnPointOne.position, spawnPointOne.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointOne.position, spawnPointOne.rotation, 0);
+                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointOne.transform.position, spawnPointOne.rotation, 0);
+                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointOneHex.transform.position, Quaternion.identity, 0);
+                        house_go.name = "Dorfzentrum";
+                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
                         PhotonNetwork.playerName = "Augsburg";
+                        house_go.transform.parent = spawnPointOneHex.transform;
+                        MeshRenderer mr = spawnPointOneHex.GetComponentInChildren<MeshRenderer>();
+                        mr.material.color = Color.red;
                         break;
                     }
                 }
@@ -147,7 +162,13 @@ public class NetworkManager : Photon.MonoBehaviour {
                         Instantiate(cameraPrefab, spawnPointTwo.position, spawnPointTwo.rotation);
                         Instantiate(interfacePrefab, spawnPointTwo.position, spawnPointTwo.rotation);
                         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointTwo.position, spawnPointTwo.rotation, 0);
+                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointTwoHex.transform.position, Quaternion.identity, 0);
+                        house_go.name = "Dorfzentrum";
+                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
                         PhotonNetwork.playerName = "Würzburg";
+                        house_go.transform.parent = spawnPointTwoHex.transform;
+                        MeshRenderer mr = spawnPointTwoHex.GetComponentInChildren<MeshRenderer>();
+                        mr.material.color = Color.red;
                         break;
                     }
                 }                
@@ -171,7 +192,13 @@ public class NetworkManager : Photon.MonoBehaviour {
                         Instantiate(cameraPrefab, spawnPointThree.position, spawnPointThree.rotation);
                         Instantiate(interfacePrefab, spawnPointThree.position, spawnPointThree.rotation);
                         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointThree.position, spawnPointThree.rotation, 0);
+                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointThreeHex.transform.position, Quaternion.identity, 0);
+                        house_go.name = "Dorfzentrum";
+                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
                         PhotonNetwork.playerName = "Landshut";
+                        house_go.transform.parent = spawnPointThreeHex.transform;
+                        MeshRenderer mr = spawnPointThreeHex.GetComponentInChildren<MeshRenderer>();
+                        mr.material.color = Color.red;
                         break;
                     }
                 }
@@ -195,7 +222,13 @@ public class NetworkManager : Photon.MonoBehaviour {
                         Instantiate(cameraPrefab, spawnPointFour.position, spawnPointFour.rotation);
                         Instantiate(interfacePrefab, spawnPointFour.position, spawnPointFour.rotation);
                         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointFour.position, spawnPointFour.rotation, 0);
+                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointFourHex.transform.position, Quaternion.identity, 0);
+                        house_go.name = "Dorfzentrum";
+                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
                         PhotonNetwork.playerName = "München";
+                        house_go.transform.parent = spawnPointFourHex.transform;
+                        MeshRenderer mr = spawnPointFourHex.GetComponentInChildren<MeshRenderer>();
+                        mr.material.color = Color.red;
                         break;
                     }
                 }
@@ -219,7 +252,13 @@ public class NetworkManager : Photon.MonoBehaviour {
                         Instantiate(cameraPrefab, spawnPointFive.position, spawnPointFive.rotation);
                         Instantiate(interfacePrefab, spawnPointFive.position, spawnPointFive.rotation);
                         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointFive.position, spawnPointFive.rotation, 0);
+                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointFiveHex.transform.position, Quaternion.identity, 0);
+                        house_go.name = "Dorfzentrum";
+                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
                         PhotonNetwork.playerName = "Regensburg";
+                        house_go.transform.parent = spawnPointFiveHex.transform;
+                        MeshRenderer mr = spawnPointFiveHex.GetComponentInChildren<MeshRenderer>();
+                        mr.material.color = Color.red;
                         break;
                     }
                 }
@@ -243,7 +282,13 @@ public class NetworkManager : Photon.MonoBehaviour {
                         Instantiate(cameraPrefab, spawnPointSix.position, spawnPointSix.rotation);
                         Instantiate(interfacePrefab, spawnPointSix.position, spawnPointSix.rotation);
                         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointSix.position, spawnPointSix.rotation, 0);
+                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointSixHex.transform.position, Quaternion.identity, 0);
+                        house_go.name = "Dorfzentrum";
+                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
                         PhotonNetwork.playerName = "Bayreuth";
+                        house_go.transform.parent = spawnPointSixHex.transform;
+                        MeshRenderer mr = spawnPointSixHex.GetComponentInChildren<MeshRenderer>();
+                        mr.material.color = Color.red;
                         break;
                     }
                 }
@@ -268,6 +313,12 @@ public class NetworkManager : Photon.MonoBehaviour {
                         Instantiate(interfacePrefab, spawnPointSeven.position, spawnPointSeven.rotation);
                         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointSeven.position, spawnPointSeven.rotation, 0);
                         PhotonNetwork.playerName = "Ansbach";
+                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointSevenHex.transform.position, Quaternion.identity, 0);
+                        house_go.name = "Dorfzentrum";
+                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
+                        house_go.transform.parent = spawnPointSevenHex.transform;
+                        MeshRenderer mr = spawnPointSevenHex.GetComponentInChildren<MeshRenderer>();
+                        mr.material.color = Color.red;
                         break;
                     }
                 }
