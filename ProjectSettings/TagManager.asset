@@ -14,6 +14,11 @@ TagManager:
   - Oberfranken
   - Unterfranken
   - Dorfzentrum
+  - Mittelfranken
+  - Niederbayern
+  - Oberbayern
+  - Oberpfalz
+  - Schwaben
   layers:
   - Default
   - TransparentFX
