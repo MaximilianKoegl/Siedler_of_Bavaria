@@ -11,6 +11,9 @@ TagManager:
   - PopUpManager
   - ResourceManager
   - BuildingMenuManager
+  - Oberfranken
+  - Unterfranken
+  - Dorfzentrum
   layers:
   - Default
   - TransparentFX
