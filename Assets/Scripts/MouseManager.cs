@@ -111,47 +111,48 @@ public class MouseManager : Photon.MonoBehaviour {
             if (Physics.Raycast(ray, out hitInfo))
             {
                 GameObject ourHitObject = hitInfo.collider.transform.gameObject;
-                
+
                 onHouseSwitch();
                 if (Input.GetMouseButtonDown(0))
                 {
                     m_popup_manager.onClosePopUp();
                     GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
 
-                    //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
-                    if (selectedHouse != null)
-                    {
-                        //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
-                        if (ourHitObject.transform.name == "Hexagon" && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
+                        //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
+                        if (selectedHouse != null)
+                        {
+                            //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
+                            if (ourHitObject.transform.tag == PhotonNetwork.playerName && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
+                            {
+
+                                buildHouse(parentHitObject);
+                                m_resources_counter.reduceMaterials(house_name);
+                                m_building_menu.deactivateBuildMode();
+
+                                if (resources_counter[counter_position] == 1)
+                                {
+                                    m_popup_manager.onFirstTimeBuild(house_name);
+                                }
+
+                            }
+                        }
+
+                        //Überprüft ob Entferntool aktiviert wurde
+                        if (m_building_menu.getDestroyBool())
                         {
 
-                            buildHouse(parentHitObject);
-                            m_resources_counter.reduceMaterials(house_name);
-                            m_building_menu.deactivateBuildMode();
-
-                            if (resources_counter[counter_position] == 1)
-                            {
-                                m_popup_manager.onFirstTimeBuild(house_name);
-                            }
+                            destroyBuilding(ourHitObject, parentHitObject);
 
                         }
-                    }
 
-                    //Überprüft ob Entferntool aktiviert wurde
-                    if (m_building_menu.getDestroyBool())
-                    {
-                       
-                        destroyBuilding(ourHitObject, parentHitObject);
-                        
-                    }
-
-                    if (!m_building_menu.getDestroyBool())
-                    {
-                        presentBuildingInfo(ourHitObject);
-                        m_building_menu.deactivateBuildMode();
+                        if (!m_building_menu.getDestroyBool())
+                        {
+                            presentBuildingInfo(ourHitObject);
+                            m_building_menu.deactivateBuildMode();
+                        }
                     }
                 }
-            }
+            
             else
             {
                 if (Input.GetMouseButtonDown(0))
@@ -208,11 +209,6 @@ public class MouseManager : Photon.MonoBehaviour {
 
         //Fügt dem Ortsobjekt das Haus als Child hinzu
         house_go.transform.parent = parentHitObj.transform;
-
-
-        MeshRenderer mr = parentHitObj.GetComponentInChildren<MeshRenderer>();
-        mr.material.color = Color.red;
-
 
     }
 

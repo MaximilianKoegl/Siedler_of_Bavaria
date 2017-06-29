@@ -134,7 +134,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointOneHex.transform.position, Quaternion.identity, 0);
                         house_go.name = "Dorfzentrum";
                         house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Augsburg";
+                        PhotonNetwork.playerName = "Schwaben";
                         house_go.transform.parent = spawnPointOneHex.transform;
                         MeshRenderer mr = spawnPointOneHex.GetComponentInChildren<MeshRenderer>();
                         mr.material.color = Color.red;
@@ -165,7 +165,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointTwoHex.transform.position, Quaternion.identity, 0);
                         house_go.name = "Dorfzentrum";
                         house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Würzburg";
+                        PhotonNetwork.playerName = "Unterfranken";
                         house_go.transform.parent = spawnPointTwoHex.transform;
                         MeshRenderer mr = spawnPointTwoHex.GetComponentInChildren<MeshRenderer>();
                         mr.material.color = Color.red;
@@ -195,7 +195,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointThreeHex.transform.position, Quaternion.identity, 0);
                         house_go.name = "Dorfzentrum";
                         house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Landshut";
+                        PhotonNetwork.playerName = "Niederbayern";
                         house_go.transform.parent = spawnPointThreeHex.transform;
                         MeshRenderer mr = spawnPointThreeHex.GetComponentInChildren<MeshRenderer>();
                         mr.material.color = Color.red;
@@ -225,7 +225,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointFourHex.transform.position, Quaternion.identity, 0);
                         house_go.name = "Dorfzentrum";
                         house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "München";
+                        PhotonNetwork.playerName = "Oberbayern";
                         house_go.transform.parent = spawnPointFourHex.transform;
                         MeshRenderer mr = spawnPointFourHex.GetComponentInChildren<MeshRenderer>();
                         mr.material.color = Color.red;
@@ -255,7 +255,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointFiveHex.transform.position, Quaternion.identity, 0);
                         house_go.name = "Dorfzentrum";
                         house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Regensburg";
+                        PhotonNetwork.playerName = "Oberpfalz";
                         house_go.transform.parent = spawnPointFiveHex.transform;
                         MeshRenderer mr = spawnPointFiveHex.GetComponentInChildren<MeshRenderer>();
                         mr.material.color = Color.red;
@@ -285,7 +285,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointSixHex.transform.position, Quaternion.identity, 0);
                         house_go.name = "Dorfzentrum";
                         house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Bayreuth";
+                        PhotonNetwork.playerName = "Oberfranken";
                         house_go.transform.parent = spawnPointSixHex.transform;
                         MeshRenderer mr = spawnPointSixHex.GetComponentInChildren<MeshRenderer>();
                         mr.material.color = Color.red;
@@ -312,7 +312,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         Instantiate(cameraPrefab, spawnPointSeven.position, spawnPointSeven.rotation);
                         Instantiate(interfacePrefab, spawnPointSeven.position, spawnPointSeven.rotation);
                         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointSeven.position, spawnPointSeven.rotation, 0);
-                        PhotonNetwork.playerName = "Ansbach";
+                        PhotonNetwork.playerName = "Mittelfranken";
                         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointSevenHex.transform.position, Quaternion.identity, 0);
                         house_go.name = "Dorfzentrum";
                         house_go.transform.GetChild(0).tag = "Dorfzentrum";
