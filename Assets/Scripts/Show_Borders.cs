@@ -27,7 +27,7 @@ public class Show_Borders : MonoBehaviour {
         foreach (GameObject go in fos)
         {
             MeshRenderer mr = go.GetComponentInChildren<MeshRenderer>();
-            mr.material.color = Color.red;
+            mr.material.color = Color.magenta;
         }
         foreach (GameObject go in tos)
         {

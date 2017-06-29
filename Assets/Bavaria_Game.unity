@@ -108,6 +108,11 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &113205369 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1430736613653118, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2113127995}
 --- !u!1 &772263762
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +301,7 @@ MonoBehaviour:
   interfacePrefab: {fileID: 1737083422499922, guid: 09704502b90333d42b335449e2491d15,
     type: 2}
   backgroundImage: {fileID: 2800000, guid: 280af1fbccc76ca43b814d7276df7b5c, type: 3}
-  spawnPointOneHex: {fileID: 2046437165}
+  spawnPointOneHex: {fileID: 113205369}
   spawnPointTwoHex: {fileID: 1850484356}
   spawnPointThreeHex: {fileID: 1134709592}
   spawnPointFourHex: {fileID: 1786813684}
@@ -347,14 +352,25 @@ GameObject:
   m_PrefabParentObject: {fileID: 1522849665924104, guid: b9c2f9988725d3044909e6e3cc4a51a8,
     type: 2}
   m_PrefabInternal: {fileID: 2113127995}
+--- !u!1 &1918065489 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1463402814347444, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2113127995}
+--- !u!114 &1918065491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1918065489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f239bb403676d1b4784fc523db762609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2038050403 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1490033222896338, guid: b9c2f9988725d3044909e6e3cc4a51a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 2113127995}
---- !u!1 &2046437165 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1381087854397992, guid: b9c2f9988725d3044909e6e3cc4a51a8,
     type: 2}
   m_PrefabInternal: {fileID: 2113127995}
 --- !u!1001 &2113127995
