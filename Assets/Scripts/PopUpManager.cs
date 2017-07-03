@@ -29,36 +29,54 @@ public class PopUpManager : MonoBehaviour {
     public void OnGameStartInfo(String name)
     {
 
-        Text text = popUpInfo.GetComponentInChildren<Text>();
-        text.text = name;
+        Text title = popUpInfo.GetComponentInChildren<Text>();
+        title.text = name;
+        Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
+        infoText.text = getPopUpInfo(name);
         popUpInfo.SetActive(true);
     }
 
     //Erzeugt ein Pop Up
-    public void onFirstTimeBuild(string name)
+    public void onFirstTimeBuild(string tag)
     {
         
-        Text text = popUpInfo.GetComponentInChildren<Text>();
-        String info = name + " - Infos";
-        text.text = info;
+        Text title = popUpInfo.GetComponentInChildren<Text>();
+        title.text = getPopUpTitle(tag);
+        Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
+        infoText.text = getPopUpInfo(tag);
         popUpInfo.SetActive(true);
         //popUpClass.HouseName = name;
-        switch (name)
+        
+    }
+
+    private string getPopUpTitle(String tag)
+    {
+        switch (tag)
         {
-            case ("Woodcutter"):
-                Debug.Log("Woodcutter");
-                //Wood Pop up;
-                break;
-            case ("Ironfeeder"):
-                Debug.Log("Ironfeeder");
-                //Iron Pop up;
-                break;
-            case ("Stonefeeder"):
-                Debug.Log("Stonefeeder");
-                //Stone Pop up;
-                break;
-            default:
-                break;
+            case ("Woodcutter"): return "Holzfäller";
+            case ("Ironfeeder"): return "Eisenmine";
+            case ("Stonefeeder"): return "Steinmine";
+            case ("Dorfzentrum"): return "Dorfzentrum";
+            default: return "";
+        }
+    }
+
+    private string getPopUpInfo(String tag)
+    {
+        switch (tag)
+        {
+            case ("Woodcutter"): return "Produziert Holz.";
+            case ("Ironfeeder"): return "Produziert Eisen.";
+            case ("Stonefeeder"): return "Produziert Stein.";
+            case ("Dorfzentrum"): return "Dies ist das Dorfzentrum.";
+            case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschloßen.";
+            case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";
+            case ("Landshut"): return "Landshut wurde im 16. Jahrhundert von ... regiert.";
+            case ("Bayreuth"): return "Bayreuth wurde im 16. Jahrhundert von ... regiert.";
+            case ("München"): return "München wurde im 16. Jahrhundert von ... regiert.";
+            case ("Ansbach"): return "Ansbach wurde im 16. Jahrhundert von ... regiert.";
+            case ("Würzburg"): return "Würzburg wurde im 16. Jahrhundert von ... regiert.";
+            default: return "";
         }
     }
 }

@@ -87,9 +87,24 @@ public class MouseManager : Photon.MonoBehaviour {
 
 
         string playerName = PhotonNetwork.playerName;
-        m_popup_manager.OnGameStartInfo(playerName);
+        m_popup_manager.OnGameStartInfo(getCityName(playerName));
+        
+    }
 
-        //buildHouseStart(Augsburg);
+    private string getCityName(string playerName)
+    {
+        switch (playerName)
+        {
+            case ("Schwaben"): return "Augsburg";
+            case ("Unterfranken"): return "Würzburg";
+            case ("Oberpfalz"): return "Regensburg";
+            case ("Oberbayern"): return "München";
+            case ("Niederbayern"): return "Landshut";
+            case ("Oberfranken"): return "Bayreuth";
+            case ("Mittelfranken"): return "Ansbach";
+            default: return "";
+
+        }
     }
 	
 	// Update is called once per frame
@@ -210,6 +225,9 @@ public class MouseManager : Photon.MonoBehaviour {
         //Fügt dem Ortsobjekt das Haus als Child hinzu
         house_go.transform.parent = parentHitObj.transform;
 
+        MeshRenderer mr = parentHitObj.GetComponentInChildren<MeshRenderer>();
+        mr.material.color = Color.red;
+
     }
 
 
@@ -220,9 +238,7 @@ public class MouseManager : Photon.MonoBehaviour {
         //Haus bauen im Netzwerk
         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, parentHitObj.transform.position, Quaternion.identity, 0);
 
-        //Erhöht Anzahl der bestimmen Hausart
-        //resources_counter[counter_position] += 1;
-
+      
         //Setzt Namen des Hauses
         house_go.name = "Dorfzentrum";
         house_go.transform.GetChild(0).tag = "Dorfzentrum";
@@ -237,6 +253,21 @@ public class MouseManager : Photon.MonoBehaviour {
 
     }
 
+    private Color getColorBezirk(string tag)
+    {
+        switch (tag)
+        {
+            case ("Unterfranken"): return Color.white;
+            case ("Oberfranken"): return Color.magenta;
+            case ("Mittelfranken"): return Color.black;
+            case ("Oberpfalz"): return Color.blue;
+            case ("Oberbayern"): return Color.green;
+            case ("Niederbayern"): return Color.cyan;
+            case ("Schwaben"): return Color.yellow;
+            default: return Color.white;
+        }
+    }
+
     //Sucht den Tag der geklickten Objekte und zerstört diese
     void destroyBuilding(GameObject hitObject, GameObject parentObject)
     {
@@ -248,7 +279,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 resources_counter[0] -= 1;
                 m_building_menu.fakeAnimationDestroy();
                 MeshRenderer mr = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr.material.color = Color.white;
+                mr.material.color = getColorBezirk(parentObject.tag);
                 PhotonNetwork.Destroy(parentObject);
                 break;
             case ("Ironfeeder"):
