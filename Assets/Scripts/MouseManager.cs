@@ -287,22 +287,23 @@ public class MouseManager : Photon.MonoBehaviour {
             case ("Woodcutter"):
                 resources_counter[0] -= 1;
                 m_building_menu.fakeAnimationDestroy();
+                Debug.Log(parentObject.transform.GetChild(0).tag);
                 MeshRenderer mr = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr.material.color = getColorBezirk(parentObject.tag);
+                mr.material.color = getColorBezirk(PhotonNetwork.playerName);
                 PhotonNetwork.Destroy(parentObject);
                 break;
             case ("Ironfeeder"):
                 resources_counter[1] -= 1;
                 m_building_menu.fakeAnimationDestroy();
                 MeshRenderer mr1 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr1.material.color = Color.white;
+                mr1.material.color = getColorBezirk(PhotonNetwork.playerName);
                 PhotonNetwork.Destroy(parentObject);
                 break;
             case ("Stonefeeder"):
                 resources_counter[2] -= 1;
                 m_building_menu.fakeAnimationDestroy();
                 MeshRenderer mr2 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr2.material.color = Color.white;
+                mr2.material.color = getColorBezirk(PhotonNetwork.playerName);
                 PhotonNetwork.Destroy(parentObject);
                 break;
             default:
