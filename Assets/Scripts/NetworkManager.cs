@@ -33,8 +33,10 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
+    private bool exists = false;
 
-    bool showGui = true;
+
+    private bool showGui = true;
 
     // Use this for initialization
     void Start () {
@@ -108,221 +110,199 @@ public class NetworkManager : Photon.MonoBehaviour {
     //überprüft anzahl der spieler und weißt neuem Spieler entsprechende Stadt zu
     private void checkPlayers(int playerNumber)
     {
-        switch (PhotonNetwork.countOfPlayers)
+        switch (playerNumber)
         {
             case (1):
+                exists = false;
+                //checkt alle vorhandenen Spieler, ob Schwaben bereits existiert
+                //- nein --> Spieler wird Schwaben
+                //- ja --> nächste Stadt
                 for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
                 {
-                    //wenn stadt schon vorhanden, dann nächste stadt
-                    //wenn nicht, initialisierung
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Augsburg"))
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Schwaben"))
                     {
                         playerNumber += 1;
-                        if(playerNumber == 8)
+                        if (playerNumber == 8)
                         {
                             playerNumber = 1;
                         }
-                        
+                        exists = true;
                         checkPlayers(playerNumber);
-                        break;
-                    }
-                    else
-                    {
-                        Instantiate(cameraPrefab, spawnPointOne.position, spawnPointOne.rotation);
-                        Instantiate(interfacePrefab, spawnPointOne.position, spawnPointOne.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointOne.transform.position, spawnPointOne.rotation, 0);
-                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointOneHex.transform.position, Quaternion.identity, 0);
-                        house_go.name = "Dorfzentrum";
-                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Schwaben";
-                        house_go.transform.parent = spawnPointOneHex.transform;
-                        MeshRenderer mr = spawnPointOneHex.GetComponentInChildren<MeshRenderer>();
-                        mr.material.color = Color.red;
                         break;
                     }
                 }
-                
+                if (!exists)
+                {
+                    instantiatePlayer(spawnPointOne.position, spawnPointOne.rotation, "Schwaben", spawnPointOneHex);
+                    break;
+                }
                 break;
             case (2):
+                exists = false;
+                //checkt alle vorhandenen Spieler, ob Unterfranken bereits existiert
+                //- nein --> Spieler wird Unterfranken
+                //- ja --> nächste Stadt
                 for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
                 {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Würzburg"))
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Unterfranken"))
                     {
                         playerNumber += 1;
                         if (playerNumber == 8)
                         {
                             playerNumber = 1;
                         }
-                        
+                        exists = true;
                         checkPlayers(playerNumber);
                         break;
                     }
-                    else
-                    {
-                        Instantiate(cameraPrefab, spawnPointTwo.position, spawnPointTwo.rotation);
-                        Instantiate(interfacePrefab, spawnPointTwo.position, spawnPointTwo.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointTwo.position, spawnPointTwo.rotation, 0);
-                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointTwoHex.transform.position, Quaternion.identity, 0);
-                        house_go.name = "Dorfzentrum";
-                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Unterfranken";
-                        house_go.transform.parent = spawnPointTwoHex.transform;
-                        MeshRenderer mr = spawnPointTwoHex.GetComponentInChildren<MeshRenderer>();
-                        mr.material.color = Color.red;
-                        break;
-                    }
-                }                
+                }
+                if (!exists)
+                {
+                    instantiatePlayer(spawnPointTwo.position, spawnPointTwo.rotation, "Unterfranken", spawnPointTwoHex);
+                    break;
+                }           
                 break;
             case (3):
+                exists = false;
+                //checkt alle vorhandenen Spieler, ob Niederbayern bereits existiert
+                //- nein --> Spieler wird Niederbayern
+                //- ja --> nächste Stadt
                 for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
                 {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Landshut"))
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Niederbayern"))
                     {
                         playerNumber += 1;
                         if (playerNumber == 8)
                         {
                             playerNumber = 1;
                         }
-
+                        exists = true;
                         checkPlayers(playerNumber);
                         break;
                     }
-                    else
-                    {
-                        Instantiate(cameraPrefab, spawnPointThree.position, spawnPointThree.rotation);
-                        Instantiate(interfacePrefab, spawnPointThree.position, spawnPointThree.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointThree.position, spawnPointThree.rotation, 0);
-                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointThreeHex.transform.position, Quaternion.identity, 0);
-                        house_go.name = "Dorfzentrum";
-                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Niederbayern";
-                        house_go.transform.parent = spawnPointThreeHex.transform;
-                        MeshRenderer mr = spawnPointThreeHex.GetComponentInChildren<MeshRenderer>();
-                        mr.material.color = Color.red;
-                        break;
-                    }
+                }
+                if (!exists)
+                {
+                    instantiatePlayer(spawnPointThree.position, spawnPointThree.rotation, "Niederbayern", spawnPointThreeHex);
+                    break;
                 }
                 break;
             case (4):
+                exists = false;
+                //checkt alle vorhandenen Spieler, ob Oberbayern bereits existiert
+                //- nein --> Spieler wird Oberbayern
+                //- ja --> nächste Stadt
                 for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
                 {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("München"))
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Oberbayern"))
                     {
                         playerNumber += 1;
                         if (playerNumber == 8)
                         {
                             playerNumber = 1;
                         }
-
+                        exists = true;
                         checkPlayers(playerNumber);
                         break;
                     }
-                    else
-                    {
-                        Instantiate(cameraPrefab, spawnPointFour.position, spawnPointFour.rotation);
-                        Instantiate(interfacePrefab, spawnPointFour.position, spawnPointFour.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointFour.position, spawnPointFour.rotation, 0);
-                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointFourHex.transform.position, Quaternion.identity, 0);
-                        house_go.name = "Dorfzentrum";
-                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Oberbayern";
-                        house_go.transform.parent = spawnPointFourHex.transform;
-                        MeshRenderer mr = spawnPointFourHex.GetComponentInChildren<MeshRenderer>();
-                        mr.material.color = Color.red;
-                        break;
-                    }
+                }
+                if (!exists)
+                {
+                    instantiatePlayer(spawnPointFour.position, spawnPointFour.rotation, "Oberbayern", spawnPointFourHex);
+                    break;
                 }
                 break;
             case (5):
+                exists = false;
+                //checkt alle vorhandenen Spieler, ob Oberpfalz bereits existiert
+                //- nein --> Spieler wird Oberpfalz
+                //- ja --> nächste Stadt
                 for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
                 {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Regensburg"))
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Oberpfalz"))
                     {
                         playerNumber += 1;
                         if (playerNumber == 8)
                         {
                             playerNumber = 1;
                         }
-
+                        exists = true;
                         checkPlayers(playerNumber);
                         break;
                     }
-                    else
-                    {
-                        Instantiate(cameraPrefab, spawnPointFive.position, spawnPointFive.rotation);
-                        Instantiate(interfacePrefab, spawnPointFive.position, spawnPointFive.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointFive.position, spawnPointFive.rotation, 0);
-                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointFiveHex.transform.position, Quaternion.identity, 0);
-                        house_go.name = "Dorfzentrum";
-                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Oberpfalz";
-                        house_go.transform.parent = spawnPointFiveHex.transform;
-                        MeshRenderer mr = spawnPointFiveHex.GetComponentInChildren<MeshRenderer>();
-                        mr.material.color = Color.red;
-                        break;
-                    }
+                }
+                if (!exists)
+                {
+                    instantiatePlayer(spawnPointFive.position, spawnPointFive.rotation, "Oberpfalz", spawnPointFiveHex);
+                    break;
                 }
                 break;
             case (6):
+                exists = false;
+                //checkt alle vorhandenen Spieler, ob Oberfranken bereits existiert
+                //- nein --> Spieler wird Oberfranken
+                //- ja --> nächste Stadt
                 for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
                 {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Bayreuth"))
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Oberfranken"))
                     {
                         playerNumber += 1;
                         if (playerNumber == 8)
                         {
                             playerNumber = 1;
                         }
-
+                        exists = true;
                         checkPlayers(playerNumber);
                         break;
                     }
-                    else
-                    {
-                        Instantiate(cameraPrefab, spawnPointSix.position, spawnPointSix.rotation);
-                        Instantiate(interfacePrefab, spawnPointSix.position, spawnPointSix.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointSix.position, spawnPointSix.rotation, 0);
-                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointSixHex.transform.position, Quaternion.identity, 0);
-                        house_go.name = "Dorfzentrum";
-                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        PhotonNetwork.playerName = "Oberfranken";
-                        house_go.transform.parent = spawnPointSixHex.transform;
-                        MeshRenderer mr = spawnPointSixHex.GetComponentInChildren<MeshRenderer>();
-                        mr.material.color = Color.red;
-                        break;
-                    }
+                }
+                if (!exists)
+                {
+                    instantiatePlayer(spawnPointSix.position, spawnPointSix.rotation, "Oberfranken", spawnPointSixHex);
+                    break;
                 }
                 break;
             case (7):
+                exists = false;
+                //checkt alle vorhandenen Spieler, ob Mittelfranken bereits existiert
+                //- nein --> Spieler wird Mittelfranken
+                //- ja --> nächste Stadt
                 for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
                 {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Ansbach"))
+                    if (PhotonNetwork.playerList[i].NickName.Equals("Mittelfranken"))
                     {
                         playerNumber += 1;
                         if (playerNumber == 8)
                         {
                             playerNumber = 1;
                         }
-
+                        exists = true;
                         checkPlayers(playerNumber);
                         break;
                     }
-                    else
-                    {
-                        Instantiate(cameraPrefab, spawnPointSeven.position, spawnPointSeven.rotation);
-                        Instantiate(interfacePrefab, spawnPointSeven.position, spawnPointSeven.rotation);
-                        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPointSeven.position, spawnPointSeven.rotation, 0);
-                        PhotonNetwork.playerName = "Mittelfranken";
-                        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnPointSevenHex.transform.position, Quaternion.identity, 0);
-                        house_go.name = "Dorfzentrum";
-                        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-                        house_go.transform.parent = spawnPointSevenHex.transform;
-                        MeshRenderer mr = spawnPointSevenHex.GetComponentInChildren<MeshRenderer>();
-                        mr.material.color = Color.red;
-                        break;
-                    }
+                }
+                if (!exists)
+                {
+                    instantiatePlayer(spawnPointSeven.position, spawnPointSeven.rotation, "Mittelfranken", spawnPointSevenHex);
+                    break;
                 }
                 break;
         }
+
+        
+    }
+
+    private void instantiatePlayer(Vector3 spawnPosition, Quaternion spawnRotation, string playerName, GameObject spawnHex)
+    {
+        Instantiate(cameraPrefab, spawnPosition, spawnRotation);
+        Instantiate(interfacePrefab, spawnPosition, spawnRotation);
+        PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPosition, spawnRotation, 0);
+        PhotonNetwork.playerName = playerName;
+        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnHex.transform.position, Quaternion.identity, 0);
+        house_go.name = "Dorfzentrum";
+        house_go.transform.GetChild(0).tag = "Dorfzentrum";
+        house_go.transform.parent = spawnHex.transform;
+        MeshRenderer mr = spawnHex.GetComponentInChildren<MeshRenderer>();
+        mr.material.color = Color.red;
     }
 }

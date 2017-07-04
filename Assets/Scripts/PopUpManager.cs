@@ -69,13 +69,13 @@ public class PopUpManager : MonoBehaviour {
             case ("Ironfeeder"): return "Produziert Eisen.";
             case ("Stonefeeder"): return "Produziert Stein.";
             case ("Dorfzentrum"): return "Dies ist das Dorfzentrum.";
-            case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschloßen.";
+            case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschlossen.";
             case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";
             case ("Landshut"): return "Landshut wurde im 16. Jahrhundert von ... regiert.";
             case ("Bayreuth"): return "Bayreuth wurde im 16. Jahrhundert von ... regiert.";
             case ("München"): return "München wurde im 16. Jahrhundert von ... regiert.";
             case ("Ansbach"): return "Ansbach wurde im 16. Jahrhundert von ... regiert.";
-            case ("Würzburg"): return "Würzburg wurde im 16. Jahrhundert von ... regiert.";
+            case ("Würzburg"): return "Während des Bauernkrieges 1525 wurde die Würzburger Festung Mariental mehrfach berannt. Die Würzburger stellten sich dabei auf die Seite der Bauern.";
             default: return "";
         }
     }
