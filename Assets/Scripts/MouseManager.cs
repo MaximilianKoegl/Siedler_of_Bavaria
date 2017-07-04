@@ -93,6 +93,8 @@ public class MouseManager : Photon.MonoBehaviour {
         
     }
 
+
+    // gives back the Name of the City by the playerName
     private string getCityName(string playerName)
     {
         switch (playerName)
@@ -114,7 +116,7 @@ public class MouseManager : Photon.MonoBehaviour {
         addObjects(Input.mousePosition);
     }
 
-
+    
     void addObjects(Vector3 position)
     {
         Ray ray = Camera.main.ScreenPointToRay(position);
@@ -184,6 +186,8 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 
+
+    //gives a pop up wenn clicked on a building
     void presentBuildingInfo(GameObject hitObject)
     {
         switch (hitObject.tag)

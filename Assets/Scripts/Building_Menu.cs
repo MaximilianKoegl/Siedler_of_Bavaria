@@ -23,8 +23,9 @@ public class Building_Menu : MonoBehaviour {
     public Vector2 hotSpot = Vector2.zero;
 
     public PopUpManager m_popup_manager;
-
     
+    public Resources_Counter m_resource_counter;
+
 
     private bool isShowing;
     private bool destroyIsActivated;
@@ -46,6 +47,7 @@ public class Building_Menu : MonoBehaviour {
 
         m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
 
+        m_resource_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
 
     }
 
@@ -104,11 +106,20 @@ public class Building_Menu : MonoBehaviour {
         switch (building_Number)
         {
             case (1):
-                changeCursor(cursorTextureHouse1); break;
+                if(m_resource_counter.checkBuildingCosts("Woodcutter")){
+                changeCursor(cursorTextureHouse1);
+                }
+                break;
             case (2):
-                changeCursor(cursorTextureHouse2); break;
+                if(m_resource_counter.checkBuildingCosts("Stonefeeder")){
+                changeCursor(cursorTextureHouse2);
+                }
+                break;
             case (3):
-                changeCursor(cursorTextureHouse3); break;
+                if(m_resource_counter.checkBuildingCosts("Ironfeeder")){
+                changeCursor(cursorTextureHouse3);
+                }
+                break;
             default: changeCursor(null);break;
         }
         
