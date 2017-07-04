@@ -59,13 +59,15 @@ public class MouseManager : Photon.MonoBehaviour {
                 counter_position = 0;
 
                 break;
-            case (2): selectedHouse = house_two;
-                house_name = "Ironfeeder";
-                counter_position = 1;
-                break;
-            case (3): selectedHouse = house_three;
+            case (2):
+                selectedHouse = house_three;
                 house_name = "Stonefeeder";
                 counter_position = 2;
+                break;
+            case (3): 
+                selectedHouse = house_two;
+                house_name = "Ironfeeder";
+                counter_position = 1;
                 break;
             default: selectedHouse = null;
                 house_name = "";
@@ -150,8 +152,9 @@ public class MouseManager : Photon.MonoBehaviour {
                                 }
 
                             }
-                        }
-
+                    }
+                    else
+                    {
                         //Überprüft ob Entferntool aktiviert wurde
                         if (m_building_menu.getDestroyBool())
                         {
@@ -166,8 +169,10 @@ public class MouseManager : Photon.MonoBehaviour {
                             m_building_menu.deactivateBuildMode();
                         }
                     }
+
+                        
                 }
-            
+            }
             else
             {
                 if (Input.GetMouseButtonDown(0))

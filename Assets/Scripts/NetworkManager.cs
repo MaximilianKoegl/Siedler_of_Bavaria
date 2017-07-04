@@ -5,7 +5,6 @@ using UnityEngine;
 public class NetworkManager : Photon.MonoBehaviour {
 
     private const string roomName = "Bavarian Museum";
-    private RoomInfo[] roomsList;
     private TypedLobby lobbyName = new TypedLobby("New_Lobby", LobbyType.Default);
     public GameObject cameraPrefab;
     public GameObject mouseManagerPrefab;
@@ -34,8 +33,6 @@ public class NetworkManager : Photon.MonoBehaviour {
     private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
     private bool exists = false;
-
-
     private bool showGui = true;
 
     // Use this for initialization
@@ -85,7 +82,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     void OnReceivedRoomListUpdate()
     {
         Debug.Log("Room was created");
-        roomsList = PhotonNetwork.GetRoomList();
+        //roomsList = PhotonNetwork.GetRoomList();
     }
 
 

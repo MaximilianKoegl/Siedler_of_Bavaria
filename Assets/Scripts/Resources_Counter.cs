@@ -16,6 +16,7 @@ public class Resources_Counter : MonoBehaviour {
     public int ironCount;
     public int stoneCount;
     public int foodCount;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -40,10 +41,10 @@ public class Resources_Counter : MonoBehaviour {
     void updateCounters()
     {
         int[] resourcesCounter = m_mouseManager.getResourcesCounter();
-        woodCount += 100*resourcesCounter[0];
-        ironCount += 10 * resourcesCounter[1];
-        stoneCount += 100 * resourcesCounter[2];
-        foodCount += 100 * resourcesCounter[3];
+        woodCount += 10 * resourcesCounter[0];
+        ironCount += 2 * resourcesCounter[1];
+        stoneCount += 5 * resourcesCounter[2];
+        foodCount += 20 * resourcesCounter[3];
     }
 
     //Gibt weiter ob genügend Rohstoffe für ein Gebäude vorhanden sind
@@ -60,14 +61,14 @@ public class Resources_Counter : MonoBehaviour {
                 return false;
 
             case ("Ironfeeder"):
-                if (woodCount >= 500)
+                if (woodCount >= 500 && stoneCount >= 250)
                 {
                     return true;
                 }
 
                 return false;
             case ("Stonefeeder"):
-                if(woodCount >= 300 && ironCount >= 100)
+                if(woodCount >= 400)
                 {
                     return true;
                 }
@@ -87,10 +88,10 @@ public class Resources_Counter : MonoBehaviour {
                 break;
             case ("Ironfeeder"):
                 woodCount -= 500;
+                stoneCount -= 250;
                 break;
             case ("Stonefeeder"):
-                woodCount -= 300;
-                ironCount -= 100;
+                woodCount -= 400;
                 break;
         }
     }
