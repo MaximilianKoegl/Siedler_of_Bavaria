@@ -86,22 +86,21 @@ public class Building_Menu : MonoBehaviour {
     {
         building_Number = count;
         m_popup_manager.onClosePopUp();
-        //check wegen Rohstoffen
         switch (building_Number)
         {
             case (1):
                 if(m_resource_counter.checkBuildingCosts("Woodcutter")){
-                changeCursor(cursorTextureHolzfäller);
+                    changeCursor(cursorTextureHolzfäller);
                 }
                 break;
             case (2):
                 if(m_resource_counter.checkBuildingCosts("Stonefeeder")){
-                changeCursor(cursorTextureSteinmine);
+                    changeCursor(cursorTextureSteinmine);
                 }
                 break;
             case (3):
                 if(m_resource_counter.checkBuildingCosts("Ironfeeder")){
-                changeCursor(cursorTextureEisenmine);
+                    changeCursor(cursorTextureEisenmine);
                 }
                 break;
             case (4):

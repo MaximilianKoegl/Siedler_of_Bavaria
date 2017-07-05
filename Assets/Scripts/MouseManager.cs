@@ -41,7 +41,7 @@ public class MouseManager : Photon.MonoBehaviour {
         else
         {
             Vector3 pos = (Vector3)stream.ReceiveNext();
-            addObjects(pos);
+            //addObjects(pos);
             Debug.Log("Receiving Reading " + pos);
         }
     }
@@ -79,11 +79,13 @@ public class MouseManager : Photon.MonoBehaviour {
             case (4):
                 selectedHouse = wohnhaus;
                 house_name = "LivingHouse";
+                counter_position = 6;
                 // add people space
                 break;
             case (5):
                 selectedHouse = kapelle;
                 house_name = "Church";
+                counter_position = 6;
                 // add needed people 
                 break;
             case (6):
@@ -101,6 +103,7 @@ public class MouseManager : Photon.MonoBehaviour {
             case (8):
                 selectedHouse = wahrzeichen;
                 house_name = "Wahrzeichen";
+                counter_position = 6;
                 // add needed people 
                 break;
             default: selectedHouse = null;
@@ -123,7 +126,10 @@ public class MouseManager : Photon.MonoBehaviour {
 
 
         string playerName = PhotonNetwork.playerName;
-        m_popup_manager.OnGameStartInfo(getCityName(playerName));
+        if (photonView.isMine)
+        {
+            m_popup_manager.OnGameStartInfo(getCityName(playerName));
+        }
         
     }
 
@@ -276,7 +282,10 @@ public class MouseManager : Photon.MonoBehaviour {
         GameObject house_go = (GameObject) PhotonNetwork.Instantiate(selectedHouse.name, parentHitObj.transform.position, Quaternion.identity, 0);
 
         //Erhöht Anzahl der bestimmen Hausart
-        resources_counter[counter_position] += 1;
+        if(counter_position < 6)
+        {
+            resources_counter[counter_position] += 1;
+        }
 
         //Setzt Namen des Hauses
         house_go.name = house_name;
@@ -332,76 +341,71 @@ public class MouseManager : Photon.MonoBehaviour {
     void destroyBuilding(GameObject hitObject, GameObject parentObject)
     {
 
-        
-        switch (hitObject.tag)
+        if (photonView.isMine)
         {
-            case ("Woodcutter"):
-                //Einwohner--
-                resources_counter[0] -= 1;
-                m_building_menu.fakeAnimationDestroy();
-                Debug.Log(parentObject.transform.GetChild(0).tag);
-                MeshRenderer mr = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            case ("Ironfeeder"):
-                //Einwohner--
-                resources_counter[1] -= 1;
-                m_building_menu.fakeAnimationDestroy();
-                MeshRenderer mr1 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr1.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            case ("Stonefeeder"):
-                //Einwohner--
-                resources_counter[2] -= 1;
-                m_building_menu.fakeAnimationDestroy();
-                MeshRenderer mr2 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr2.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            case ("LivingHouse"):
-                //Mögliche Einwohner --
-                m_building_menu.fakeAnimationDestroy();
-                MeshRenderer mr3 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr3.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            case ("Church"):
-                //Einwohner--
-                m_building_menu.fakeAnimationDestroy();
-                Debug.Log(parentObject.transform.GetChild(0).tag);
-                MeshRenderer mr4 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr4.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            case ("Brauerei"):
-                //Einwohner--
-                resources_counter[3] -= 1;
-                m_building_menu.fakeAnimationDestroy();
-                MeshRenderer mr5 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr5.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            case ("Sauerkrauterie"):
-                //Einwohner--
-                resources_counter[4] -= 1;
-                m_building_menu.fakeAnimationDestroy();
-                MeshRenderer mr6 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr6.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            case ("Wahrzeichen"):
-                //Einwohner--
-                m_building_menu.fakeAnimationDestroy();
-                MeshRenderer mr7 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
-                mr7.material.color = getColorBezirk(PhotonNetwork.playerName);
-                PhotonNetwork.Destroy(parentObject);
-                break;
-            default:
-                m_building_menu.activateDestroy();
-                break;
+            switch (hitObject.tag)
+            {
+                case ("Woodcutter"):
+                    m_resources_counter.destroyedBuilding("Woodcutter");
+                    resources_counter[0] -= 1;
+                    m_building_menu.fakeAnimationDestroy();
+                    Debug.Log(parentObject.transform.GetChild(0).tag);
+                    MeshRenderer mr = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr.material.color = getColorBezirk(PhotonNetwork.playerName);
+                    PhotonNetwork.Destroy(parentObject);
+                    break;
+                case ("Ironfeeder"):
+                    m_resources_counter.destroyedBuilding("Ironfeeder");
+                    resources_counter[1] -= 1;
+                    m_building_menu.fakeAnimationDestroy();
+                    MeshRenderer mr1 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr1.material.color = getColorBezirk(PhotonNetwork.playerName);
+                    PhotonNetwork.Destroy(parentObject);
+                    break;
+                case ("Stonefeeder"):
+                    m_resources_counter.destroyedBuilding("Stonefeeder");
+                    resources_counter[2] -= 1;
+                    m_building_menu.fakeAnimationDestroy();
+                    MeshRenderer mr2 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr2.material.color = getColorBezirk(PhotonNetwork.playerName);
+                    PhotonNetwork.Destroy(parentObject);
+                    break;
+                case ("LivingHouse"):
+                    m_resources_counter.destroyedBuilding("LivingHouse");
+                    m_building_menu.fakeAnimationDestroy();
+                    MeshRenderer mr3 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr3.material.color = getColorBezirk(PhotonNetwork.playerName);
+                    PhotonNetwork.Destroy(parentObject);
+                    break;
+                case ("Church"):
+                    m_resources_counter.destroyedBuilding("Church");
+                    m_building_menu.fakeAnimationDestroy();
+                    MeshRenderer mr4 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr4.material.color = getColorBezirk(PhotonNetwork.playerName);
+                    PhotonNetwork.Destroy(parentObject);
+                    break;
+                case ("Brauerei"):
+                    m_resources_counter.destroyedBuilding("Brauerei");
+                    resources_counter[3] -= 1;
+                    m_building_menu.fakeAnimationDestroy();
+                    MeshRenderer mr5 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr5.material.color = getColorBezirk(PhotonNetwork.playerName);
+                    PhotonNetwork.Destroy(parentObject);
+                    break;
+                case ("Sauerkrauterie"):
+                    m_resources_counter.destroyedBuilding("Sauerkrauterie");
+                    resources_counter[4] -= 1;
+                    m_building_menu.fakeAnimationDestroy();
+                    MeshRenderer mr6 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr6.material.color = getColorBezirk(PhotonNetwork.playerName);
+                    PhotonNetwork.Destroy(parentObject);
+                    break;
+                default:
+                    m_building_menu.activateDestroy();
+                    break;
+            }
         }
+        
 
 	}
 }
