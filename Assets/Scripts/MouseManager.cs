@@ -8,8 +8,13 @@ public class MouseManager : Photon.MonoBehaviour {
     public GameObject forrest;
     public GameObject haupthaus;
     public GameObject holzfäller;
-    public GameObject house_two;
-    public GameObject house_three;
+    public GameObject steinmine;
+    public GameObject eisenmine;
+    public GameObject wohnhaus;
+    public GameObject kapelle;
+    public GameObject brauerei;
+    public GameObject sauerkrauterie;
+    public GameObject wahrzeichen;
     private GameObject selectedHouse;
 
     public GameObject Augsburg;
@@ -19,7 +24,7 @@ public class MouseManager : Photon.MonoBehaviour {
     public PopUpManager m_popup_manager;
 
     private string house_name;
-    private int[] resources_counter = new int[] { 0, 0, 0, 0 };
+    private int[] resources_counter = new int[] { 0, 0, 0, 0, 0 };
     private int counter_position;
 
     //Empfängt und sendet die Daten für die gebauten Häuser
@@ -57,17 +62,46 @@ public class MouseManager : Photon.MonoBehaviour {
             case (1): selectedHouse = holzfäller;
                 house_name = "Woodcutter";
                 counter_position = 0;
-
+                // add needed people 
                 break;
             case (2):
-                selectedHouse = house_three;
+                selectedHouse = steinmine;
                 house_name = "Stonefeeder";
                 counter_position = 2;
+                // add needed people 
                 break;
             case (3): 
-                selectedHouse = house_two;
+                selectedHouse = eisenmine;
                 house_name = "Ironfeeder";
                 counter_position = 1;
+                // add needed people 
+                break;
+            case (4):
+                selectedHouse = wohnhaus;
+                house_name = "LivingHouse";
+                // add people space
+                break;
+            case (5):
+                selectedHouse = kapelle;
+                house_name = "Church";
+                // add needed people 
+                break;
+            case (6):
+                selectedHouse = brauerei;
+                house_name = "Brauerei";
+                counter_position = 3;
+                // add needed people 
+                break;
+            case (7):
+                selectedHouse = sauerkrauterie;
+                house_name = "Sauerkrauterie";
+                counter_position = 4;
+                // add needed people 
+                break;
+            case (8):
+                selectedHouse = wahrzeichen;
+                house_name = "Wahrzeichen";
+                // add needed people 
                 break;
             default: selectedHouse = null;
                 house_name = "";
@@ -195,17 +229,34 @@ public class MouseManager : Photon.MonoBehaviour {
             case ("Woodcutter"):
                 m_popup_manager.onFirstTimeBuild("Woodcutter");
                 Debug.Log("Woodcutter clicked");
-
                 break;
             case ("Ironfeeder"):
                 m_popup_manager.onFirstTimeBuild("Ironfeeder");
                 Debug.Log("Ironfeeder clicked");
-
                 break;
             case ("Stonefeeder"):
                 m_popup_manager.onFirstTimeBuild("Stonefeeder");
                 Debug.Log("Stonefeeder clicked");
-
+                break;
+            case ("LivingHouse"):
+                m_popup_manager.onFirstTimeBuild("LivingHouse");
+                Debug.Log("LivingHouse clicked");
+                break;
+            case ("Church"):
+                m_popup_manager.onFirstTimeBuild("Church");
+                Debug.Log("Church clicked");
+                break;
+            case ("Brauerei"):
+                m_popup_manager.onFirstTimeBuild("Brauerei");
+                Debug.Log("Brauerei clicked");
+                break;
+            case ("Sauerkrauterie"):
+                m_popup_manager.onFirstTimeBuild("Sauerkrauterie");
+                Debug.Log("Sauerkrauterie clicked");
+                break;
+            case ("Wahrzeichen"):
+                m_popup_manager.onFirstTimeBuild("Wahrzeichen");
+                Debug.Log("Wahrzeichen clicked");
                 break;
             case ("Dorfzentrum"):
                 m_popup_manager.onFirstTimeBuild("Dorfzentrum");
@@ -285,6 +336,7 @@ public class MouseManager : Photon.MonoBehaviour {
         switch (hitObject.tag)
         {
             case ("Woodcutter"):
+                //Einwohner--
                 resources_counter[0] -= 1;
                 m_building_menu.fakeAnimationDestroy();
                 Debug.Log(parentObject.transform.GetChild(0).tag);
@@ -293,6 +345,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 PhotonNetwork.Destroy(parentObject);
                 break;
             case ("Ironfeeder"):
+                //Einwohner--
                 resources_counter[1] -= 1;
                 m_building_menu.fakeAnimationDestroy();
                 MeshRenderer mr1 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
@@ -300,10 +353,49 @@ public class MouseManager : Photon.MonoBehaviour {
                 PhotonNetwork.Destroy(parentObject);
                 break;
             case ("Stonefeeder"):
+                //Einwohner--
                 resources_counter[2] -= 1;
                 m_building_menu.fakeAnimationDestroy();
                 MeshRenderer mr2 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                 mr2.material.color = getColorBezirk(PhotonNetwork.playerName);
+                PhotonNetwork.Destroy(parentObject);
+                break;
+            case ("LivingHouse"):
+                //Mögliche Einwohner --
+                m_building_menu.fakeAnimationDestroy();
+                MeshRenderer mr3 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                mr3.material.color = getColorBezirk(PhotonNetwork.playerName);
+                PhotonNetwork.Destroy(parentObject);
+                break;
+            case ("Church"):
+                //Einwohner--
+                m_building_menu.fakeAnimationDestroy();
+                Debug.Log(parentObject.transform.GetChild(0).tag);
+                MeshRenderer mr4 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                mr4.material.color = getColorBezirk(PhotonNetwork.playerName);
+                PhotonNetwork.Destroy(parentObject);
+                break;
+            case ("Brauerei"):
+                //Einwohner--
+                resources_counter[3] -= 1;
+                m_building_menu.fakeAnimationDestroy();
+                MeshRenderer mr5 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                mr5.material.color = getColorBezirk(PhotonNetwork.playerName);
+                PhotonNetwork.Destroy(parentObject);
+                break;
+            case ("Sauerkrauterie"):
+                //Einwohner--
+                resources_counter[4] -= 1;
+                m_building_menu.fakeAnimationDestroy();
+                MeshRenderer mr6 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                mr6.material.color = getColorBezirk(PhotonNetwork.playerName);
+                PhotonNetwork.Destroy(parentObject);
+                break;
+            case ("Wahrzeichen"):
+                //Einwohner--
+                m_building_menu.fakeAnimationDestroy();
+                MeshRenderer mr7 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
+                mr7.material.color = getColorBezirk(PhotonNetwork.playerName);
                 PhotonNetwork.Destroy(parentObject);
                 break;
             default:

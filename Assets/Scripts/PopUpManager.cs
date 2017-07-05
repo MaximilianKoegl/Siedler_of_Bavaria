@@ -57,9 +57,16 @@ public class PopUpManager : MonoBehaviour {
             case ("Ironfeeder"): return "Eisenmine";
             case ("Stonefeeder"): return "Steinmine";
             case ("Dorfzentrum"): return "Dorfzentrum";
+            case ("LivingHouse"): return "Wohnhaus";
+            case ("Church"): return "Kapelle";
+            case ("Brauerei"): return "Brauerei";
+            case ("Sauerkrauterie"): return "Sauerkrauterie";
+            case ("Wahrzeichen"): return "Wahrzeichen";
             default: return "";
         }
     }
+
+    // Unterscheidung zwischen Städten! Auch bei Holzfäller und Co wsl!
 
     private string getPopUpInfo(String tag)
     {
@@ -69,6 +76,11 @@ public class PopUpManager : MonoBehaviour {
             case ("Ironfeeder"): return "Produziert Eisen.";
             case ("Stonefeeder"): return "Produziert Stein.";
             case ("Dorfzentrum"): return "Dies ist das Dorfzentrum.";
+            case ("LivingHouse"): return "Fuggerei in Augsburg als erste Sozialsiedlung Deutschlands";
+            case ("Church"): return "16. Jahrhundert als Zeit der Reformation und Gegenreformation";
+            case ("Brauerei"): return "Hofbräuhaus in München";
+            case ("Sauerkrauterie"): return "Einwohner brauchen Essen";
+            case ("Wahrzeichen"): return "Wahrzeichen...";
             case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschlossen.";
             case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";
             case ("Landshut"): return "Landshut wurde im 16. Jahrhundert von ... regiert.";

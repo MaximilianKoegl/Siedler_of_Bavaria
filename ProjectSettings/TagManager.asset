@@ -19,6 +19,11 @@ TagManager:
   - Oberbayern
   - Oberpfalz
   - Schwaben
+  - Church
+  - LivingHouse
+  - Sauerkrauterie
+  - Brauerei
+  - Wahrzeichen
   layers:
   - Default
   - TransparentFX

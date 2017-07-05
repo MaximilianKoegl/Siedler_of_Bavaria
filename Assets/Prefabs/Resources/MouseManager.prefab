@@ -56,8 +56,14 @@ MonoBehaviour:
   haupthaus: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
   "holzf\xE4ller": {fileID: 1044500306781692, guid: 245fe4e4732426e4ea330481cfe5f85b,
     type: 2}
-  house_two: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
-  house_three: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80,
+  steinmine: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
+  eisenmine: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
+  wohnhaus: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80, type: 2}
+  kapelle: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
+  brauerei: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
+  sauerkrauterie: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80,
+    type: 2}
+  wahrzeichen: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516,
     type: 2}
   Augsburg: {fileID: 0}
   m_building_menu: {fileID: 114027494014276582, guid: 09704502b90333d42b335449e2491d15,

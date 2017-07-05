@@ -1620,9 +1620,22 @@ MonoBehaviour:
   wahrzeichen: {fileID: 114474250942346590}
   cursorTexture: {fileID: 2800000, guid: 661b06d0200e6054caf43a04db4fe339, type: 3}
   cursorMoveTexture: {fileID: 2800000, guid: 4c7ee750d23e9ff4fae55d89348d66a2, type: 3}
-  cursorTextureHouse1: {fileID: 2800000, guid: 1c0070a6e6eacd64a8669a1c0d8e66dc, type: 3}
-  cursorTextureHouse2: {fileID: 2800000, guid: f84225703d06a41499cff58d27f0e755, type: 3}
-  cursorTextureHouse3: {fileID: 2800000, guid: d5b54d10dac947845a4ee619898e56d2, type: 3}
+  "cursorTextureHolzf\xE4ller": {fileID: 2800000, guid: 1c0070a6e6eacd64a8669a1c0d8e66dc,
+    type: 3}
+  cursorTextureSteinmine: {fileID: 2800000, guid: c9928b9c597bbf941aa0d6c0961e60da,
+    type: 3}
+  cursorTextureEisenmine: {fileID: 2800000, guid: f84225703d06a41499cff58d27f0e755,
+    type: 3}
+  cursorTextureWohnhaus: {fileID: 2800000, guid: d5b54d10dac947845a4ee619898e56d2,
+    type: 3}
+  cursorTextureKapelle: {fileID: 2800000, guid: c9928b9c597bbf941aa0d6c0961e60da,
+    type: 3}
+  cursorTextureBrauerei: {fileID: 2800000, guid: f84225703d06a41499cff58d27f0e755,
+    type: 3}
+  cursorTextureSauerkrauterie: {fileID: 2800000, guid: 62b56d8129e444340badec881ed03283,
+    type: 3}
+  cursorTextureWahrzeichen: {fileID: 2800000, guid: bd90b0535162942419b0107201c55a81,
+    type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   m_popup_manager: {fileID: 114660749207932700}
@@ -2108,7 +2121,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1000
+  m_Text: 3000
 --- !u!114 &114188774881582014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3308,7 +3321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1000
+  m_Text: 2000
 --- !u!114 &114600221136783604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3374,7 +3387,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1000
+  m_Text: 2000
 --- !u!114 &114618626386773920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4416,7 +4429,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 200
+  m_Text: 600
 --- !u!114 &114956134104991324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5583,7 +5596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -50.000046, y: -333}
+  m_AnchoredPosition: {x: -50.000046, y: -332.99997}
   m_SizeDelta: {x: 80, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224359919271523130

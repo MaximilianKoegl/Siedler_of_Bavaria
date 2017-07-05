@@ -44,7 +44,10 @@ public class Resources_Counter : MonoBehaviour {
         woodCount += 10 * resourcesCounter[0];
         ironCount += 2 * resourcesCounter[1];
         stoneCount += 5 * resourcesCounter[2];
-        foodCount += 20 * resourcesCounter[3];
+        foodCount += 10 * resourcesCounter[3];
+        foodCount += 20 * resourcesCounter[4];
+        //foodCount -= 2 * einwohnerzahl;
+
     }
 
     //Gibt weiter ob genügend Rohstoffe für ein Gebäude vorhanden sind
@@ -57,7 +60,6 @@ public class Resources_Counter : MonoBehaviour {
                 {
                     return true;
                 }
-
                 return false;
 
             case ("Ironfeeder"):
@@ -65,14 +67,42 @@ public class Resources_Counter : MonoBehaviour {
                 {
                     return true;
                 }
-
                 return false;
             case ("Stonefeeder"):
                 if(woodCount >= 400)
                 {
                     return true;
                 }
-
+                return false;
+            case ("LivingHouse"):
+                if (woodCount >= 400)
+                {
+                    return true;
+                }
+                return false;
+            case ("Church"):
+                if (woodCount >= 800 && stoneCount >= 800 && ironCount >= 400)
+                {
+                    return true;
+                }
+                return false;
+            case ("Brauerei"):
+                if (woodCount >= 200 && stoneCount >= 600 && ironCount >= 200)
+                {
+                    return true;
+                }
+                return false;
+            case ("Sauerkrauterie"):
+                if (woodCount >= 400 && stoneCount >= 400 && ironCount >= 400)
+                {
+                    return true;
+                }
+                return false;
+            case ("Wahrzeichen"):
+                if (woodCount >= 3000 && stoneCount >= 2000 && ironCount >= 2000)
+                {
+                    return true;
+                }
                 return false;
             default:
                 return false;
@@ -92,6 +122,30 @@ public class Resources_Counter : MonoBehaviour {
                 break;
             case ("Stonefeeder"):
                 woodCount -= 400;
+                break;
+            case ("LivingHouse"):
+                woodCount -= 400;
+                break;
+            case ("Brauerei"):
+                woodCount -= 200;
+                stoneCount -= 600;
+                ironCount -= 200;
+                break;
+            case ("Sauerkrauterie"):
+                woodCount -= 400;
+                stoneCount -= 400;
+                ironCount -= 400;
+                break;
+            case ("Church"):
+
+                woodCount -= 800;
+                stoneCount -= 800;
+                ironCount -= 400;
+                break;
+            case ("Wahrzeichen"):
+                woodCount -= 3000;
+                stoneCount -= 2000;
+                ironCount -= 2000;
                 break;
         }
     }

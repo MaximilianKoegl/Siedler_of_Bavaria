@@ -19,9 +19,14 @@ public class Building_Menu : MonoBehaviour {
 
     public Texture2D cursorTexture;
     public Texture2D cursorMoveTexture;
-    public Texture2D cursorTextureHouse1;
-    public Texture2D cursorTextureHouse2;
-    public Texture2D cursorTextureHouse3;
+    public Texture2D cursorTextureHolzfäller;
+    public Texture2D cursorTextureSteinmine;
+    public Texture2D cursorTextureEisenmine;
+    public Texture2D cursorTextureWohnhaus;
+    public Texture2D cursorTextureKapelle;
+    public Texture2D cursorTextureBrauerei;
+    public Texture2D cursorTextureSauerkrauterie;
+    public Texture2D cursorTextureWahrzeichen;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
@@ -46,6 +51,9 @@ public class Building_Menu : MonoBehaviour {
         ironfeeder.onClick.AddListener(() => { onBuildingSelected(3); });
         livingHouse.onClick.AddListener(() => { onBuildingSelected(4); });
         church.onClick.AddListener(() => { onBuildingSelected(5); });
+        brauerei.onClick.AddListener(() => { onBuildingSelected(6); });
+        sauerkrauterie.onClick.AddListener(() => { onBuildingSelected(7); });
+        wahrzeichen.onClick.AddListener(() => { onBuildingSelected(8); });
 
 
         m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
@@ -73,33 +81,6 @@ public class Building_Menu : MonoBehaviour {
         changeCursor(null);
     }
 
-    //Aktion die ausgeführt wird wenn auf die Erste Epoche im Baumenu geklickt wird
-    /*public void onFirstYearClicked()
-    {
-        second_buildings_list.SetActive(false);
-        third_buildings_list.SetActive(false);
-
-        first_buildings_list.SetActive(true);
-
-    }*/
-
-    /*public void onSecondYearClicked()
-    {
-        first_buildings_list.SetActive(false);
-        third_buildings_list.SetActive(false);
-
-        second_buildings_list.SetActive(true);
-    }
-
-    public void onThirdYearClicked()
-    {
-        first_buildings_list.SetActive(false);
-        second_buildings_list.SetActive(false);
-
-        third_buildings_list.SetActive(true);
-
-    }*/
-
     //Listener für die geklickten Gebäude mit Index übergabe
     public void onBuildingSelected(int count)
     {
@@ -110,17 +91,47 @@ public class Building_Menu : MonoBehaviour {
         {
             case (1):
                 if(m_resource_counter.checkBuildingCosts("Woodcutter")){
-                changeCursor(cursorTextureHouse1);
+                changeCursor(cursorTextureHolzfäller);
                 }
                 break;
             case (2):
                 if(m_resource_counter.checkBuildingCosts("Stonefeeder")){
-                changeCursor(cursorTextureHouse2);
+                changeCursor(cursorTextureSteinmine);
                 }
                 break;
             case (3):
                 if(m_resource_counter.checkBuildingCosts("Ironfeeder")){
-                changeCursor(cursorTextureHouse3);
+                changeCursor(cursorTextureEisenmine);
+                }
+                break;
+            case (4):
+                if (m_resource_counter.checkBuildingCosts("LivingHouse"))
+                {
+                    changeCursor(cursorTextureWohnhaus);
+                }
+                break;
+            case (5):
+                if (m_resource_counter.checkBuildingCosts("Church"))
+                {
+                    changeCursor(cursorTextureKapelle);
+                }
+                break;
+            case (6):
+                if (m_resource_counter.checkBuildingCosts("Brauerei"))
+                {
+                    changeCursor(cursorTextureBrauerei);
+                }
+                break;
+            case (7):
+                if (m_resource_counter.checkBuildingCosts("Sauerkrauterie"))
+                {
+                    changeCursor(cursorTextureSauerkrauterie);
+                }
+                break;
+            case (8):
+                if (m_resource_counter.checkBuildingCosts("Wahrzeichen"))
+                {
+                    changeCursor(cursorTextureWahrzeichen);
                 }
                 break;
             default: changeCursor(null);break;
