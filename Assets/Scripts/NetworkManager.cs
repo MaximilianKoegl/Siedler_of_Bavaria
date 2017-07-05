@@ -32,7 +32,6 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
-    private bool exists = false;
     private bool showGui = true;
 
     private bool schwaben = true;
@@ -176,7 +175,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                         }
                         else
                         {
-                            if (schwaben)
+                            if (oberpfalz)
                             {
                                 instantiatePlayer(spawnPointFive.position, spawnPointFive.rotation, "Oberpfalz", spawnPointFiveHex);
                             }
@@ -201,195 +200,6 @@ public class NetworkManager : Photon.MonoBehaviour {
         }
     }
 
-
-    //überprüft anzahl der spieler und weißt neuem Spieler entsprechende Stadt zu
-    /*private void checkPlayers(int playerNumber)
-    {
-        switch (playerNumber)
-        {
-            case (1):
-                exists = true;
-                //checkt alle vorhandenen Spieler, ob Schwaben bereits existiert
-                //- nein --> Spieler wird Schwaben
-                //- ja --> nächste Stadt
-                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-                {
-                    exists = false;
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Schwaben"))
-                    {
-                        playerNumber += 1;
-                        if (playerNumber == 8)
-                        {
-                            playerNumber = 1;
-                        }
-                        exists = true;
-                        checkPlayers(playerNumber);
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    instantiatePlayer(spawnPointOne.position, spawnPointOne.rotation, "Schwaben", spawnPointOneHex);
-                    break;
-                }
-                break;
-            case (2):
-                exists = true;
-                //checkt alle vorhandenen Spieler, ob Unterfranken bereits existiert
-                //- nein --> Spieler wird Unterfranken
-                //- ja --> nächste Stadt
-                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-                {
-                    exists = false;
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Unterfranken"))
-                    {
-                        playerNumber += 1;
-                        if (playerNumber == 8)
-                        {
-                            playerNumber = 1;
-                        }
-                        exists = true;
-                        checkPlayers(playerNumber);
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    instantiatePlayer(spawnPointTwo.position, spawnPointTwo.rotation, "Unterfranken", spawnPointTwoHex);
-                    break;
-                }           
-                break;
-            case (3):
-                exists = true;
-                //checkt alle vorhandenen Spieler, ob Niederbayern bereits existiert
-                //- nein --> Spieler wird Niederbayern
-                //- ja --> nächste Stadt
-                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-                {
-                    exists = false;
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Niederbayern"))
-                    {
-
-                        playerNumber += 1;
-                        if (playerNumber == 8)
-                        {
-                            playerNumber = 1;
-                        }
-                        exists = true;
-                        checkPlayers(playerNumber);
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    instantiatePlayer(spawnPointThree.position, spawnPointThree.rotation, "Niederbayern", spawnPointThreeHex);
-                    break;
-                }
-                break;
-            case (4):
-                exists = false;
-                //checkt alle vorhandenen Spieler, ob Oberbayern bereits existiert
-                //- nein --> Spieler wird Oberbayern
-                //- ja --> nächste Stadt
-                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-                {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Oberbayern"))
-                    {
-                        playerNumber += 1;
-                        if (playerNumber == 8)
-                        {
-                            playerNumber = 1;
-                        }
-                        exists = true;
-                        checkPlayers(playerNumber);
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    instantiatePlayer(spawnPointFour.position, spawnPointFour.rotation, "Oberbayern", spawnPointFourHex);
-                    break;
-                }
-                break;
-            case (5):
-                exists = false;
-                //checkt alle vorhandenen Spieler, ob Oberpfalz bereits existiert
-                //- nein --> Spieler wird Oberpfalz
-                //- ja --> nächste Stadt
-                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-                {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Oberpfalz"))
-                    {
-                        playerNumber += 1;
-                        if (playerNumber == 8)
-                        {
-                            playerNumber = 1;
-                        }
-                        exists = true;
-                        checkPlayers(playerNumber);
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    instantiatePlayer(spawnPointFive.position, spawnPointFive.rotation, "Oberpfalz", spawnPointFiveHex);
-                    break;
-                }
-                break;
-            case (6):
-                exists = false;
-                //checkt alle vorhandenen Spieler, ob Oberfranken bereits existiert
-                //- nein --> Spieler wird Oberfranken
-                //- ja --> nächste Stadt
-                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-                {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Oberfranken"))
-                    {
-                        playerNumber += 1;
-                        if (playerNumber == 8)
-                        {
-                            playerNumber = 1;
-                        }
-                        exists = true;
-                        checkPlayers(playerNumber);
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    instantiatePlayer(spawnPointSix.position, spawnPointSix.rotation, "Oberfranken", spawnPointSixHex);
-                    break;
-                }
-                break;
-            case (7):
-                exists = false;
-                //checkt alle vorhandenen Spieler, ob Mittelfranken bereits existiert
-                //- nein --> Spieler wird Mittelfranken
-                //- ja --> nächste Stadt
-                for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-                {
-                    if (PhotonNetwork.playerList[i].NickName.Equals("Mittelfranken"))
-                    {
-                        playerNumber += 1;
-                        if (playerNumber == 8)
-                        {
-                            playerNumber = 1;
-                        }
-                        exists = true;
-                        checkPlayers(playerNumber);
-                        break;
-                    }
-                }
-                if (!exists)
-                {
-                    instantiatePlayer(spawnPointSeven.position, spawnPointSeven.rotation, "Mittelfranken", spawnPointSevenHex);
-                    break;
-                }
-                break;
-        }
-
-        
-    }*/
 
     private void instantiatePlayer(Vector3 spawnPosition, Quaternion spawnRotation, string playerName, GameObject spawnHex)
     {

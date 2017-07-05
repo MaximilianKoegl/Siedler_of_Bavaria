@@ -13,6 +13,9 @@ public class Building_Menu : MonoBehaviour {
     public Button ironfeeder;
     public Button livingHouse;
     public Button church;
+    public Button brauerei;
+    public Button sauerkrauterie;
+    public Button wahrzeichen;
 
     public Texture2D cursorTexture;
     public Texture2D cursorMoveTexture;
