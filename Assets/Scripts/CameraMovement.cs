@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class CameraMovement : MonoBehaviour {
 
@@ -40,10 +41,14 @@ public class CameraMovement : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButton (0)) {
-			rotationX += Input.GetAxis ("Mouse X") * sensX * Time.deltaTime;
-			rotationY += Input.GetAxis ("Mouse Y") * sensY * Time.deltaTime;
-			rotationY = Mathf.Clamp (rotationY, minY, maxY);
-			transform.localEulerAngles = new Vector3 (-rotationY, rotationX, 0);
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                rotationX += Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
+                rotationY += Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
+                rotationY = Mathf.Clamp(rotationY, minY, maxY);
+                transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+            }
+			
 		}
 	}
 }

@@ -86,6 +86,7 @@ public class Building_Menu : MonoBehaviour {
     {
         building_Number = count;
         m_popup_manager.onClosePopUp();
+        destroyIsActivated = false;
         switch (building_Number)
         {
             case (1):

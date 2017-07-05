@@ -187,11 +187,14 @@ public class MouseManager : Photon.MonoBehaviour {
                                 buildHouse(parentHitObject);
                                 m_resources_counter.reduceMaterials(house_name);
                                 m_building_menu.deactivateBuildMode();
-
-                                if (resources_counter[counter_position] == 1)
+                                if (counter_position < 6)
                                 {
-                                    m_popup_manager.onFirstTimeBuild(house_name);
+                                    if (resources_counter[counter_position] == 1)
+                                    {
+                                        m_popup_manager.onFirstTimeBuild(house_name);
+                                    }
                                 }
+                                
 
                             }
                     }
