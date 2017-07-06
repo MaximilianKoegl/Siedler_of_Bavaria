@@ -77,8 +77,78 @@ public class Building_Menu : MonoBehaviour {
 
     public void deactivateBuildMode()
     {
+        switch (building_Number)
+        {
+            case (1):
+                woodcutter.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (2):
+                stonefeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (3):
+                ironfeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (4):
+                livingHouse.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (5):
+                church.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (6):
+                brauerei.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (7):
+                sauerkrauterie.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (8):
+                wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            default: changeCursor(null); break;
+        }
         building_Number = 0;
         changeCursor(null);
+        switch (building_Number)
+        {
+            case (1):
+                    woodcutter.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (2):
+                    stonefeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                
+                break;
+            case (3):
+                    ironfeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                
+                break;
+            case (4):
+                    livingHouse.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                
+                break;
+            case (5):
+                    church.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                
+                break;
+            case (6):
+                    brauerei.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                
+                break;
+            case (7):
+                    sauerkrauterie.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                
+                break;
+            case (8):
+                    wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                
+                break;
+            default: changeCursor(null); break;
+        }
     }
 
     //Listener für die geklickten Gebäude mit Index übergabe
@@ -92,46 +162,54 @@ public class Building_Menu : MonoBehaviour {
             case (1):
                 if(m_resource_counter.checkBuildingCosts("Woodcutter")){
                     changeCursor(cursorTextureHolzfäller);
+                    woodcutter.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (2):
                 if(m_resource_counter.checkBuildingCosts("Stonefeeder")){
                     changeCursor(cursorTextureSteinmine);
+                    stonefeeder.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (3):
                 if(m_resource_counter.checkBuildingCosts("Ironfeeder")){
                     changeCursor(cursorTextureEisenmine);
+                    ironfeeder.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (4):
                 if (m_resource_counter.checkBuildingCosts("LivingHouse"))
                 {
                     changeCursor(cursorTextureWohnhaus);
+                    livingHouse.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (5):
                 if (m_resource_counter.checkBuildingCosts("Church"))
                 {
                     changeCursor(cursorTextureKapelle);
+                    church.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (6):
                 if (m_resource_counter.checkBuildingCosts("Brauerei"))
                 {
                     changeCursor(cursorTextureBrauerei);
+                    brauerei.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (7):
                 if (m_resource_counter.checkBuildingCosts("Sauerkrauterie"))
                 {
                     changeCursor(cursorTextureSauerkrauterie);
+                    sauerkrauterie.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (8):
                 if (m_resource_counter.checkBuildingCosts("Wahrzeichen"))
                 {
                     changeCursor(cursorTextureWahrzeichen);
+                    wahrzeichen.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             default: changeCursor(null);break;

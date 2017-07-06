@@ -4,20 +4,14 @@ using UnityEngine.EventSystems;
 
 public class CameraMovement : MonoBehaviour {
 
-	private float speed = 5.0f;
-	private float zoomSpeed = 2.0f;
+    private float speed = 0.05f;
+    
 
-	public float minX = -360.0f;
-	public float maxX = 360.0f;
-	
-	public float minY = -45.0f;
-	public float maxY = 45.0f;
-
-	public float sensX = 100.0f;
-	public float sensY = 100.0f;
-	
-	float rotationY = 0.0f;
+    float rotationY = 0.0f;
 	float rotationX = 0.0f;
+
+
+    
 
     private void Start()
     {
@@ -27,28 +21,23 @@ public class CameraMovement : MonoBehaviour {
     void Update () {
 
 
-		if (Input.GetKey(KeyCode.RightArrow)){
-			transform.position += Vector3.right *  speed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.LeftArrow)){
-			transform.position += Vector3.left * speed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.UpArrow)){
-			transform.position += Vector3.forward * speed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.DownArrow)){
-			transform.position += Vector3.back * speed * Time.deltaTime;
-		}
+        
 
-		if (Input.GetMouseButton (0)) {
-            if (!EventSystem.current.IsPointerOverGameObject())
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            // Get movement of the finger since last frame
+            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+
+            // Move object across XY plane
+
+            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
-                rotationX += Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
-                rotationY += Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
-                rotationY = Mathf.Clamp(rotationY, minY, maxY);
-                transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+
+                transform.Translate(-touchDeltaPosition.x * speed, 0, -touchDeltaPosition.y * speed);
             }
-			
-		}
-	}
+
+        }
+    }
+
+    
 }
