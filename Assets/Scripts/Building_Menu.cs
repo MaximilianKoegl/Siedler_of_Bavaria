@@ -16,6 +16,7 @@ public class Building_Menu : MonoBehaviour {
     public Button brauerei;
     public Button sauerkrauterie;
     public Button wahrzeichen;
+    public Button delete;
 
     public Texture2D cursorTexture;
     public Texture2D cursorMoveTexture;
@@ -114,41 +115,6 @@ public class Building_Menu : MonoBehaviour {
         }
         building_Number = 0;
         changeCursor(null);
-        switch (building_Number)
-        {
-            case (1):
-                    woodcutter.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                break;
-            case (2):
-                    stonefeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                
-                break;
-            case (3):
-                    ironfeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                
-                break;
-            case (4):
-                    livingHouse.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                
-                break;
-            case (5):
-                    church.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                
-                break;
-            case (6):
-                    brauerei.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                
-                break;
-            case (7):
-                    sauerkrauterie.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                
-                break;
-            case (8):
-                    wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                
-                break;
-            default: changeCursor(null); break;
-        }
     }
 
     //Listener für die geklickten Gebäude mit Index übergabe
@@ -157,6 +123,7 @@ public class Building_Menu : MonoBehaviour {
         building_Number = count;
         m_popup_manager.onClosePopUp();
         destroyIsActivated = false;
+        delete.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         switch (building_Number)
         {
             case (1):
@@ -227,10 +194,48 @@ public class Building_Menu : MonoBehaviour {
     //Aktion die ausgeführt wird wenn auf Destroy-Button geklickt wird
     public void activateDestroy()
     {
+        
         destroyIsActivated = !destroyIsActivated;
+        delete.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+        switch (building_Number)
+        {
+            case (1):
+                woodcutter.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (2):
+                stonefeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (3):
+                ironfeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (4):
+                livingHouse.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (5):
+                church.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (6):
+                brauerei.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (7):
+                sauerkrauterie.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (8):
+                wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            default: changeCursor(null); break;
+        }
         changeCursorToHammer();
         if (!destroyIsActivated)
         {
+            delete.GetComponent<Image>().color = new Color32(255,255,255,255);
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
         }
     }
