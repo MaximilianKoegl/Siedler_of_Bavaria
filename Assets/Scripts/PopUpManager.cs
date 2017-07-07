@@ -60,7 +60,11 @@ public class PopUpManager : MonoBehaviour {
             case ("LivingHouse"): return "Wohnhaus";
             case ("Church"): return "Kapelle";
             case ("Brauerei"): return "Brauerei";
-            case ("Sauerkrauterie"): return "Sauerkrauterie";
+            case ("Bäcker"): return "Bäcker";
+            case ("Schmiede"): return "Schmiede";
+            case ("Kaserne"): return "Kaserne";
+            case ("Schule"): return "Schule";
+            case ("Universität"): return "Universität";
             case ("Wahrzeichen"): return "Wahrzeichen";
             default: return "";
         }
@@ -79,7 +83,11 @@ public class PopUpManager : MonoBehaviour {
             case ("LivingHouse"): return "Fuggerei in Augsburg als erste Sozialsiedlung Deutschlands";
             case ("Church"): return "16. Jahrhundert als Zeit der Reformation und Gegenreformation";
             case ("Brauerei"): return "Hofbräuhaus in München";
-            case ("Sauerkrauterie"): return "Einwohner brauchen Essen";
+            case ("Bäcker"): return "Einwohner brauchen Essen";
+            case ("Schmiede"): return "Dies ist eine Schmiede";
+            case ("Kaserne"): return "Dies ist eine Kaserne";
+            case ("Schule"): return "Dies ist eine Schule";
+            case ("Universität"): return "Dies ist eine Universität";
             case ("Wahrzeichen"): return "Wahrzeichen...";
             case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschlossen.";
             case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";

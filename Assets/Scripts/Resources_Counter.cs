@@ -102,8 +102,32 @@ public class Resources_Counter : MonoBehaviour {
                     return true;
                 }
                 return false;
-            case ("Sauerkrauterie"):
-                if (woodCount >= 400 && stoneCount >= 400 && ironCount >= 400 && einwohnerFree >= 12)
+            case ("Bäcker"):
+                if (woodCount >= 800 && einwohnerFree >= 5)
+                {
+                    return true;
+                }
+                return false;
+            case ("Schmiede"):
+                if (woodCount >= 800 && stoneCount >= 600 && ironCount >= 200 && einwohnerFree >= 5)
+                {
+                    return true;
+                }
+                return false;
+            case ("Kaserne"):
+                if (woodCount >= 1600 && stoneCount >= 1200 && ironCount >= 600 && einwohnerFree >= 10)
+                {
+                    return true;
+                }
+                return false;
+            case ("Schule"):
+                if (woodCount >= 800 && stoneCount >= 600 && ironCount >= 200 && einwohnerFree >= 5)
+                {
+                    return true;
+                }
+                return false;
+            case ("Universität"):
+                if (woodCount >= 1600 && stoneCount >= 1200 && ironCount >= 600 && einwohnerFree >= 10)
                 {
                     return true;
                 }
@@ -146,11 +170,33 @@ public class Resources_Counter : MonoBehaviour {
                 ironCount -= 200;
                 einwohnerCount += 8;
                 break;
-            case ("Sauerkrauterie"):
-                woodCount -= 400;
-                stoneCount -= 400;
-                ironCount -= 400;
-                einwohnerCount += 12;
+            case ("Bäcker"):
+                woodCount -= 800;
+                einwohnerCount += 5;
+                break;
+            case ("Schmiede"):
+                woodCount -= 800;
+                stoneCount -= 600;
+                ironCount -= 200;
+                einwohnerCount += 5;
+                break;
+            case ("Kaserne"):
+                woodCount -= 1600;
+                stoneCount -= 1200;
+                ironCount -= 600;
+                einwohnerCount += 10;
+                break;
+            case ("Schule"):
+                woodCount -= 800;
+                stoneCount -= 600;
+                ironCount -= 200;
+                einwohnerCount += 5;
+                break;
+            case ("Universität"):
+                woodCount -= 1600;
+                stoneCount -= 1200;
+                ironCount -= 600;
+                einwohnerCount += 10;
                 break;
             case ("Church"):
 
@@ -195,16 +241,38 @@ public class Resources_Counter : MonoBehaviour {
                 ironCount += 100;
                 einwohnerCount -= 8;
                 break;
-            case ("Sauerkrauterie"):
-                woodCount += 200;
-                stoneCount += 200;
-                ironCount += 200;
-                einwohnerCount -= 12;
+            case ("Bäcker"):
+                woodCount += 400;
+                einwohnerCount -= 5;
                 break;
             case ("Church"):
                 woodCount += 400;
                 stoneCount += 400;
                 ironCount += 200;
+                einwohnerCount -= 10;
+                break;
+            case ("Schmiede"):
+                woodCount += 400;
+                stoneCount += 300;
+                ironCount += 100;
+                einwohnerCount -= 5;
+                break;
+            case ("Kaserne"):
+                woodCount += 800;
+                stoneCount += 600;
+                ironCount += 300;
+                einwohnerCount -= 10;
+                break;
+            case ("Schule"):
+                woodCount += 400;
+                stoneCount += 300;
+                ironCount += 100;
+                einwohnerCount -= 5;
+                break;
+            case ("Universität"):
+                woodCount += 800;
+                stoneCount += 600;
+                ironCount += 300;
                 einwohnerCount -= 10;
                 break;
         }

@@ -14,8 +14,12 @@ public class Building_Menu : MonoBehaviour {
     public Button livingHouse;
     public Button church;
     public Button brauerei;
-    public Button sauerkrauterie;
+    public Button bäcker;
     public Button wahrzeichen;
+    public Button schmiede;
+    public Button kaserne;
+    public Button schule;
+    public Button universität;
     public Button delete;
 
     public Texture2D cursorTexture;
@@ -53,7 +57,13 @@ public class Building_Menu : MonoBehaviour {
         livingHouse.onClick.AddListener(() => { onBuildingSelected(4); });
         church.onClick.AddListener(() => { onBuildingSelected(5); });
         brauerei.onClick.AddListener(() => { onBuildingSelected(6); });
-        sauerkrauterie.onClick.AddListener(() => { onBuildingSelected(7); });
+        bäcker.onClick.AddListener(() => { onBuildingSelected(7); });
+
+
+        schmiede.onClick.AddListener(() => { onBuildingSelected(9); });
+        kaserne.onClick.AddListener(() => { onBuildingSelected(10); });
+        schule.onClick.AddListener(() => { onBuildingSelected(11); });
+        universität.onClick.AddListener(() => { onBuildingSelected(12); });
         wahrzeichen.onClick.AddListener(() => { onBuildingSelected(8); });
 
 
@@ -104,11 +114,23 @@ public class Building_Menu : MonoBehaviour {
 
                 break;
             case (7):
-                sauerkrauterie.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                bäcker.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 
                 break;
             case (8):
                 wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (9):
+                schmiede.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (10):
+                kaserne.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (11):
+                schule.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (12):
+                universität.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 
                 break;
             default: changeCursor(null); break;
@@ -166,10 +188,10 @@ public class Building_Menu : MonoBehaviour {
                 }
                 break;
             case (7):
-                if (m_resource_counter.checkBuildingCosts("Sauerkrauterie"))
+                if (m_resource_counter.checkBuildingCosts("Bäcker"))
                 {
                     changeCursor(cursorTextureSauerkrauterie);
-                    sauerkrauterie.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                    bäcker.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (8):
@@ -178,6 +200,38 @@ public class Building_Menu : MonoBehaviour {
                     changeCursor(cursorTextureWahrzeichen);
                     wahrzeichen.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
+                break;
+            case (9):
+                if (m_resource_counter.checkBuildingCosts("Schmiede"))
+                {
+                    changeCursor(cursorTextureWahrzeichen);
+                    schmiede.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                }
+                break;
+            case (10):
+                if (m_resource_counter.checkBuildingCosts("Kaserne"))
+                {
+                    changeCursor(cursorTextureWahrzeichen);
+
+                    kaserne.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                }
+                break;
+            case (11):
+                if (m_resource_counter.checkBuildingCosts("Schule"))
+                {
+                    changeCursor(cursorTextureWahrzeichen);
+                    schule.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                }
+                
+                break;
+            case (12):
+                if (m_resource_counter.checkBuildingCosts("Universität"))
+                {
+                    changeCursor(cursorTextureWahrzeichen);
+                    universität.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                }
+                
+
                 break;
             default: changeCursor(null);break;
         }
@@ -223,11 +277,24 @@ public class Building_Menu : MonoBehaviour {
 
                 break;
             case (7):
-                sauerkrauterie.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                bäcker.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 
                 break;
             case (8):
                 wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+
+                break;
+            case (9):
+                schmiede.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (10):
+                kaserne.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (11):
+                schule.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                break;
+            case (12):
+                universität.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 
                 break;
             default: changeCursor(null); break;
