@@ -24,6 +24,11 @@ TagManager:
   - Sauerkrauterie
   - Brauerei
   - Wahrzeichen
+  - "B\xE4cker"
+  - Schmiede
+  - Kaserne
+  - Schule
+  - "Universit\xE4t"
   layers:
   - Default
   - TransparentFX

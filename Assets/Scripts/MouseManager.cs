@@ -183,7 +183,10 @@ public class MouseManager : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        addObjects(Input.mousePosition);
+        if (photonView.isMine)
+        {
+            addObjects(Input.mousePosition);
+        }
     }
 
     
@@ -213,19 +216,13 @@ public class MouseManager : Photon.MonoBehaviour {
                             //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
                             if (ourHitObject.transform.tag == PhotonNetwork.playerName && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
                             {
-
                                 buildHouse(parentHitObject);
                                 m_resources_counter.reduceMaterials(house_name);
                                 m_building_menu.deactivateBuildMode();
-                                if (counter_position < 6)
+                                if (resources_counter[counter_position] == 1)
                                 {
-                                    if (resources_counter[counter_position] == 1)
-                                    {
-                                        m_popup_manager.onFirstTimeBuild(house_name);
-                                    }
+                                    m_popup_manager.onFirstTimeBuild(house_name);
                                 }
-                                
-
                             }
                     }
                     else
