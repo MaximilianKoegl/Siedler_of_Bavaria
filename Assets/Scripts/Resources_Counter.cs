@@ -35,9 +35,15 @@ public class Resources_Counter : MonoBehaviour {
 
         InvokeRepeating("updateCounters", 2.0f, 1.0f);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+    public int[] getResourcesCounter()
+    {
+        return m_mouseManager.getResourcesCounter();
+    }
+
+    // Update is called once per frame
+    void Update () {
         wood_Counter.text = woodCount.ToString();
         iron_Counter.text = ironCount.ToString();
         stone_Counter.text = stoneCount.ToString();
@@ -51,10 +57,10 @@ public class Resources_Counter : MonoBehaviour {
     {
         int[] resourcesCounter = m_mouseManager.getResourcesCounter();
         woodCount += 10 * resourcesCounter[0];
-        ironCount += 2 * resourcesCounter[1];
-        stoneCount += 5 * resourcesCounter[2];
+        ironCount += 2 * resourcesCounter[6];
+        stoneCount += 5 * resourcesCounter[4];
         foodCount += 50 * resourcesCounter[3];
-        foodCount += 60 * resourcesCounter[4];
+        foodCount += 60 * resourcesCounter[5];
         foodCount -= 1 * einwohnerCount;
 
     }
@@ -91,13 +97,13 @@ public class Resources_Counter : MonoBehaviour {
                 }
                 return false;
             case ("Church"):
-                if (woodCount >= 800 && stoneCount >= 800 && ironCount >= 400 && einwohnerFree >= 10)
+                if (woodCount >= 1200 && einwohnerFree >= 10)
                 {
                     return true;
                 }
                 return false;
             case ("Brauerei"):
-                if (woodCount >= 200 && stoneCount >= 600 && ironCount >= 200 && einwohnerFree >= 8)
+                if (woodCount >= 200 && stoneCount >= 600 && einwohnerFree >= 8)
                 {
                     return true;
                 }
@@ -162,12 +168,11 @@ public class Resources_Counter : MonoBehaviour {
                 break;
             case ("LivingHouse"):
                 woodCount -= 400;
-                einwohnerGesamt += 10;
+                einwohnerGesamt += 20;
                 break;
             case ("Brauerei"):
                 woodCount -= 200;
                 stoneCount -= 600;
-                ironCount -= 200;
                 einwohnerCount += 8;
                 break;
             case ("Bäcker"):
@@ -200,9 +205,7 @@ public class Resources_Counter : MonoBehaviour {
                 break;
             case ("Church"):
 
-                woodCount -= 800;
-                stoneCount -= 800;
-                ironCount -= 400;
+                woodCount -= 1200;
                 einwohnerCount += 10;
                 break;
             case ("Wahrzeichen"):
@@ -233,12 +236,11 @@ public class Resources_Counter : MonoBehaviour {
                 break;
             case ("LivingHouse"):
                 woodCount += 200;
-                einwohnerGesamt -= 10;
+                einwohnerGesamt -= 20;
                 break;
             case ("Brauerei"):
                 woodCount += 100;
                 stoneCount += 300;
-                ironCount += 100;
                 einwohnerCount -= 8;
                 break;
             case ("Bäcker"):
@@ -246,9 +248,7 @@ public class Resources_Counter : MonoBehaviour {
                 einwohnerCount -= 5;
                 break;
             case ("Church"):
-                woodCount += 400;
-                stoneCount += 400;
-                ironCount += 200;
+                woodCount += 600;
                 einwohnerCount -= 10;
                 break;
             case ("Schmiede"):
