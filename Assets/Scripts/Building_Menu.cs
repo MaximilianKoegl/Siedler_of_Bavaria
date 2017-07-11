@@ -154,14 +154,14 @@ public class Building_Menu : MonoBehaviour {
         {
             kostenironfeeder.SetActive(true);
             buildable[2] = true;
-            ironfeeder.GetComponentInChildren<Image>().sprite = imageironfeeder;
+            ironfeeder.GetComponentsInChildren<Image>()[1].sprite = imageironfeeder;
             ironfeeder.GetComponentInChildren<Text>().text = "Eisenmine";
         }
         else
         {
             kostenironfeeder.SetActive(false);
             buildable[2] = false;
-            ironfeeder.GetComponentInChildren<Image>().sprite = imageNotBuildable;
+            ironfeeder.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
             ironfeeder.GetComponentInChildren<Text>().text = "";
         }
     }
@@ -172,22 +172,22 @@ public class Building_Menu : MonoBehaviour {
         {
             kostenschule.SetActive(true);
             buildable[3] = true;
-            schule.GetComponentInChildren<Image>().sprite = imageschule;
+            schule.GetComponentsInChildren<Image>()[1].sprite = imageschule;
             schule.GetComponentInChildren<Text>().text = "Schule";
             kostenschmiede.SetActive(true);
             buildable[4] = true;
-            schmiede.GetComponentInChildren<Image>().sprite = imageschmiede;
+            schmiede.GetComponentsInChildren<Image>()[1].sprite = imageschmiede;
             schmiede.GetComponentInChildren<Text>().text = "Schmiede";
         }
         else
         {
             kostenschule.SetActive(false);
             buildable[3] = false;
-            schule.GetComponentInChildren<Image>().sprite = imageNotBuildable;
+            schule.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
             schule.GetComponentInChildren<Text>().text = "";
             kostenschmiede.SetActive(false);
             buildable[4] = false;
-            schmiede.GetComponentInChildren<Image>().sprite = imageNotBuildable;
+            schmiede.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
             schmiede.GetComponentInChildren<Text>().text = "";
         }
     }
@@ -198,7 +198,7 @@ public class Building_Menu : MonoBehaviour {
         {
             kostenuniversität.SetActive(true);
             buildable[5] = true;
-            universität.GetComponentInChildren<Image>().sprite = imageNotBuildable;
+            universität.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
             universität.GetComponentInChildren<Text>().text = "Universität";
             kaserne.gameObject.SetActive(false);
         }
@@ -206,14 +206,14 @@ public class Building_Menu : MonoBehaviour {
         {
             kostenuniversität.SetActive(false);
             buildable[5] = false;
-            universität.GetComponentInChildren<Image>().sprite = imageNotBuildable;
+            universität.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
             universität.GetComponentInChildren<Text>().text = "";
             kaserne.gameObject.SetActive(true);
             if (resourcesCounter[8] > 0)
             {
                 kostenkaserne.SetActive(true);
                 buildable[6] = true;
-                kaserne.GetComponentInChildren<Image>().sprite = imagekaserne;
+                kaserne.GetComponentsInChildren<Image>()[1].sprite = imagekaserne;
                 kaserne.GetComponentInChildren<Text>().text = "Kaserne";
                 universität.gameObject.SetActive(false);
             }
@@ -221,7 +221,7 @@ public class Building_Menu : MonoBehaviour {
             {
                 kostenkaserne.SetActive(false);
                 buildable[6] = false;
-                kaserne.GetComponentInChildren<Image>().sprite = imageNotBuildable;
+                kaserne.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
                 kaserne.GetComponentInChildren<Text>().text = "";
                 universität.gameObject.SetActive(true);
             }

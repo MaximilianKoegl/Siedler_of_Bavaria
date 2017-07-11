@@ -53,15 +53,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forrest: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516, type: 2}
-  haupthaus: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
+  haupthaus: {fileID: 1262221588098000, guid: e47433b8fc3343948a366e465287a57f, type: 2}
   "holzf\xE4ller": {fileID: 1044500306781692, guid: 245fe4e4732426e4ea330481cfe5f85b,
     type: 2}
   steinmine: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
   eisenmine: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
   wohnhaus: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80, type: 2}
   kapelle: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
-  brauerei: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
-  "b\xE4cker": {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80,
+  brauerei: {fileID: 1464243174350568, guid: 87b14d5271965404a83edde223889a1c, type: 2}
+  "b\xE4cker": {fileID: 1464243174350568, guid: 87b14d5271965404a83edde223889a1c,
     type: 2}
   schmiede: {fileID: 1044500306781692, guid: 245fe4e4732426e4ea330481cfe5f85b, type: 2}
   kaserne: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}

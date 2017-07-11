@@ -502,7 +502,7 @@ MonoBehaviour:
     type: 2}
   spawnPointSeven: {fileID: 4457130366173060, guid: 1e7c90dcb8d189b4eba310efd4e885aa,
     type: 2}
-  haupthaus: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
+  haupthaus: {fileID: 1262221588098000, guid: e47433b8fc3343948a366e465287a57f, type: 2}
   captureIt2: {fileID: 12800000, guid: e7a31756bd5e7c64d81056b8a428db3e, type: 3}
 --- !u!4 &1380617629
 Transform:
