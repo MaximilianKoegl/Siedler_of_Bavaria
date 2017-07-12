@@ -30,7 +30,7 @@ public class MouseManager : Photon.MonoBehaviour {
 
     private string house_name;
     //holzfäller, wohnhaus, kapelle, bäcker,stonefeeeder, brauerei, eisenmine, schule, scmiede, uni, kaserne, wahrzeichen
-    private int[] resources_counter = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    private int[] resources_counter = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int counter_position;
 
     //Empfängt und sendet die Daten für die gebauten Häuser
