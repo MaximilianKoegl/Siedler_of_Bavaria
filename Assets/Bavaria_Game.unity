@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 96811922}
   m_Layer: 2
   m_Name: Terrain
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -231,6 +231,16 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3ec897af271c75459b2a976f220327e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &236234584 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1919509542785862, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1255625131}
+--- !u!1 &677097146 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1083482140010632, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1255625131}
 --- !u!1 &772263762
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +402,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1626989090648406, guid: b9c2f9988725d3044909e6e3cc4a51a8,
     type: 2}
   m_PrefabInternal: {fileID: 1255625131}
+--- !u!1 &1226410300 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1468399265021072, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1255625131}
 --- !u!1001 &1255625131
 Prefab:
   m_ObjectHideFlags: 0
@@ -447,6 +462,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1328682639677380, guid: b9c2f9988725d3044909e6e3cc4a51a8,
     type: 2}
   m_PrefabInternal: {fileID: 1255625131}
+--- !u!1 &1359091870 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1927450025254520, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1255625131}
 --- !u!1 &1380617627
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,8 +506,15 @@ MonoBehaviour:
   spawnPointThreeHex: {fileID: 1134709592}
   spawnPointFourHex: {fileID: 1786813684}
   spawnPointFiveHex: {fileID: 1298187093}
-  spawnPointSixHex: {fileID: 2038050403}
+  spawnPointSixHex: {fileID: 2077462508}
   spawnPointSevenHex: {fileID: 1829366487}
+  spawnPointDorfOneHex: {fileID: 1359091870}
+  spawnPointDorfTwoHex: {fileID: 1889086693}
+  spawnPointDorfThreeHex: {fileID: 677097146}
+  spawnPointDorfFourHex: {fileID: 1226410300}
+  spawnPointDorfFiveHex: {fileID: 1485165343}
+  spawnPointDorfSixHex: {fileID: 236234584}
+  spawnPointDorfSevenHex: {fileID: 2120935121}
   spawnPointOne: {fileID: 4789886356177448, guid: 24a3bdb04a54b0247b049fb85e5acb40,
     type: 2}
   spawnPointTwo: {fileID: 4130913919422942, guid: 4e6c5c357ec6516419a2ac03471b1ef1,
@@ -503,6 +530,7 @@ MonoBehaviour:
   spawnPointSeven: {fileID: 4457130366173060, guid: 1e7c90dcb8d189b4eba310efd4e885aa,
     type: 2}
   haupthaus: {fileID: 1262221588098000, guid: e47433b8fc3343948a366e465287a57f, type: 2}
+  dorf: {fileID: 1236004236317352, guid: 3f15768b54cf06a43a844ff3beee6104, type: 2}
   captureIt2: {fileID: 12800000, guid: e7a31756bd5e7c64d81056b8a428db3e, type: 3}
 --- !u!4 &1380617629
 Transform:
@@ -517,6 +545,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1485165343 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1946061020746088, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1255625131}
 --- !u!1 &1786813684 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1153173582238790, guid: b9c2f9988725d3044909e6e3cc4a51a8,
@@ -532,8 +565,18 @@ GameObject:
   m_PrefabParentObject: {fileID: 1522849665924104, guid: b9c2f9988725d3044909e6e3cc4a51a8,
     type: 2}
   m_PrefabInternal: {fileID: 1255625131}
---- !u!1 &2038050403 stripped
+--- !u!1 &1889086693 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1490033222896338, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+  m_PrefabParentObject: {fileID: 1975523904503338, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1255625131}
+--- !u!1 &2077462508 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1013298637262774, guid: b9c2f9988725d3044909e6e3cc4a51a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1255625131}
+--- !u!1 &2120935121 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1958939302817220, guid: b9c2f9988725d3044909e6e3cc4a51a8,
     type: 2}
   m_PrefabInternal: {fileID: 1255625131}

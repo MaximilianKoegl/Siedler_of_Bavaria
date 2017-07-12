@@ -201,6 +201,7 @@ public class Building_Menu : MonoBehaviour {
             universität.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
             universität.GetComponentInChildren<Text>().text = "Universität";
             kaserne.gameObject.SetActive(false);
+            schmiede.gameObject.SetActive(false);
         }
         else
         {
@@ -209,6 +210,7 @@ public class Building_Menu : MonoBehaviour {
             universität.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
             universität.GetComponentInChildren<Text>().text = "";
             kaserne.gameObject.SetActive(true);
+            schmiede.gameObject.SetActive(true);
             if (resourcesCounter[8] > 0)
             {
                 kostenkaserne.SetActive(true);
@@ -216,6 +218,7 @@ public class Building_Menu : MonoBehaviour {
                 kaserne.GetComponentsInChildren<Image>()[1].sprite = imagekaserne;
                 kaserne.GetComponentInChildren<Text>().text = "Kaserne";
                 universität.gameObject.SetActive(false);
+                schule.gameObject.SetActive(false);
             }
             else
             {
@@ -224,6 +227,7 @@ public class Building_Menu : MonoBehaviour {
                 kaserne.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
                 kaserne.GetComponentInChildren<Text>().text = "";
                 universität.gameObject.SetActive(true);
+                schule.gameObject.SetActive(true);
             }
         }
     }

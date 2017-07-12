@@ -29,6 +29,13 @@ TagManager:
   - Kaserne
   - Schule
   - "Universit\xE4t"
+  - Kempten
+  - "N\xFCrnberg"
+  - Weiden
+  - Aschaffenburg
+  - Ingolstadt
+  - Passau
+  - Bamberg
   layers:
   - Default
   - TransparentFX

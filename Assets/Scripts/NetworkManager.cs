@@ -18,6 +18,13 @@ public class NetworkManager : Photon.MonoBehaviour {
     public GameObject spawnPointFiveHex;
     public GameObject spawnPointSixHex;
     public GameObject spawnPointSevenHex;
+    public GameObject spawnPointDorfOneHex;
+    public GameObject spawnPointDorfTwoHex;
+    public GameObject spawnPointDorfThreeHex;
+    public GameObject spawnPointDorfFourHex;
+    public GameObject spawnPointDorfFiveHex;
+    public GameObject spawnPointDorfSixHex;
+    public GameObject spawnPointDorfSevenHex;
     public Transform spawnPointOne;
     public Transform spawnPointTwo;
     public Transform spawnPointThree;
@@ -27,6 +34,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     public Transform spawnPointSeven;
 
     public GameObject haupthaus;
+    public GameObject dorf;
 
     public Font captureIt2;
 
@@ -115,6 +123,7 @@ public class NetworkManager : Photon.MonoBehaviour {
         if(playersCount == 1)
         {
             instantiatePlayer(spawnPointOne.position, spawnPointOne.rotation, "Schwaben", spawnPointOneHex);
+            instantiateDorfPlayer(spawnPointDorfOneHex, "Kempten");
         }
         else
         {
@@ -153,43 +162,50 @@ public class NetworkManager : Photon.MonoBehaviour {
             //erstbeste noch nicht belegte Stadt wird zugewissen
             if (schwaben)
             {
-               instantiatePlayer(spawnPointOne.position, spawnPointOne.rotation, "Schwaben", spawnPointOneHex);
+                instantiatePlayer(spawnPointOne.position, spawnPointOne.rotation, "Schwaben", spawnPointOneHex);
+                instantiateDorfPlayer(spawnPointDorfOneHex, "Kempten");
             }
             else
             {
                 if(unterfranken)
                 {
                     instantiatePlayer(spawnPointTwo.position, spawnPointTwo.rotation, "Unterfranken", spawnPointTwoHex);
+                    instantiateDorfPlayer(spawnPointDorfTwoHex, "Aschaffenburg");
                 }
                 else
                 {
                     if (niederbayern)
                     {
                         instantiatePlayer(spawnPointThree.position, spawnPointThree.rotation, "Niederbayern", spawnPointThreeHex);
+                        instantiateDorfPlayer(spawnPointDorfThreeHex, "Passau");
                     }
                     else
                     {
                         if (oberbayern)
                         {
                             instantiatePlayer(spawnPointFour.position, spawnPointFour.rotation, "Oberbayern", spawnPointFourHex);
+                            instantiateDorfPlayer(spawnPointDorfFourHex, "Ingolstadt");
                         }
                         else
                         {
                             if (oberpfalz)
                             {
                                 instantiatePlayer(spawnPointFive.position, spawnPointFive.rotation, "Oberpfalz", spawnPointFiveHex);
+                                instantiateDorfPlayer(spawnPointDorfFiveHex, "Weiden");
                             }
                             else
                             {
                                 if (oberfranken)
                                 {
                                     instantiatePlayer(spawnPointSix.position, spawnPointSix.rotation, "Oberfranken", spawnPointSixHex);
+                                    instantiateDorfPlayer(spawnPointDorfSixHex, "Bamberg");
                                 }
                                 else
                                 {
                                     if (mittelfranken)
                                     {
                                         instantiatePlayer(spawnPointSeven.position, spawnPointSeven.rotation, "Mittelfranken", spawnPointSevenHex);
+                                        instantiateDorfPlayer(spawnPointDorfSevenHex, "Nürnberg");
                                     }
                                 }
                             }
@@ -210,8 +226,18 @@ public class NetworkManager : Photon.MonoBehaviour {
         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnHex.transform.position, Quaternion.identity, 0);
         house_go.name = "Dorfzentrum";
         house_go.transform.GetChild(0).tag = "Dorfzentrum";
+        house_go.transform.parent = spawnHex.transform;    
+    }
+
+    private void instantiateDorfPlayer(GameObject spawnHex, string dorfName)
+    {
+        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(dorf.name, spawnHex.transform.position, Quaternion.identity, 0);
+        house_go.name = dorfName;
+        house_go.transform.GetChild(0).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(0).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(1).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(2).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(3).GetChild(0).tag = dorfName;
         house_go.transform.parent = spawnHex.transform;
-        MeshRenderer mr = spawnHex.GetComponentInChildren<MeshRenderer>();
-        mr.material.color = Color.red;
     }
 }

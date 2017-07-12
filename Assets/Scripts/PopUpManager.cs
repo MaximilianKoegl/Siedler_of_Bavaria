@@ -66,6 +66,13 @@ public class PopUpManager : MonoBehaviour {
             case ("Schule"): return "Schule";
             case ("Universität"): return "Universität";
             case ("Wahrzeichen"): return "Wahrzeichen";
+            case ("Bamberg"): return "Bamberg.";
+            case ("Nürnberg"): return "Nürnberg.";
+            case ("Aschaffenburg"): return "Aschaffenburg.";
+            case ("Weiden"): return "Weiden.";
+            case ("Ingolstadt"): return "Ingolstadt.";
+            case ("Kempten"): return "Kempten.";
+            case ("Passau"): return "Passau.";
             default: return "";
         }
     }
@@ -96,6 +103,13 @@ public class PopUpManager : MonoBehaviour {
             case ("München"): return "München wurde im 16. Jahrhundert von ... regiert.";
             case ("Ansbach"): return "Ansbach wurde im 16. Jahrhundert von ... regiert.";
             case ("Würzburg"): return "Während des Bauernkrieges 1525 wurde die Würzburger Festung Mariental mehrfach berannt. Die Würzburger stellten sich dabei auf die Seite der Bauern.";
+            case ("Bamberg"): return "Dies ist Bamberg.";
+            case ("Nürnberg"): return "Dies ist Nürnberg.";
+            case ("Aschaffenburg"): return "Dies ist Aschaffenburg.";
+            case ("Weiden"): return "Dies ist Weiden.";
+            case ("Ingolstadt"): return "Dies ist Ingolstadt.";
+            case ("Kempten"): return "Dies ist Kempten.";
+            case ("Passau"): return "Dies ist Passau.";
             default: return "";
         }
     }

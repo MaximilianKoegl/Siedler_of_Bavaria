@@ -313,11 +313,37 @@ public class MouseManager : Photon.MonoBehaviour {
             case ("Dorfzentrum"):
                 m_popup_manager.onFirstTimeBuild("Dorfzentrum");
                 Debug.Log("Dorfzentrum clicked");
-
+                break;
+            case ("Bamberg"):
+                m_popup_manager.onFirstTimeBuild("Bamberg");
+                Debug.Log("Bamberg clicked");
+                break;
+            case ("Nürnberg"):
+                m_popup_manager.onFirstTimeBuild("Nürnberg");
+                Debug.Log("Nürnberg clicked");
+                break;
+            case ("Aschaffenburg"):
+                m_popup_manager.onFirstTimeBuild("Aschaffenburg");
+                Debug.Log("Aschaffenburg clicked");
+                break;
+            case ("Weiden"):
+                m_popup_manager.onFirstTimeBuild("Weiden");
+                Debug.Log("Weiden clicked");
+                break;
+            case ("Ingolstadt"):
+                m_popup_manager.onFirstTimeBuild("Ingolstadt");
+                Debug.Log("Ingolstadt clicked");
+                break;
+            case ("Kempten"):
+                m_popup_manager.onFirstTimeBuild("Kempten");
+                Debug.Log("Kempten clicked");
+                break;
+            case ("Passau"):
+                m_popup_manager.onFirstTimeBuild("Passau");
+                Debug.Log("Passau clicked");
                 break;
             default:
-            
-                Debug.Log(hitObject.tag + " clicked");
+           
                 break;
         }
     }
@@ -348,7 +374,7 @@ public class MouseManager : Photon.MonoBehaviour {
 
 
     //bauen des Hauses
-    void buildHouseStart(GameObject parentHitObj)
+    /*void buildHouseStart(GameObject parentHitObj)
     {
 
         //Haus bauen im Netzwerk
@@ -367,7 +393,7 @@ public class MouseManager : Photon.MonoBehaviour {
         mr.material.color = Color.red;
 
 
-    }
+    }*/
 
     private Color getColorBezirk(string tag)
     {
