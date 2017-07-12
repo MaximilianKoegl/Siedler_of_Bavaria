@@ -380,7 +380,7 @@ public class Building_Menu : MonoBehaviour {
                 if (m_resource_counter.checkBuildingCosts("Schmiede"))
                 {
                     changeCursor(cursorTextureWahrzeichen);
-                    schmiede.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                    schmiede.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (10):
@@ -388,14 +388,14 @@ public class Building_Menu : MonoBehaviour {
                 {
                     changeCursor(cursorTextureWahrzeichen);
 
-                    kaserne.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                    kaserne.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 break;
             case (11):
                 if (m_resource_counter.checkBuildingCosts("Schule"))
                 {
                     changeCursor(cursorTextureWahrzeichen);
-                    schule.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                    schule.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 
                 break;
@@ -403,7 +403,7 @@ public class Building_Menu : MonoBehaviour {
                 if (m_resource_counter.checkBuildingCosts("Universität"))
                 {
                     changeCursor(cursorTextureWahrzeichen);
-                    universität.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                    universität.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
                 }
                 
 

@@ -316,6 +316,8 @@ public class MouseManager : Photon.MonoBehaviour {
 
                 break;
             default:
+            
+                Debug.Log(hitObject.tag + " clicked");
                 break;
         }
     }
@@ -334,6 +336,7 @@ public class MouseManager : Photon.MonoBehaviour {
         //Setzt Namen des Hauses
         house_go.name = house_name;
         house_go.transform.GetChild(0).tag = house_name;
+        
 
         //Fügt dem Ortsobjekt das Haus als Child hinzu
         house_go.transform.parent = parentHitObj.transform;
@@ -355,7 +358,7 @@ public class MouseManager : Photon.MonoBehaviour {
         //Setzt Namen des Hauses
         house_go.name = "Dorfzentrum";
         house_go.transform.GetChild(0).tag = "Dorfzentrum";
-
+        house_go.transform.GetChild(1).tag = "Dorfzentrum";
         //Fügt dem Ortsobjekt das Haus als Child hinzu
         house_go.transform.parent = parentHitObj.transform;
 
