@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -315,36 +316,58 @@ public class MouseManager : Photon.MonoBehaviour {
                 Debug.Log("Dorfzentrum clicked");
                 break;
             case ("Bamberg"):
-                m_popup_manager.onFirstTimeBuild("Bamberg");
+                checkPopUp("Bamberg");
                 Debug.Log("Bamberg clicked");
                 break;
             case ("Nürnberg"):
-                m_popup_manager.onFirstTimeBuild("Nürnberg");
+                checkPopUp("Nürnberg");
                 Debug.Log("Nürnberg clicked");
                 break;
             case ("Aschaffenburg"):
-                m_popup_manager.onFirstTimeBuild("Aschaffenburg");
+                checkPopUp("Aschaffenburg");
                 Debug.Log("Aschaffenburg clicked");
                 break;
             case ("Weiden"):
-                m_popup_manager.onFirstTimeBuild("Weiden");
+                checkPopUp("Weiden");
                 Debug.Log("Weiden clicked");
                 break;
             case ("Ingolstadt"):
-                m_popup_manager.onFirstTimeBuild("Ingolstadt");
+                checkPopUp("Ingolstadt");
                 Debug.Log("Ingolstadt clicked");
                 break;
             case ("Kempten"):
-                m_popup_manager.onFirstTimeBuild("Kempten");
+                checkPopUp("Kempten");
                 Debug.Log("Kempten clicked");
                 break;
             case ("Passau"):
-                m_popup_manager.onFirstTimeBuild("Passau");
+                checkPopUp("Passau");
                 Debug.Log("Passau clicked");
                 break;
             default:
            
                 break;
+        }
+    }
+
+    private void checkPopUp(string tag)
+    {
+        resources_counter = m_resources_counter.getResourcesCounter();
+        //wenn Uni gebaut
+        if (resources_counter[9] > 0)
+        {
+            m_popup_manager.dorfInfoUni(tag);
+        }
+        else
+        {
+            //wenn Kaserne gebaut
+            if (resources_counter[10] > 0)
+            {
+                m_popup_manager.dorfInfoKaserne(tag);
+            }
+            else
+            {
+                m_popup_manager.onFirstTimeBuild(tag);
+            }
         }
     }
 
@@ -373,27 +396,7 @@ public class MouseManager : Photon.MonoBehaviour {
     }
 
 
-    //bauen des Hauses
-    /*void buildHouseStart(GameObject parentHitObj)
-    {
-
-        //Haus bauen im Netzwerk
-        GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, parentHitObj.transform.position, Quaternion.identity, 0);
-
-      
-        //Setzt Namen des Hauses
-        house_go.name = "Dorfzentrum";
-        house_go.transform.GetChild(0).tag = "Dorfzentrum";
-        house_go.transform.GetChild(1).tag = "Dorfzentrum";
-        //Fügt dem Ortsobjekt das Haus als Child hinzu
-        house_go.transform.parent = parentHitObj.transform;
-
-
-        MeshRenderer mr = parentHitObj.GetComponentInChildren<MeshRenderer>();
-        mr.material.color = Color.red;
-
-
-    }*/
+   
 
     private Color getColorBezirk(string tag)
     {

@@ -255,13 +255,17 @@ public class Building_Menu : MonoBehaviour {
     //Aktion die ausgeführt wird wenn der Plusbutton für das Baumenu geklickt wird
     public void onClickedPlusButton()
     {
-        deactivateBuildMode();
-        isShowing = !isShowing;
-        buildingCanvas.SetActive(isShowing);
-        building_Number = 0;
-        Debug.Log(transform);
+        if (!m_popup_manager.getDoIt())
+        {
 
-        m_popup_manager.onClosePopUp();
+            deactivateBuildMode();
+            isShowing = !isShowing;
+            buildingCanvas.SetActive(isShowing);
+            building_Number = 0;
+            Debug.Log(transform);
+
+            m_popup_manager.onClosePopUp();
+        }
 
     }
 
@@ -338,221 +342,227 @@ public class Building_Menu : MonoBehaviour {
     //Listener für die geklickten Gebäude mit Index übergabe
     public void onBuildingSelected(int count)
     {
-        building_Number = count;
-        m_popup_manager.onClosePopUp();
-        destroyIsActivated = false;
-        delete.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-        switch (building_Number)
-        {
-            case (1):
-                if(woodcutter.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    woodcutter.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Woodcutter"))
+        
+            building_Number = count;
+            m_popup_manager.onClosePopUp();
+            destroyIsActivated = false;
+            delete.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            switch (building_Number)
+            {
+                case (1):
+                    if(woodcutter.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureHolzfäller);
-                        woodcutter.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        changeCursor(null);
+                        woodcutter.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
                     }
-                }
+                    else
+                    {
+                        if (m_resource_counter.checkBuildingCosts("Woodcutter"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureHolzfäller);
+                            woodcutter.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
+                    }
                 
-                break;
-            case (2):
-                if (stonefeeder.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    stonefeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Stonefeeder"))
+                    break;
+                case (2):
+                    if (stonefeeder.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureSteinmine);
-                        stonefeeder.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        changeCursor(null);
+                        stonefeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
                     }
-                }
-                break;
-            case (3):
-                if (ironfeeder.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    ironfeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Ironfeeder"))
+                    else
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureEisenmine);
-                        ironfeeder.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        if (m_resource_counter.checkBuildingCosts("Stonefeeder"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureSteinmine);
+                            stonefeeder.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
                     }
-                }
-                break;
-            case (4):
-                if (livingHouse.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    livingHouse.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("LivingHouse"))
+                    break;
+                case (3):
+                    if (ironfeeder.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureWohnhaus);
-                        livingHouse.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        changeCursor(null);
+                        ironfeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
                     }
-                }
-                break;
-            case (5):
-                if (church.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    church.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Church"))
+                    else
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureKapelle);
-                        church.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        if (m_resource_counter.checkBuildingCosts("Ironfeeder"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureEisenmine);
+                            ironfeeder.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
                     }
-                }
-                break;
-            case (6):
-                if (brauerei.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    brauerei.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Brauerei"))
+                    break;
+                case (4):
+                    if (livingHouse.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureBrauerei);
-                        brauerei.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        changeCursor(null);
+                        livingHouse.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
                     }
-                }
-                break;
-            case (7):
-                if (bäcker.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    bäcker.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Bäcker"))
+                    else
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureSauerkrauterie);
-                        bäcker.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        if (m_resource_counter.checkBuildingCosts("LivingHouse"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureWohnhaus);
+                            livingHouse.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
                     }
-                }
-                break;
-            case (8):
-                if (wahrzeichen.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Wahrzeichen"))
+                    break;
+                case (5):
+                    if (church.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureWahrzeichen);
-                        wahrzeichen.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        changeCursor(null);
+                        church.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
                     }
-                }
-                break;
-            case (9):
-                if (schmiede.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    schmiede.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Schmiede"))
+                    else
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureWahrzeichen);
-                        schmiede.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        if (m_resource_counter.checkBuildingCosts("Church"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureKapelle);
+                            church.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
                     }
-                }
-                break;
-            case (10):
-                if (kaserne.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    kaserne.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Kaserne"))
+                    break;
+                case (6):
+                    if (brauerei.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureWahrzeichen);
+                        changeCursor(null);
+                        brauerei.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
+                    }
+                    else
+                    {
+                        if (m_resource_counter.checkBuildingCosts("Brauerei"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureBrauerei);
+                            brauerei.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
+                    }
+                    break;
+                case (7):
+                    if (bäcker.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
+                    {
+                        changeCursor(null);
+                        bäcker.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
+                    }
+                    else
+                    {
+                        if (m_resource_counter.checkBuildingCosts("Bäcker"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureSauerkrauterie);
+                            bäcker.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
+                    }
+                    break;
+                case (8):
+                    if (wahrzeichen.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
+                    {
+                        changeCursor(null);
+                        wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
+                    }
+                    else
+                    {
+                        if (m_resource_counter.checkBuildingCosts("Wahrzeichen"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureWahrzeichen);
+                            wahrzeichen.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
+                        else
+                        {
+                            wahrzeichen.GetComponent<Image>().color = new Color32(80, 80, 0, 186);
+                        }
+                    }
+                    break;
+                case (9):
+                    if (schmiede.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
+                    {
+                        changeCursor(null);
+                        schmiede.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
+                    }
+                    else
+                    {
+                        if (m_resource_counter.checkBuildingCosts("Schmiede"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureWahrzeichen);
+                            schmiede.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
+                    }
+                    break;
+                case (10):
+                    if (kaserne.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
+                    {
+                        changeCursor(null);
+                        kaserne.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
+                    }
+                    else
+                    {
+                        if (m_resource_counter.checkBuildingCosts("Kaserne"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureWahrzeichen);
 
-                        kaserne.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                            kaserne.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
                     }
-                }
-                break;
-            case (11):
-                if (schule.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    schule.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Schule"))
+                    break;
+                case (11):
+                    if (schule.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureWahrzeichen);
-                        schule.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        changeCursor(null);
+                        schule.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
                     }
-                }
-                break;
-            case (12):
-                if (universität.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
-                {
-                    changeCursor(null);
-                    universität.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-                    building_Number = 0;
-                }
-                else
-                {
-                    if (m_resource_counter.checkBuildingCosts("Universität"))
+                    else
                     {
-                        deselectAll();
-                        changeCursor(cursorTextureWahrzeichen);
-                        universität.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        if (m_resource_counter.checkBuildingCosts("Schule"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureWahrzeichen);
+                            schule.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
                     }
-                }
+                    break;
+                case (12):
+                    if (universität.GetComponent<Image>().color == new Color32(80, 0, 0, 186))
+                    {
+                        changeCursor(null);
+                        universität.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
+                        building_Number = 0;
+                    }
+                    else
+                    {
+                        if (m_resource_counter.checkBuildingCosts("Universität"))
+                        {
+                            deselectAll();
+                            changeCursor(cursorTextureWahrzeichen);
+                            universität.GetComponent<Image>().color = new Color32(80, 0, 0, 186);
+                        }
+                    }
 
-                break;
-            default: changeCursor(null);break;
-        }
+                    break;
+                default: changeCursor(null);break;
+            }
+
         
     }
 

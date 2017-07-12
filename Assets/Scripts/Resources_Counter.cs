@@ -20,6 +20,7 @@ public class Resources_Counter : MonoBehaviour {
     public int foodCount;
     private int einwohnerCount;
     private int einwohnerGesamt;
+    private int goldCount;
     
 
 	// Use this for initialization
@@ -28,6 +29,7 @@ public class Resources_Counter : MonoBehaviour {
         ironCount = 100;
         stoneCount = 100;
         foodCount = 5000;
+        goldCount = 0;
         einwohnerCount = 5;
         einwohnerGesamt = 10;
 
@@ -35,6 +37,11 @@ public class Resources_Counter : MonoBehaviour {
 
         InvokeRepeating("updateCounters", 2.0f, 1.0f);
 	}
+
+    public void addGold(int number)
+    {
+        goldCount = number;
+    }
 
 
     public int[] getResourcesCounter()
@@ -56,12 +63,12 @@ public class Resources_Counter : MonoBehaviour {
     void updateCounters()
     {
         int[] resourcesCounter = m_mouseManager.getResourcesCounter();
-        woodCount += 10 * resourcesCounter[0];
-        ironCount += 2 * resourcesCounter[6];
-        stoneCount += 5 * resourcesCounter[4];
+        woodCount += 10 * resourcesCounter[0]; //10
+        ironCount += 2 * resourcesCounter[6]; //2
+        stoneCount += 5 * resourcesCounter[4]; //5
         foodCount += 50 * resourcesCounter[3];
         foodCount += 60 * resourcesCounter[5];
-        foodCount -= 1 * einwohnerCount;
+        foodCount -= 2 * einwohnerCount;
 
     }
 
@@ -139,7 +146,7 @@ public class Resources_Counter : MonoBehaviour {
                 }
                 return false;
             case ("Wahrzeichen"):
-                if (woodCount >= 3000 && stoneCount >= 2000 && ironCount >= 2000 && einwohnerFree >= 40)
+                if (woodCount >= 3000 && stoneCount >= 2000 && ironCount >= 2000 && goldCount >= 2000 && einwohnerFree >= 40)
                 {
                     return true;
                 }
@@ -212,6 +219,7 @@ public class Resources_Counter : MonoBehaviour {
                 woodCount -= 3000;
                 stoneCount -= 2000;
                 ironCount -= 2000;
+                goldCount -= 2000;
                 einwohnerCount += 40;
                 break;
         }

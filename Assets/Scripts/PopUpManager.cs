@@ -10,13 +10,39 @@ public class PopUpManager : MonoBehaviour {
 
     public Button closePopUp;
 
+    private Resources_Counter m_resources_counter;
+
+    private bool yourCity = false;
+    private bool doIt = false;
+
 	// Use this for initialization
 	void Start () {
+        m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
+
+
         popUpInfo.SetActive(false);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    public bool getDoIt()
+    {
+        return doIt;
+    }
+
+    public void onGetDorf()
+    {
+        if (doIt)
+        {
+            Debug.Log("true");
+            m_resources_counter.addGold(2000);
+            onClosePopUp();
+            yourCity = true;
+            doIt = false;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -24,6 +50,43 @@ public class PopUpManager : MonoBehaviour {
     public void onClosePopUp()
     {
         popUpInfo.SetActive(false);
+    }
+
+    public void dorfInfoUni(String name)
+    {
+        Text title = popUpInfo.GetComponentInChildren<Text>();
+        title.text = name;
+        Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
+        if (yourCity)
+        {
+            infoText.text = "Sie sind mit Kempten verbündet.";
+        }
+        else
+        {
+            doIt = true;
+            infoText.text = "Drücken sie den + Button, um ihr Wissen und ihre Bildung einzusetzen, um ein Bündnis mit " + name + " zu schließen? + Button drücken!";
+        }
+        popUpInfo.SetActive(true);
+    }
+
+    public void dorfInfoKaserne(String name)
+    {
+        Text title = popUpInfo.GetComponentInChildren<Text>();
+        title.text = name;
+        Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
+        if (yourCity)
+        {
+            
+            infoText.text = "Sie haben Kempten eingenommen.";
+        }
+        else
+        {
+            doIt = true;
+            infoText.text = "Drücken sie den + Button, um " + name + " durch ihr Militär einzunehmen!";
+        }
+
+        
+        popUpInfo.SetActive(true);
     }
 
     public void OnGameStartInfo(String name)
