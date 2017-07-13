@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bde38279cadd348b98304ae217bcd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPrefab: {fileID: 1750600958312882, guid: d503d5772690b984da11001c39f2bf58,
+  cameraPrefab: {fileID: 1831826499167358, guid: 36b729aef7bed9240955bbef65abf758,
     type: 2}
   mouseManagerPrefab: {fileID: 1062117515312376, guid: c4e58af49ae2eca45b295cdf07ba72bd,
     type: 2}

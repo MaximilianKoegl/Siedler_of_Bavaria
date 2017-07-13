@@ -380,7 +380,7 @@ public class MouseManager : Photon.MonoBehaviour {
 
         //Erhöht Anzahl der bestimmen Hausart
         
-            resources_counter[counter_position] += 1;
+        resources_counter[counter_position] += 1;
 
         //Setzt Namen des Hauses
         house_go.name = house_name;

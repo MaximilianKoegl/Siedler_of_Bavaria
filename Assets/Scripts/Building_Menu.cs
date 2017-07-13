@@ -61,7 +61,7 @@ public class Building_Menu : MonoBehaviour {
     public Resources_Counter m_resource_counter;
 
     //stonefeeeder, brauerei, eisenmine, schule, scmiede, uni, kaserne, wahrzeichen 
-    private bool[] buildable = new bool[] { false, false, false, false, false, false, false, false };
+    private bool[] buildable = new bool[] { false, false, false, false, false, false, false, false};
 
 
     private bool isShowing;

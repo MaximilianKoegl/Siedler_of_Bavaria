@@ -26,8 +26,8 @@ public class Resources_Counter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         woodCount = 1000;
-        ironCount = 100;
-        stoneCount = 100;
+        ironCount = 200;
+        stoneCount = 200;
         foodCount = 5000;
         goldCount = 0;
         einwohnerCount = 5;
@@ -64,8 +64,8 @@ public class Resources_Counter : MonoBehaviour {
     {
         int[] resourcesCounter = m_mouseManager.getResourcesCounter();
         woodCount += 10 * resourcesCounter[0]; //10
-        ironCount += 2 * resourcesCounter[6]; //2
-        stoneCount += 5 * resourcesCounter[4]; //5
+        ironCount += 4 * resourcesCounter[6]; //2
+        stoneCount += 7 * resourcesCounter[4]; //5
         foodCount += 50 * resourcesCounter[3];
         foodCount += 60 * resourcesCounter[5];
         foodCount -= 2 * einwohnerCount;
