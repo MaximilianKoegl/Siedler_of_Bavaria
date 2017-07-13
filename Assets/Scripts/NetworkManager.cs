@@ -238,6 +238,8 @@ public class NetworkManager : Photon.MonoBehaviour {
         house_go.transform.GetChild(1).GetChild(0).tag = dorfName;
         house_go.transform.GetChild(2).GetChild(0).tag = dorfName;
         house_go.transform.GetChild(3).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(4).GetChild(3).tag = dorfName;
+        house_go.transform.GetChild(4).GetChild(4).tag = dorfName;
         house_go.transform.parent = spawnHex.transform;
     }
 }

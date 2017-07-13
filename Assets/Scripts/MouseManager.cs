@@ -384,7 +384,17 @@ public class MouseManager : Photon.MonoBehaviour {
 
         //Setzt Namen des Hauses
         house_go.name = house_name;
-        house_go.transform.GetChild(0).tag = house_name;
+        if (house_name.Equals("LivingHouse"))
+        {
+
+            house_go.transform.GetChild(3).tag = house_name;
+            house_go.transform.GetChild(4).tag = house_name;
+        }
+        else
+        {
+
+            house_go.transform.GetChild(0).tag = house_name;
+        }
         
 
         //Fügt dem Ortsobjekt das Haus als Child hinzu

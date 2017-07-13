@@ -58,7 +58,7 @@ MonoBehaviour:
     type: 2}
   steinmine: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
   eisenmine: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
-  wohnhaus: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80, type: 2}
+  wohnhaus: {fileID: 1800139605525368, guid: 244972db1e93bf540a0e72ea2c67d5dc, type: 2}
   kapelle: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
   brauerei: {fileID: 1464243174350568, guid: 87b14d5271965404a83edde223889a1c, type: 2}
   "b\xE4cker": {fileID: 1246116139946986, guid: bb18b8d9e9b6342409ff0dd0ee352cfe,
