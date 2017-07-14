@@ -2795,7 +2795,7 @@ MonoBehaviour:
   imagewahrzeichen: {fileID: 21300000, guid: a7a6d18e053fb3348beb275005115f5c, type: 3}
   imageschmiede: {fileID: 21300000, guid: 8ec7b35053af12e4ba1c922c9a556b59, type: 3}
   imagekaserne: {fileID: 21300000, guid: 6bb1bf12dfbb53848ae5f938419a6881, type: 3}
-  imageschule: {fileID: 21300000, guid: 446ad3018f882b64abcbdabfa65ae539, type: 3}
+  imageschule: {fileID: 21300000, guid: fa52478b591d61b4c93a20a2378fc55f, type: 3}
   "imageuniversit\xE4t": {fileID: 21300000, guid: a632382d33b63754ba090f619c9635a6,
     type: 3}
   imageNotBuildable: {fileID: 21300000, guid: fafe1c404537a204b9ad0eccb3eaedc9, type: 3}

@@ -65,7 +65,7 @@ MonoBehaviour:
     type: 2}
   schmiede: {fileID: 1044500306781692, guid: 245fe4e4732426e4ea330481cfe5f85b, type: 2}
   kaserne: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
-  schule: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
+  schule: {fileID: 1735015390390646, guid: 85ebbe9164ffed640b46b8a7ecffc49a, type: 2}
   "universit\xE4t": {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80,
     type: 2}
   wahrzeichen: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516,

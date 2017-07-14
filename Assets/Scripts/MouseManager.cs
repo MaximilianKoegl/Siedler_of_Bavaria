@@ -392,8 +392,19 @@ public class MouseManager : Photon.MonoBehaviour {
         }
         else
         {
+            if (house_name.Equals("Schule"))
+            {
 
-            house_go.transform.GetChild(0).tag = house_name;
+                house_go.transform.GetChild(1).tag = house_name;
+                house_go.transform.GetChild(2).tag = house_name;
+                house_go.transform.GetChild(3).tag = house_name;
+                house_go.transform.GetChild(7).tag = house_name;
+            }
+            else
+            {
+
+                house_go.transform.GetChild(0).tag = house_name;
+            }
         }
         
 
