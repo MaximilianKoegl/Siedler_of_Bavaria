@@ -29,7 +29,7 @@ public class MouseManager : Photon.MonoBehaviour {
     public PopUpManager m_popup_manager;
 
     private string house_name;
-    //holzfäller, wohnhaus, kapelle, bäcker,stonefeeeder, brauerei, eisenmine, schule, scmiede, uni, kaserne, wahrzeichen
+    //holzfäller, wohnhaus, kapelle, bäcker,stonefeeeder, brauerei, eisenmine, schule, schmiede, uni, kaserne, wahrzeichen
     private int[] resources_counter = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int counter_position;
 

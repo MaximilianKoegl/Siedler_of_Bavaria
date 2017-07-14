@@ -60,6 +60,67 @@ public class Resources_Counter : MonoBehaviour {
 
 	}
 
+    public float getSatisfactionFood()
+    {
+        float satisfactionFood = Mathf.Round(foodCount / einwohnerCount);
+        if (satisfactionFood > 100) satisfactionFood = 100;
+        return satisfactionFood;
+    }
+
+    public float getSatisfaction()
+    {
+        float satisfaction = 0f;
+        float satisfactionFood = Mathf.Round(foodCount / einwohnerCount);
+        float satisfactionKapelle = 0;
+        float satisfactionSchuleSchmiede = 0;
+        float satisfactionKaserneUni = 0;
+        if (satisfactionFood > 100) satisfactionFood = 100;
+        // zufriedenheit wird durch Kapelle gesteigert
+        if(m_mouseManager.getResourcesCounter()[2] >= 1)
+        {
+            satisfactionKapelle = 100;
+        }
+        else
+        {
+            satisfactionKapelle = 0;
+        }
+        //zufriedenheit wird durch Schule oder Schmiede gesteigert
+        if (m_mouseManager.getResourcesCounter()[7] >= 1 || m_mouseManager.getResourcesCounter()[8] >= 1)
+        {
+            satisfactionSchuleSchmiede = 100;
+        }
+        else
+        {
+            satisfactionSchuleSchmiede = 0;
+        }
+        //Zufriedenheit wird durch Kaserne oder Universität gesteigert
+        if (m_mouseManager.getResourcesCounter()[9] >= 1 || m_mouseManager.getResourcesCounter()[10] >= 1)
+        {
+            satisfactionKaserneUni = 100;
+        }
+        else
+        {
+            satisfactionKaserneUni = 0;
+        }
+        // Berechnung wenn uni baubar 4:1:1:1
+        if(m_mouseManager.getResourcesCounter()[7] >= 1 || m_mouseManager.getResourcesCounter()[8] >= 1){
+            satisfaction = Mathf.Round(((4 * satisfactionFood) + satisfactionKapelle + satisfactionSchuleSchmiede + satisfactionKaserneUni) / 7);
+        }
+        else{
+            //Berechnung wenn Schule baubar Food 3:1:1
+            if(m_mouseManager.getResourcesCounter()[6] >= 1)
+            {
+                satisfaction = Mathf.Round(((3 * satisfactionFood) + satisfactionKapelle + satisfactionSchuleSchmiede) / 5);
+            }
+            else
+            {
+                //berechnung sonst - Food Kapelle 2:1
+                satisfaction = Mathf.Round(((2 * satisfactionFood) + satisfactionKapelle) / 3);
+            }
+        }
+        return satisfaction;
+    }
+
     void updateCounters()
     {
         int[] resourcesCounter = m_mouseManager.getResourcesCounter();
@@ -146,7 +207,8 @@ public class Resources_Counter : MonoBehaviour {
                 }
                 return false;
             case ("Wahrzeichen"):
-                if (woodCount >= 3000 && stoneCount >= 2000 && ironCount >= 2000 && goldCount >= 2000 && einwohnerFree >= 40)
+                float satisfaction = getSatisfaction();
+                if (woodCount >= 3000 && stoneCount >= 2000 && ironCount >= 2000 && goldCount >= 2000 && einwohnerFree >= 40 && satisfaction >= 75)
                 {
                     return true;
                 }

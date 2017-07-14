@@ -150,7 +150,7 @@ public class PopUpManager : MonoBehaviour {
             case ("Ironfeeder"): return "Produziert Eisen.";
             case ("Stonefeeder"): return "Produziert Stein.";
             case ("Dorfzentrum"): return "Dies ist das Dorfzentrum.";
-            case ("LivingHouse"): return "Fuggerei in Augsburg als erste Sozialsiedlung Deutschlands";
+            case ("LivingHouse"): float satisfaction = m_resources_counter.getSatisfaction(); float satisfactionFood = m_resources_counter.getSatisfactionFood(); return "Zufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction +"%\nFuggerei in Augsburg als erste Sozialsiedlung Deutschlands";
             case ("Church"): return "16. Jahrhundert als Zeit der Reformation und Gegenreformation";
             case ("Brauerei"): return "Hofbräuhaus in München";
             case ("Bäcker"): return "Einwohner brauchen Essen";
