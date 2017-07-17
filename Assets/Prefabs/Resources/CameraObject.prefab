@@ -117,7 +117,7 @@ Skybox:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886680762138776}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 6c5d8529c95f9b14aba8d12ab383f471, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 9c15580ba34c4734199689afa0ada27c, type: 2}
 --- !u!81 &81210951367210828
 AudioListener:
   m_ObjectHideFlags: 1
