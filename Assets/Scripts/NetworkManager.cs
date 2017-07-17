@@ -245,6 +245,10 @@ public class NetworkManager : Photon.MonoBehaviour {
         house_go.transform.GetChild(5).GetChild(3).tag = dorfName;
         house_go.transform.GetChild(5).GetChild(7).tag = dorfName;
         house_go.transform.GetChild(6).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(7).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(7).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(7).GetChild(2).tag = dorfName;
+        house_go.transform.GetChild(8).GetChild(0).tag = dorfName;
         house_go.transform.parent = spawnHex.transform;
     }
 }
