@@ -214,8 +214,10 @@ public class MouseManager : Photon.MonoBehaviour {
                         //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
                         if (selectedHouse != null)
                         {
-                            //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
-                            if (ourHitObject.transform.tag == PhotonNetwork.playerName && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
+                        //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
+                        if (ourHitObject.transform.tag == PhotonNetwork.playerName && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
+                        {
+                            if (checkIfHouseBuiltIsPossible(parentHitObject))
                             {
                                 buildHouse(parentHitObject);
                                 m_resources_counter.reduceMaterials(house_name);
@@ -225,6 +227,11 @@ public class MouseManager : Photon.MonoBehaviour {
                                     m_popup_manager.onFirstTimeBuild(house_name);
                                 }
                             }
+                            else
+                            {
+                                //Möglichkeit weiteres Pop-up einzubauen mit Hinweis dass dort noch nicht gebaut werden kann
+                            }
+                        }
                     }
                     else
                     {
@@ -416,8 +423,14 @@ public class MouseManager : Photon.MonoBehaviour {
 
     }
 
+    //Methode zum Überprüfen, ob das Feld bebaut werden darf/kann
+    private Boolean checkIfHouseBuiltIsPossible(GameObject parentHitObj)
+    {
 
-   
+        //parentHitObject.transform.childCount >= 1
+        return false;
+    }
+
 
     private Color getColorBezirk(string tag)
     {
@@ -542,4 +555,5 @@ public class MouseManager : Photon.MonoBehaviour {
         
 
 	}
+
 }
