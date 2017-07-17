@@ -124,12 +124,38 @@ public class Resources_Counter : MonoBehaviour {
     void updateCounters()
     {
         int[] resourcesCounter = m_mouseManager.getResourcesCounter();
-        woodCount += 10 * resourcesCounter[0]; //10
-        ironCount += 4 * resourcesCounter[6]; //2
-        stoneCount += 7 * resourcesCounter[4]; //5
+        if (getSatisfaction() < 50)
+        {
+            woodCount += 7 * resourcesCounter[0]; //10
+            ironCount += 3 * resourcesCounter[6]; //2
+            stoneCount += 5 * resourcesCounter[4]; //5
+        }
+        else
+        {
+            if(getSatisfaction() < 25)
+            {
+                woodCount += 5 * resourcesCounter[0]; //10
+                ironCount += 2 * resourcesCounter[6]; //2
+                stoneCount += 4 * resourcesCounter[4]; //5
+            }
+            else
+            {
+                woodCount += 10 * resourcesCounter[0]; //10
+                ironCount += 4 * resourcesCounter[6]; //2
+                stoneCount += 7 * resourcesCounter[4]; //5
+            }
+        }
         foodCount += 50 * resourcesCounter[3];
         foodCount += 60 * resourcesCounter[5];
-        foodCount -= 2 * einwohnerCount;
+        if(foodCount> 0)
+        {
+
+            foodCount -= 2 * einwohnerCount;
+        }
+        else
+        {
+            foodCount = 0;
+        }
 
     }
 
