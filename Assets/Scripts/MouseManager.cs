@@ -217,17 +217,10 @@ public class MouseManager : Photon.MonoBehaviour {
                         //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
                         if (ourHitObject.transform.tag == PhotonNetwork.playerName && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
                         {
-                            if (checkIfHouseBuiltIsPossible(parentHitObject))
+
+                            if (checkIfHouseBuiltIsPossible(hitInfo))
                             {
-
-                            /* var hitColliders = Physics.OverlapSphere(hitInfo.point, 5);
-
-                            for (var i = 0; i < hitColliders.Length; i++)
-                            {
-                                Debug.Log(hitColliders[i]);
-                            } */
-
-                            buildHouse(parentHitObject);
+                                buildHouse(parentHitObject);
                                 m_resources_counter.reduceMaterials(house_name);
                                 m_building_menu.deactivateBuildMode();
                                 if (resources_counter[counter_position] == 1)
@@ -443,11 +436,19 @@ public class MouseManager : Photon.MonoBehaviour {
     }
 
     //Methode zum Überprüfen, ob das Feld bebaut werden darf/kann
-    private Boolean checkIfHouseBuiltIsPossible(GameObject parentHitObj)
+    private Boolean checkIfHouseBuiltIsPossible(RaycastHit hitInfo)
     {
+        /*Collider[] hitColliders = Physics.OverlapSphere(hitInfo.point, 3f);
 
-        //parentHitObject.transform.childCount >= 1
-        return false;
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            //Debug.Log(hitColliders[i]);
+            if(hitColliders[i].gameObject.transform.childCount <= 1)
+            {
+                return true;
+            }
+        }*/
+        return true;
     }
 
 
