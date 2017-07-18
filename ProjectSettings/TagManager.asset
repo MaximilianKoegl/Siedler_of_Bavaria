@@ -36,6 +36,8 @@ TagManager:
   - Ingolstadt
   - Passau
   - Bamberg
+  - Hopfen
+  - Getreide
   layers:
   - Default
   - TransparentFX
