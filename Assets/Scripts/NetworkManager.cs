@@ -77,7 +77,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                 // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
 
 
-                if (GUI.Button(new Rect(Screen.width/2 - 125, Screen.height/2 - 50, 250, 100), "Hier klicken um am Spiel teilzunehmen!"))
+                if (GUI.Button(new Rect(Screen.width/2 - 125, Screen.height/2 - 50, 500, 200), "Hier klicken um am Spiel teilzunehmen!"))
                 {
 
                     PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
@@ -249,6 +249,8 @@ public class NetworkManager : Photon.MonoBehaviour {
         house_go.transform.GetChild(7).GetChild(1).tag = dorfName;
         house_go.transform.GetChild(7).GetChild(2).tag = dorfName;
         house_go.transform.GetChild(8).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(9).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(9).GetChild(1).tag = dorfName;
         house_go.transform.parent = spawnHex.transform;
     }
 }
