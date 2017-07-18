@@ -9,11 +9,15 @@ public class PopUpManager : MonoBehaviour {
     public GameObject popUpInfo;
 
     public Button closePopUp;
+    public Button infoPopUp;
+    public Button detailsPopUp;
 
     private Resources_Counter m_resources_counter;
 
     private bool yourCity = false;
     private bool doIt = false;
+
+    public String actualHouseClicked;
 
 	// Use this for initialization
 	void Start () {
@@ -50,6 +54,27 @@ public class PopUpManager : MonoBehaviour {
     public void onClosePopUp()
     {
         popUpInfo.SetActive(false);
+        closePopUp.gameObject.SetActive(false);
+        infoPopUp.gameObject.SetActive(false);
+        detailsPopUp.gameObject.SetActive(false);
+    }
+
+    //Öffnet Details Info
+    public void onDetailsButtonClicked()
+    {
+        Text title = popUpInfo.GetComponentInChildren<Text>();
+        title.text = actualHouseClicked;
+        Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
+        infoText.text = getPopUpDetails(actualHouseClicked);
+    }
+
+    //Öffnet Details Info
+    public void onInfoButtonClicked()
+    {
+        Text title = popUpInfo.GetComponentInChildren<Text>();
+        title.text = actualHouseClicked;
+        Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
+        infoText.text = getPopUpInfo(actualHouseClicked);
     }
 
     public void dorfInfoUni(String name)
@@ -67,6 +92,7 @@ public class PopUpManager : MonoBehaviour {
             infoText.text = "Drücken sie den + Button, um ihr Wissen und ihre Bildung einzusetzen, um ein Bündnis mit " + name + " zu schließen? + Button drücken!";
         }
         popUpInfo.SetActive(true);
+        closePopUp.gameObject.SetActive(true);
     }
 
     public void dorfInfoKaserne(String name)
@@ -87,6 +113,7 @@ public class PopUpManager : MonoBehaviour {
 
         
         popUpInfo.SetActive(true);
+        closePopUp.gameObject.SetActive(true);
     }
 
     public void OnGameStartInfo(String name)
@@ -97,18 +124,32 @@ public class PopUpManager : MonoBehaviour {
         Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
         infoText.text = getPopUpInfo(name);
         popUpInfo.SetActive(true);
+        closePopUp.gameObject.SetActive(true);
+
+        infoPopUp.gameObject.SetActive(false);
+        detailsPopUp.gameObject.SetActive(false);
+
     }
 
     //Erzeugt ein Pop Up
     public void onFirstTimeBuild(string tag)
     {
-        
+
+        actualHouseClicked = tag;
         Text title = popUpInfo.GetComponentInChildren<Text>();
         title.text = getPopUpTitle(tag);
         Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
         infoText.text = getPopUpInfo(tag);
+        closePopUp.gameObject.SetActive(true);
+        infoPopUp.gameObject.SetActive(false);
+        detailsPopUp.gameObject.SetActive(false);
         popUpInfo.SetActive(true);
-        //popUpClass.HouseName = name;
+
+        if (tag == "Dorfzentrum")
+        {
+            infoPopUp.gameObject.SetActive(true);
+            detailsPopUp.gameObject.SetActive(true);
+        }
         
     }
 
@@ -174,6 +215,25 @@ public class PopUpManager : MonoBehaviour {
             case ("Kempten"): return "Dies ist Kempten.";
             case ("Passau"): return "Dies ist Passau.";
             default: return "";
+        }
+    }
+
+    //Details bei Häusern mit mehreren Tabs
+    private string getPopUpDetails(String tag)
+    {
+        switch (tag)
+        {
+            case ("Dorfzentrum"):
+                int wood = m_resources_counter.woodCount;
+                int stone = m_resources_counter.stoneCount;
+                int iron = m_resources_counter.ironCount;
+                int food = m_resources_counter.foodCount;
+                int people = m_resources_counter.einwohnerCount;
+                float satisfaction = m_resources_counter.getSatisfaction();
+                float satisfactionFood = m_resources_counter.getSatisfactionFood();
+                return "Holz: " + wood + "\nStein: " + stone + "\nEisen: " + iron + "\nNahrung: " + food + "\nEinwohner: " + people + "\nZufriedenheit: " + satisfaction + "\nZufriedenheit Essen: " + satisfactionFood;
+            default:
+                return "No Details found!";
         }
     }
 }

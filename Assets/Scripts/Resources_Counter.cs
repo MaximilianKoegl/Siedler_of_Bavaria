@@ -18,7 +18,7 @@ public class Resources_Counter : MonoBehaviour {
     public int ironCount;
     public int stoneCount;
     public int foodCount;
-    private int einwohnerCount;
+    public int einwohnerCount;
     private int einwohnerGesamt;
     private int goldCount;
     
