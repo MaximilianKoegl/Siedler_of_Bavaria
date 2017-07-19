@@ -21,8 +21,10 @@ public class MouseManager : Photon.MonoBehaviour {
     public GameObject universität;
     public GameObject wahrzeichen;
     private GameObject selectedHouse;
+    
 
-    public GameObject Augsburg;
+
+    public GameObject player;
 
     public Building_Menu m_building_menu;
     public Resources_Counter m_resources_counter;
@@ -385,9 +387,13 @@ public class MouseManager : Photon.MonoBehaviour {
 
         //Haus bauen im Netzwerk
         GameObject house_go = (GameObject) PhotonNetwork.Instantiate(selectedHouse.name, parentHitObj.transform.position, Quaternion.identity, 0);
-
+        if (house_name.Equals("Kaserne"))
+        {
+            Vector3 position = new Vector3(parentHitObj.transform.position.x + 2, parentHitObj.transform.position.y, parentHitObj.transform.position.z);
+            Instantiate(player, position, Quaternion.identity);
+        }
         //Erhöht Anzahl der bestimmen Hausart
-        
+
         resources_counter[counter_position] += 1;
 
         //Setzt Namen des Hauses

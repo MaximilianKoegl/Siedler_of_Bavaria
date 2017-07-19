@@ -2860,11 +2860,11 @@ MonoBehaviour:
   kostenschule: {fileID: 1200153898336090}
   "kostenuniversit\xE4t": {fileID: 1020700498931434}
   imagestonefeeder: {fileID: 21300000, guid: 56c753f514f7c8c4e8cdb162af9bed8b, type: 3}
-  imageironfeeder: {fileID: 21300000, guid: a632382d33b63754ba090f619c9635a6, type: 3}
+  imageironfeeder: {fileID: 21300000, guid: 2d7bddde9ddf6384d8cdff7b7a32df90, type: 3}
   imagebrauerei: {fileID: 21300000, guid: 85d11f9922a6e984aa659722b334c26e, type: 3}
   imagewahrzeichen: {fileID: 21300000, guid: a7a6d18e053fb3348beb275005115f5c, type: 3}
   imageschmiede: {fileID: 21300000, guid: 2fd7fda8fd5748944a39d511ce278665, type: 3}
-  imagekaserne: {fileID: 21300000, guid: 6bb1bf12dfbb53848ae5f938419a6881, type: 3}
+  imagekaserne: {fileID: 21300000, guid: 2367e8163152236489c8a14e39443e26, type: 3}
   imageschule: {fileID: 21300000, guid: fa52478b591d61b4c93a20a2378fc55f, type: 3}
   "imageuniversit\xE4t": {fileID: 21300000, guid: 0991a6169d236e5419d12c7aacb38c39,
     type: 3}

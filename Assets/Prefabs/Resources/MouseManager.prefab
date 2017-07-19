@@ -57,20 +57,20 @@ MonoBehaviour:
   "holzf\xE4ller": {fileID: 1044500306781692, guid: 245fe4e4732426e4ea330481cfe5f85b,
     type: 2}
   steinmine: {fileID: 1709707573726568, guid: c3df5a82d8a41a14aaf953aaaf6b4a7a, type: 2}
-  eisenmine: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
+  eisenmine: {fileID: 1463324537595540, guid: fc2894e03aaf3f444892d461dc92728a, type: 2}
   wohnhaus: {fileID: 1800139605525368, guid: 244972db1e93bf540a0e72ea2c67d5dc, type: 2}
   kapelle: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
   brauerei: {fileID: 1464243174350568, guid: 87b14d5271965404a83edde223889a1c, type: 2}
   "b\xE4cker": {fileID: 1246116139946986, guid: bb18b8d9e9b6342409ff0dd0ee352cfe,
     type: 2}
   schmiede: {fileID: 1535216775620876, guid: 44997a5918a32594da0f5bf8d2b6f697, type: 2}
-  kaserne: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2, type: 2}
+  kaserne: {fileID: 1478763547094584, guid: bc7ccdaa3f4cd5942b8b134d7009b373, type: 2}
   schule: {fileID: 1735015390390646, guid: 85ebbe9164ffed640b46b8a7ecffc49a, type: 2}
   "universit\xE4t": {fileID: 1896435176881600, guid: e0d347b03fff9b749a5ca8edd3eaffe9,
     type: 2}
   wahrzeichen: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516,
     type: 2}
-  Augsburg: {fileID: 0}
+  player: {fileID: 1985673168256512, guid: 94b1a198ae98f134796d15c5cc6b8854, type: 2}
   m_building_menu: {fileID: 114027494014276582, guid: 09704502b90333d42b335449e2491d15,
     type: 2}
   m_resources_counter: {fileID: 114358063336072246, guid: 09704502b90333d42b335449e2491d15,

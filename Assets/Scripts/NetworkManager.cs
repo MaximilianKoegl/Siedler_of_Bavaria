@@ -36,6 +36,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     public GameObject haupthaus;
     public GameObject dorf;
 
+
     public Font captureIt2;
 
     private GUIStyle guiStyle = new GUIStyle(); //create a new variable
