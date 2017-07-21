@@ -226,7 +226,9 @@ public class NetworkManager : Photon.MonoBehaviour {
         PhotonNetwork.playerName = playerName;
         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnHex.transform.position, Quaternion.identity, 0);
         house_go.name = "Dorfzentrum";
-        house_go.transform.GetChild(0).tag = "Dorfzentrum";
+        house_go.transform.GetChild(0).GetChild(0).tag = "Dorfzentrum";
+        house_go.transform.GetChild(0).GetChild(1).tag = "Dorfzentrum";
+        house_go.transform.GetChild(0).GetChild(2).tag = "Dorfzentrum";
         house_go.transform.parent = spawnHex.transform;    
     }
 
@@ -234,24 +236,22 @@ public class NetworkManager : Photon.MonoBehaviour {
     {
         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(dorf.name, spawnHex.transform.position, Quaternion.identity, 0);
         house_go.name = dorfName;
-        house_go.transform.GetChild(0).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(0).GetChild(1).tag = dorfName;
-        house_go.transform.GetChild(1).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(2).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(3).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(4).GetChild(3).tag = dorfName;
-        house_go.transform.GetChild(4).GetChild(4).tag = dorfName;
-        house_go.transform.GetChild(5).GetChild(1).tag = dorfName;
-        house_go.transform.GetChild(5).GetChild(2).tag = dorfName;
-        house_go.transform.GetChild(5).GetChild(3).tag = dorfName;
-        house_go.transform.GetChild(5).GetChild(7).tag = dorfName;
-        house_go.transform.GetChild(6).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(7).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(7).GetChild(1).tag = dorfName;
-        house_go.transform.GetChild(7).GetChild(2).tag = dorfName;
-        house_go.transform.GetChild(8).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(9).GetChild(0).tag = dorfName;
-        house_go.transform.GetChild(9).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(0).GetChild(0).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(0).GetChild(0).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(0).GetChild(0).GetChild(2).tag = dorfName;
+        house_go.transform.GetChild(1).GetChild(0).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(1).GetChild(0).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(1).GetChild(0).GetChild(2).tag = dorfName;
+        house_go.transform.GetChild(2).GetChild(0).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(3).GetChild(0).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(3).GetChild(0).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(4).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(5).GetChild(0).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(5).GetChild(0).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(6).GetChild(0).GetChild(0).tag = dorfName;
+        house_go.transform.GetChild(6).GetChild(0).GetChild(1).tag = dorfName;
+        house_go.transform.GetChild(6).GetChild(0).GetChild(2).tag = dorfName;
+        house_go.transform.GetChild(6).GetChild(0).GetChild(3).tag = dorfName;
         house_go.transform.parent = spawnHex.transform;
     }
 }

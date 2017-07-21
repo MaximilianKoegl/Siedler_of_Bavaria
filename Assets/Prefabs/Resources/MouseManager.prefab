@@ -53,20 +53,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forrest: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516, type: 2}
-  haupthaus: {fileID: 1262221588098000, guid: e47433b8fc3343948a366e465287a57f, type: 2}
-  "holzf\xE4ller": {fileID: 1044500306781692, guid: 245fe4e4732426e4ea330481cfe5f85b,
+  haupthaus: {fileID: 1559764908079472, guid: 822b6ef753f8bf34f959a7f16028915b, type: 2}
+  "holzf\xE4ller": {fileID: 1382771991535326, guid: fb22b9dba33830b47abd6d6f54fd8f66,
     type: 2}
-  steinmine: {fileID: 1709707573726568, guid: c3df5a82d8a41a14aaf953aaaf6b4a7a, type: 2}
-  eisenmine: {fileID: 1463324537595540, guid: fc2894e03aaf3f444892d461dc92728a, type: 2}
-  wohnhaus: {fileID: 1800139605525368, guid: 244972db1e93bf540a0e72ea2c67d5dc, type: 2}
+  steinmine: {fileID: 1893528248295628, guid: 4d385cb889fa1f543972540422579407, type: 2}
+  eisenmine: {fileID: 1977645907905374, guid: 434761114701de14f9c5f3445c624577, type: 2}
+  wohnhaus: {fileID: 1069457059644790, guid: 67d35213c189b2744868b0ed2917ece8, type: 2}
   kapelle: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358, type: 2}
-  brauerei: {fileID: 1464243174350568, guid: 87b14d5271965404a83edde223889a1c, type: 2}
-  "b\xE4cker": {fileID: 1246116139946986, guid: bb18b8d9e9b6342409ff0dd0ee352cfe,
+  brauerei: {fileID: 1537790726553642, guid: ea5aa5557458cfb48a9b39223be15f2b, type: 2}
+  "b\xE4cker": {fileID: 1544690004025054, guid: f1bc81b067ff7ad4ba2fd6fab871a457,
     type: 2}
-  schmiede: {fileID: 1535216775620876, guid: 44997a5918a32594da0f5bf8d2b6f697, type: 2}
-  kaserne: {fileID: 1478763547094584, guid: bc7ccdaa3f4cd5942b8b134d7009b373, type: 2}
-  schule: {fileID: 1735015390390646, guid: 85ebbe9164ffed640b46b8a7ecffc49a, type: 2}
-  "universit\xE4t": {fileID: 1896435176881600, guid: e0d347b03fff9b749a5ca8edd3eaffe9,
+  schmiede: {fileID: 1239856896241316, guid: 7d7bf3646c44e824989b9f502dc55567, type: 2}
+  kaserne: {fileID: 1092291131376682, guid: f2498f50bedcb444c98aa1f587adeded, type: 2}
+  schule: {fileID: 1120221238527162, guid: ff4fb98c026fbb1419382382b9d024f3, type: 2}
+  "universit\xE4t": {fileID: 1248881009185640, guid: 8ccaa26a81a371c498327593755e75a5,
     type: 2}
   wahrzeichen: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516,
     type: 2}

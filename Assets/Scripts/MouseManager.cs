@@ -398,47 +398,49 @@ public class MouseManager : Photon.MonoBehaviour {
 
         //Setzt Namen des Hauses
         house_go.name = house_name;
-        if (house_name.Equals("LivingHouse"))
+        switch (house_name)
         {
+            case ("LivingHouse"):
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(1).tag = house_name;
+                break;
+            case ("Schule"):
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(1).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(2).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(3).tag = house_name;
+                break;
+            case ("Steinmine"):
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(1).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(2).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(3).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(4).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(5).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(6).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(7).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(8).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(9).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(10).tag = house_name;
+                break;
+            case ("Eisenmine"):
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(1).tag = house_name;
+                break;
+            case ("Brauerei"):
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(1).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(2).tag = house_name;
+                break;
+            case ("Woodcutter"):
+                house_go.transform.GetChild(0).tag = house_name;
+                break;
+            default:
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                break;
 
-            house_go.transform.GetChild(3).tag = house_name;
-            house_go.transform.GetChild(4).tag = house_name;
         }
-        else
-        {
-            if (house_name.Equals("Schule"))
-            {
-
-                house_go.transform.GetChild(1).tag = house_name;
-                house_go.transform.GetChild(2).tag = house_name;
-                house_go.transform.GetChild(3).tag = house_name;
-                house_go.transform.GetChild(7).tag = house_name;
-            }
-            else
-            {
-
-                if (house_name.Equals("Steinmine"))
-                {
-
-                    house_go.transform.GetChild(0).tag = house_name;
-                    house_go.transform.GetChild(1).tag = house_name;
-                    house_go.transform.GetChild(2).tag = house_name;
-                }
-                else
-                {
-                    if (house_name.Equals("Eisenmine"))
-                    {
-
-                        house_go.transform.GetChild(0).tag = house_name;
-                        house_go.transform.GetChild(1).tag = house_name;
-                    }
-                    else
-                    {
-                        house_go.transform.GetChild(0).tag = house_name;
-                    }
-                }
-            }
-        }
+        
         
 
         //Fügt dem Ortsobjekt das Haus als Child hinzu

@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: 1e8cdbafb5edf7a409d3faf6b60a2656
+timeCreated: 1500535884
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cube
+    100002: Cube_001
+    100004: Cube_002
+    100006: Cube_004
+    100008: Cube_006
+    100010: Cube_007
+    100012: Cube_008
+    100014: Cube_009
+    100016: Cube_010
+    100018: Cube_011
+    100020: Cube_013
+    100022: Steine_Kiste_001
+    100024: Steine_Kiste_002
+    100026: Steinmine_Haus2
+    100028: Steinmine_Pickel
+    100030: Steinmine_Pickel_001
+    100032: Steinmine_Pickel_004
+    100034: //RootNode
+    100036: Vordach_Steinmine
+    100038: Zaun
+    100040: Zaun_001
+    400000: Cube
+    400002: Cube_001
+    400004: Cube_002
+    400006: Cube_004
+    400008: Cube_006
+    400010: Cube_007
+    400012: Cube_008
+    400014: Cube_009
+    400016: Cube_010
+    400018: Cube_011
+    400020: Cube_013
+    400022: Steine_Kiste_001
+    400024: Steine_Kiste_002
+    400026: Steinmine_Haus2
+    400028: Steinmine_Pickel
+    400030: Steinmine_Pickel_001
+    400032: Steinmine_Pickel_004
+    400034: //RootNode
+    400036: Vordach_Steinmine
+    400038: Zaun
+    400040: Zaun_001
+    2300000: Cube
+    2300002: Cube_001
+    2300004: Cube_002
+    2300006: Cube_004
+    2300008: Cube_006
+    2300010: Cube_007
+    2300012: Cube_008
+    2300014: Cube_009
+    2300016: Cube_010
+    2300018: Cube_011
+    2300020: Cube_013
+    2300022: Steine_Kiste_001
+    2300024: Steine_Kiste_002
+    2300026: Steinmine_Haus2
+    2300028: Steinmine_Pickel
+    2300030: Steinmine_Pickel_001
+    2300032: Steinmine_Pickel_004
+    2300034: Vordach_Steinmine
+    2300036: Zaun
+    2300038: Zaun_001
+    3300000: Cube
+    3300002: Cube_001
+    3300004: Cube_002
+    3300006: Cube_004
+    3300008: Cube_006
+    3300010: Cube_007
+    3300012: Cube_008
+    3300014: Cube_009
+    3300016: Cube_010
+    3300018: Cube_011
+    3300020: Cube_013
+    3300022: Steine_Kiste_001
+    3300024: Steine_Kiste_002
+    3300026: Steinmine_Haus2
+    3300028: Steinmine_Pickel
+    3300030: Steinmine_Pickel_001
+    3300032: Steinmine_Pickel_004
+    3300034: Vordach_Steinmine
+    3300036: Zaun
+    3300038: Zaun_001
+    4300000: Cube_013
+    4300002: Cube_007
+    4300004: Steinmine_Pickel_004
+    4300006: Cube_011
+    4300008: Steinmine_Pickel_001
+    4300010: Steinmine_Pickel
+    4300012: Steine_Kiste_002
+    4300014: Steine_Kiste_001
+    4300016: Cube_010
+    4300018: Cube_009
+    4300020: Cube_008
+    4300022: Zaun_001
+    4300024: Steinmine_Haus2
+    4300026: Vordach_Steinmine
+    4300028: Zaun
+    4300030: Cube_006
+    4300032: Cube_004
+    4300034: Cube_002
+    4300036: Cube_001
+    4300038: Cube
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
