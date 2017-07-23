@@ -36,6 +36,11 @@ public class PopUpManager : MonoBehaviour {
         return doIt;
     }
 
+    public void setDoItFalse()
+    {
+        doIt = false;
+    }
+
 
     //wird aufgerufen, wenn + Button gedrückt wird
     //wird nur ausgeführt, wenn Uni oder Kaserne gebaut und dass PopUp der Nachbarstadt geöffnet ist
@@ -77,7 +82,6 @@ public class PopUpManager : MonoBehaviour {
         closePopUp.gameObject.SetActive(false);
         infoPopUp.gameObject.SetActive(false);
         detailsPopUp.gameObject.SetActive(false);
-        doIt = false;
     }
 
     //Öffnet Details Info

@@ -221,6 +221,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 if (Input.GetMouseButtonDown(0))
                 {
                     m_popup_manager.onClosePopUp();
+                    m_popup_manager.setDoItFalse();
                     GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
 
                     //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
@@ -272,6 +273,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 {
                     m_building_menu.deactivateBuildMode();
                     m_popup_manager.onClosePopUp();
+                    m_popup_manager.setDoItFalse();
                 }
             }
         }
@@ -399,7 +401,7 @@ public class MouseManager : Photon.MonoBehaviour {
         GameObject house_go = (GameObject) PhotonNetwork.Instantiate(selectedHouse.name, parentHitObj.transform.position, Quaternion.identity, 0);
         if (house_name.Equals("Kaserne"))
         {
-            Vector3 position = new Vector3(parentHitObj.transform.position.x, parentHitObj.transform.position.y + 3, parentHitObj.transform.position.z);
+            Vector3 position = new Vector3(parentHitObj.transform.position.x, parentHitObj.transform.position.y, parentHitObj.transform.position.z+4);
             Instantiate(player, position, Quaternion.identity);
         }
         //Erhöht Anzahl der bestimmen Hausart
@@ -448,7 +450,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 if (resources_counter[4] == 1)
                 {
                     Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
-                    aufgabe.text = "Baue dein Dorf nun weiter aus. Neue Gebäude werden stets freigeschaltet, wenn sie alle vorherigen gebaut haben.";
+                    aufgabe.text = "Baue dein Dorf nun weiter aus. Neue Gebäude werden stets freigeschaltet, wenn du alle vorherigen gebaut hast.";
                 }
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(1).tag = house_name;
