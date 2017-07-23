@@ -50,7 +50,7 @@ public class Resources_Counter : MonoBehaviour {
     //dient dazu zu überprüfen, ob Nachbardorf eingenommen werden kann
     public bool getKaserneDorfEinnehmbar()
     {
-        if(m_mouseManager.getResourcesCounter()[9] >= 3)
+        if(m_mouseManager.getResourcesCounter()[10] >= 3)
         {
             return true;
         }
