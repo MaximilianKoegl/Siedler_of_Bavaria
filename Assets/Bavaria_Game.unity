@@ -220,7 +220,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.61
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -476,6 +476,9 @@ MonoBehaviour:
     type: 2}
   haupthaus: {fileID: 1559764908079472, guid: 822b6ef753f8bf34f959a7f16028915b, type: 2}
   dorf: {fileID: 1212527676720498, guid: 135b81509395be14ca5cdb6784784dee, type: 2}
+  exitButton: {fileID: 114977719251893680, guid: 09704502b90333d42b335449e2491d15,
+    type: 2}
+  leaveGame: {fileID: 0}
   captureIt2: {fileID: 12800000, guid: e7a31756bd5e7c64d81056b8a428db3e, type: 3}
 --- !u!4 &1380617629
 Transform:

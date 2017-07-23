@@ -110,6 +110,8 @@ public class Building_Menu : MonoBehaviour {
         checkBuildable();
     }
 
+
+    //überprüft ob ein Gebäude baubar ist
     private void checkBuildable()
     {
         int[] resourcesCounter = m_resource_counter.getResourcesCounter();
@@ -121,6 +123,10 @@ public class Building_Menu : MonoBehaviour {
 
     }
 
+
+    //überprüft ob Steinmine und Brauerei Baubar sind
+    //wenn ja --> anzeige in Baumenü wird verändert
+    //wenn nein --> anzeige in Baumenü ist ?
     private void checkSecondLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[0] > 0 && resourcesCounter[1] > 0 && resourcesCounter[2] > 0 && resourcesCounter[3] > 0)
@@ -148,6 +154,10 @@ public class Building_Menu : MonoBehaviour {
         }
     }
 
+
+    //überprüft ob Eisenmine baubar ist
+    //wenn ja --> anzeige in Baumenü wird verändert
+    //wenn nein --> anzeige in Baumenü ist ?
     private void checkThirdLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[4] > 0 && resourcesCounter[5] > 0)
@@ -166,6 +176,10 @@ public class Building_Menu : MonoBehaviour {
         }
     }
 
+
+    //überprüft ob Schule und Schmiede Baubar sind
+    //wenn ja --> anzeige in Baumenü wird verändert
+    //wenn nein --> anzeige in Baumenü ist ?
     private void checkFourthLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[6] > 0)
@@ -192,13 +206,17 @@ public class Building_Menu : MonoBehaviour {
         }
     }
 
+
+    //überprüft ob Uni und Kaserne Baubar sind
+    //wenn ja --> anzeige in Baumenü wird verändert
+    //wenn nein --> anzeige in Baumenü ist ?
     private void checkFifthLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[7] > 0)
         {
             kostenuniversität.SetActive(true);
             buildable[5] = true;
-            universität.GetComponentsInChildren<Image>()[1].sprite = imageNotBuildable;
+            universität.GetComponentsInChildren<Image>()[1].sprite = imageuniversität;
             universität.GetComponentInChildren<Text>().text = "Universität";
             kaserne.gameObject.SetActive(false);
             schmiede.gameObject.SetActive(false);
@@ -232,6 +250,10 @@ public class Building_Menu : MonoBehaviour {
         }
     }
 
+
+    //überprüft ob Wahrzeichen Baubar sind
+    //wenn ja --> anzeige in Baumenü wird verändert
+    //wenn nein --> anzeige in Baumenü ist ?
     private void checkSixthLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[9] > 0 || resourcesCounter[10] > 0)
@@ -322,6 +344,8 @@ public class Building_Menu : MonoBehaviour {
         changeCursor(null);
     }
 
+
+    //ändert Cursor und Auswahlfarbe im Baumenü auf null
     public void deselectAll()
     {
         changeCursor(null);

@@ -44,6 +44,49 @@ public class Resources_Counter : MonoBehaviour {
     }
 
 
+    //Methode wird von PopUpManager aufgerufen.
+    //wahr, wenn 3 oder mehr Kasernen gebaut
+    //false wenn 2 oder weniger
+    //dient dazu zu überprüfen, ob Nachbardorf eingenommen werden kann
+    public bool getKaserneDorfEinnehmbar()
+    {
+        if(m_mouseManager.getResourcesCounter()[9] >= 3)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    //Methode wird von PopUpManager aufgerufen.
+    //wahr, wenn genug rohstoffe vorhanden
+    //false wenn nicht
+    //dient dazu zu überprüfen, ob Nachbardorf eingenommen werden kann
+    public bool getUniDorfEinnehmbar()
+    {
+        if (woodCount >= 2000 && stoneCount >= 1000 && foodCount >= 2000)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //Methode wird von PopUpManger aufgerufen
+    //zieht Rohstoffe ab
+    public void removeResources()
+    {
+        woodCount -= 2000;
+        stoneCount -= 1000;
+        foodCount -= 2000;
+    }
+
+
     public int[] getResourcesCounter()
     {
         return m_mouseManager.getResourcesCounter();
@@ -60,6 +103,7 @@ public class Resources_Counter : MonoBehaviour {
 
 	}
 
+    //gibt die Zufriedenheit der Einwohner bezüglich Essen zurück;
     public float getSatisfactionFood()
     {
         float satisfactionFood = Mathf.Round(foodCount / einwohnerCount);
@@ -67,6 +111,8 @@ public class Resources_Counter : MonoBehaviour {
         return satisfactionFood;
     }
 
+
+    //gibt die Zufriedenheit der Einwohner zurück
     public float getSatisfaction()
     {
         float satisfaction = 0f;
@@ -166,7 +212,7 @@ public class Resources_Counter : MonoBehaviour {
         switch (buildingName)
         {
             case ("Woodcutter"):
-                if(woodCount >= 100 && einwohnerFree >= 4)
+                if(woodCount >= 200 && einwohnerFree >= 4)
                 {
                     return true;
                 }
@@ -244,6 +290,8 @@ public class Resources_Counter : MonoBehaviour {
         }
     }
 
+
+    //zieht die entsprechenden Rohstoffe ab, wenn ein Gebäude gebaut wurde
     public void reduceMaterials(string buildingName)
     {
         switch (buildingName)
@@ -313,6 +361,9 @@ public class Resources_Counter : MonoBehaviour {
         }
     }
 
+
+    //wird aufgerufen wenn ein Gebäude zerstört wurde
+    //gibt Teil der Rohstoffe zurück
     public void destroyedBuilding(string buildingName)
     {
         switch (buildingName)

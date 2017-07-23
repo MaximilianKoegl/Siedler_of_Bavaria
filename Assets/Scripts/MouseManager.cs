@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class MouseManager : Photon.MonoBehaviour {
@@ -21,6 +22,8 @@ public class MouseManager : Photon.MonoBehaviour {
     public GameObject universität;
     public GameObject wahrzeichen;
     private GameObject selectedHouse;
+
+   // public GameObject aufgabenManager;
     
 
 
@@ -29,6 +32,8 @@ public class MouseManager : Photon.MonoBehaviour {
     public Building_Menu m_building_menu;
     public Resources_Counter m_resources_counter;
     public PopUpManager m_popup_manager;
+
+    private GameObject aufgabenManager;
 
     private string house_name;
     //holzfäller, wohnhaus, kapelle, bäcker,stonefeeeder, brauerei, eisenmine, schule, schmiede, uni, kaserne, wahrzeichen
@@ -149,7 +154,6 @@ public class MouseManager : Photon.MonoBehaviour {
 
     // initialization of GameObjects
     void Start () {
-        //get All Objects with Tag "BuildingMenuManager", first object is taken, component "Building_Menu" as building_menu
 
         m_building_menu = GameObject.FindGameObjectWithTag("BuildingMenuManager").GetComponent<Building_Menu>();
         
@@ -157,13 +161,18 @@ public class MouseManager : Photon.MonoBehaviour {
         
         m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
 
+        aufgabenManager = GameObject.Find("AufgabeManager");
+
 
         string playerName = PhotonNetwork.playerName;
         if (photonView.isMine)
         {
             m_popup_manager.OnGameStartInfo(getCityName(playerName));
+            Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+            aufgabe.text = "Um dein Dorf ausbauen zu können, benötigst du Rohstoffe. Baue einen Holzfäller, um dein Dorf mit Holz zu versorgen.";
+
         }
-        
+
     }
 
 
@@ -192,7 +201,8 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 
-    
+    //methode wird in Update aufgerufen
+    //prüft ob irgendwas geklickt wurde
     void addObjects(Vector3 position)
     {
         Ray ray = Camera.main.ScreenPointToRay(position);
@@ -389,28 +399,57 @@ public class MouseManager : Photon.MonoBehaviour {
         GameObject house_go = (GameObject) PhotonNetwork.Instantiate(selectedHouse.name, parentHitObj.transform.position, Quaternion.identity, 0);
         if (house_name.Equals("Kaserne"))
         {
-            Vector3 position = new Vector3(parentHitObj.transform.position.x + 2, parentHitObj.transform.position.y, parentHitObj.transform.position.z);
+            Vector3 position = new Vector3(parentHitObj.transform.position.x, parentHitObj.transform.position.y + 3, parentHitObj.transform.position.z);
             Instantiate(player, position, Quaternion.identity);
         }
         //Erhöht Anzahl der bestimmen Hausart
+        if(resources_counter[4] == 1)
+        {
+            aufgabenManager.SetActive(false);
+        }
+
 
         resources_counter[counter_position] += 1;
 
         //Setzt Namen des Hauses
         house_go.name = house_name;
+
+        //holzfäller, wohnhaus, kapelle, bäcker,stonefeeeder, brauerei, eisenmine, schule, schmiede, uni, kaserne, wahrzeichen
         switch (house_name)
         {
             case ("LivingHouse"):
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(1).tag = house_name;
+                if (resources_counter[1] == 1)
+                {
+                    Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+                    aufgabe.text = "Die Rohstoffproduktion ist abhängig von der Zufriedenheit der Einwohner. Die Zufriedenheit setzt sich aus verschiedenen Faktoren wie Nahrung oder Glauben zusammen. Sorge für eine ausreichende Nahrungs- und Glaubensversorgung!";
+                }
                 break;
             case ("Schule"):
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(1).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(2).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(3).tag = house_name;
+                if (resources_counter[7] == 1 || resources_counter[8] == 1)
+                {
+                    aufgabenManager.SetActive(false);
+                }
                 break;
-            case ("Steinmine"):
+            case ("Schmiede"):
+
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                if (resources_counter[8] == 1 || resources_counter[7] == 1)
+                {
+                    aufgabenManager.SetActive(false);
+                }
+                break;
+            case ("Stonefeeder"):
+                if (resources_counter[4] == 1)
+                {
+                    Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+                    aufgabe.text = "Baue dein Dorf nun weiter aus. Neue Gebäude werden stets freigeschaltet, wenn sie alle vorherigen gebaut haben.";
+                }
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(1).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(2).tag = house_name;
@@ -422,8 +461,15 @@ public class MouseManager : Photon.MonoBehaviour {
                 house_go.transform.GetChild(0).GetChild(8).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(9).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(10).tag = house_name;
+                
                 break;
-            case ("Eisenmine"):
+            case ("Ironfeeder"):
+                if (resources_counter[6] == 1)
+                {
+                    aufgabenManager.SetActive(true);
+                    Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+                    aufgabe.text = "Deine Bevölkerung sehnt sich nach Sicherheit(Schmiede) oder Wissen(Schule). Wähle einen der beiden Wege aus!";
+                }
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(1).tag = house_name;
                 break;
@@ -431,8 +477,31 @@ public class MouseManager : Photon.MonoBehaviour {
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(1).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(2).tag = house_name;
+                aufgabenManager.SetActive(false);
                 break;
             case ("Woodcutter"):
+                if (resources_counter[0] == 1)
+                {
+                    Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+                    aufgabe.text = "Durch den Bau des Holzfällers hast du neue Einwohner hinzubekommen. Um weitere Gebäude bauen zu können, musst du Platz für neue Einwohner schaffen.";
+                }
+                house_go.transform.GetChild(0).tag = house_name;
+
+                break;
+            case ("Bäcker"):
+                if (resources_counter[3] == 1 && resources_counter[2] == 1)
+                {
+                    Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+                    aufgabe.text = "Glückwunsch, du hast neue Gebäude freigeschaltet. Um dein Dorf weiter voranzubringen, solltest du Steine abbauen.";
+                }
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                break;
+            case ("Church"):
+                if (resources_counter[2] == 1 && resources_counter[3] == 1)
+                {
+                    Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+                    aufgabe.text = "Glückwunsch, du hast neue Gebäude freigeschaltet. Um dein Dorf weiter voranzubringen, solltest du Steine abbauen.";
+                }
                 house_go.transform.GetChild(0).tag = house_name;
                 break;
             default:

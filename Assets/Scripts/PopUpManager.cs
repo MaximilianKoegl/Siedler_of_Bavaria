@@ -28,20 +28,40 @@ public class PopUpManager : MonoBehaviour {
 
     }
 
+    //wird vom Baumenü aufgerufen
+    // gibt aktuellen Wahrheitswert von doIt zurück
+
     public bool getDoIt()
     {
         return doIt;
     }
 
+
+    //wird aufgerufen, wenn + Button gedrückt wird
+    //wird nur ausgeführt, wenn Uni oder Kaserne gebaut und dass PopUp der Nachbarstadt geöffnet ist
+    //wenn vorraussetzungen stimmen wird dorf eingenommen, gold zu den Rohstoffen hinzugefügt 
     public void onGetDorf()
     {
         if (doIt)
         {
             Debug.Log("true");
-            m_resources_counter.addGold(2000);
-            onClosePopUp();
-            yourCity = true;
-            doIt = false;
+            if(m_resources_counter.getKaserneDorfEinnehmbar())
+            {
+                m_resources_counter.addGold(2000);
+                onClosePopUp();
+                yourCity = true;
+                doIt = false;
+            }else{
+                if (m_resources_counter.getUniDorfEinnehmbar())
+                {
+                    m_resources_counter.addGold(2000);
+                    m_resources_counter.removeResources();
+                    onClosePopUp();
+                    yourCity = true;
+                    doIt = false;
+                }
+            }
+            
         }
     }
 
@@ -57,6 +77,7 @@ public class PopUpManager : MonoBehaviour {
         closePopUp.gameObject.SetActive(false);
         infoPopUp.gameObject.SetActive(false);
         detailsPopUp.gameObject.SetActive(false);
+        doIt = false;
     }
 
     //Öffnet Details Info
@@ -77,6 +98,8 @@ public class PopUpManager : MonoBehaviour {
         infoText.text = getPopUpInfo(actualHouseClicked);
     }
 
+
+    //öffnet dieses popUp wenn Uni gebaut wurde und Nachbarstadt angeklickt wird
     public void dorfInfoUni(String name)
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
@@ -89,12 +112,14 @@ public class PopUpManager : MonoBehaviour {
         else
         {
             doIt = true;
-            infoText.text = "Drücken sie den + Button, um ihr Wissen und ihre Bildung einzusetzen, um ein Bündnis mit " + name + " zu schließen? + Button drücken!";
+            infoText.text = "Durch ihre Bildung konnten sie einen Bünisvertrag mit " + name + " aushandeln. Laut Vertrag erhalten sie beim Abschluss des Bündnisses 2000 Gold, müssen im Gegenzug jedoch 2000 Holz, 1000 Stein und 2000 Nahrung abgeben. Drücken sie den + Button, um das Bündnis " + name + " zu schließen! ";
         }
         popUpInfo.SetActive(true);
         closePopUp.gameObject.SetActive(true);
     }
 
+
+    //öffnet dieses popUp wenn Kaserne gebaut wurde und Nachbarstadt angeklickt wird
     public void dorfInfoKaserne(String name)
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
@@ -108,7 +133,7 @@ public class PopUpManager : MonoBehaviour {
         else
         {
             doIt = true;
-            infoText.text = "Drücken sie den + Button, um " + name + " durch ihr Militär einzunehmen!";
+            infoText.text = "Sie können " + name + " durch ihr Militär einnehmen! Dazu brauchen sie mindestens 3 Soldaten(Kaserne bauen)! Drücken sie den + Button, um " + name + " einzunhemen!";
         }
 
         
@@ -116,6 +141,8 @@ public class PopUpManager : MonoBehaviour {
         closePopUp.gameObject.SetActive(true);
     }
 
+
+    //öffnet dieses Popup zu Spielbeginn
     public void OnGameStartInfo(String name)
     {
 
@@ -153,6 +180,8 @@ public class PopUpManager : MonoBehaviour {
         
     }
 
+
+    //gibt den Titel eines popUps anhand des zugewiesen Tags zurück
     private string getPopUpTitle(String tag)
     {
         switch (tag)
@@ -182,7 +211,7 @@ public class PopUpManager : MonoBehaviour {
     }
 
     // Unterscheidung zwischen Städten! Auch bei Holzfäller und Co wsl!
-
+    //gibt die Info eines popUps anhand des zugewiesen Tag zurück
     private string getPopUpInfo(String tag)
     {
         switch (tag)
@@ -199,7 +228,7 @@ public class PopUpManager : MonoBehaviour {
             case ("Kaserne"): return "Dies ist eine Kaserne";
             case ("Schule"): return "Dies ist eine Schule";
             case ("Universität"): return "Dies ist eine Universität";
-            case ("Wahrzeichen"): return "Wahrzeichen...";
+            case ("Wahrzeichen"): return "Herzlichen Glückwunsch, du hast das Wahrzeichen gebaut und damit das Ende des Ziels erreicht!";
             case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschlossen.";
             case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";
             case ("Landshut"): return "Landshut wurde im 16. Jahrhundert von ... regiert.";

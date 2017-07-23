@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : Photon.MonoBehaviour {
 
@@ -35,6 +38,8 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     public GameObject haupthaus;
     public GameObject dorf;
+    public Button exitButton;
+    public Text leaveGame;
 
 
     public Font captureIt2;
@@ -54,12 +59,38 @@ public class NetworkManager : Photon.MonoBehaviour {
     // Use this for initialization
     void Start () {
         PhotonNetwork.ConnectUsingSettings("v4.2");
+
+       
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void leaveRoom()
+    {
+        Debug.Log("LeaveRoom");
+        leaveGame.gameObject.SetActive(true);
+        PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        hardRestartGame();
+    }
+
+    // then call this to restart game
+    void hardRestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void OnLeftRoom()
+    {
+        OnGUI();
+    }
+
+
 
     void OnGUI()
     {
@@ -78,11 +109,15 @@ public class NetworkManager : Photon.MonoBehaviour {
                 // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
 
 
-                if (GUI.Button(new Rect(Screen.width/2 - 125, Screen.height/2 - 50, 500, 200), "Hier klicken um am Spiel teilzunehmen!"))
+                if (GUI.Button(new Rect(Screen.width/4, Screen.height/4, Screen.width/2, Screen.height/2), "Hier klicken um am Spiel teilzunehmen!"))
                 {
 
                     PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
                     showGui = false;
+                }
+                if(GUI.Button(new Rect(Screen.width - 250, 50, 200, 60), "Spiel verlassen"))
+                {
+                    Application.Quit();
                 }
             }
         }
@@ -222,6 +257,10 @@ public class NetworkManager : Photon.MonoBehaviour {
     {
         Instantiate(cameraPrefab, spawnPosition, spawnRotation);
         Instantiate(interfacePrefab, spawnPosition, spawnRotation);
+        exitButton = GameObject.Find("ExitButton").GetComponent<Button>();
+        exitButton.onClick.AddListener(() => { leaveRoom(); });
+        leaveGame = GameObject.Find("LeaveGameInfo").GetComponent<Text>();
+        leaveGame.gameObject.SetActive(false);
         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPosition, spawnRotation, 0);
         PhotonNetwork.playerName = playerName;
         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnHex.transform.position, Quaternion.identity, 0);
