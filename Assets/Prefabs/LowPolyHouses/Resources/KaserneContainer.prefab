@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 33576957904256264}
   - component: {fileID: 23082517374982956}
   - component: {fileID: 64982582104041760}
+  - component: {fileID: 208066541688681120}
   m_Layer: 0
   m_Name: Haus
   m_TagString: Untagged
@@ -366,7 +367,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: a8f0574dea29208408abe3af1fc2297c, type: 3}
@@ -396,3 +397,18 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!208 &208066541688681120
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1327011960609836}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.38, y: 4.328, z: 2.312}
+  m_MoveThreshold: 0
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 2.3700001, y: -0.91300005, z: 1.0450001}
+  m_TimeToStationary: 0.5

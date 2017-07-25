@@ -109,7 +109,7 @@ public class NetworkManager : Photon.MonoBehaviour {
                 // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
 
 
-                if (GUI.Button(new Rect(Screen.width/4, Screen.height/4, Screen.width/2, Screen.height/2), "Hier klicken um am Spiel teilzunehmen!"))
+                if (GUI.Button(new Rect(Screen.width/8, Screen.height/8, Screen.width/2+ Screen.width/4, Screen.height/2+ Screen.height / 4), "Hier klicken um am Spiel teilzunehmen!"))
                 {
 
                     PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
@@ -133,7 +133,6 @@ public class NetworkManager : Photon.MonoBehaviour {
     void OnReceivedRoomListUpdate()
     {
         Debug.Log("Room was created");
-        //roomsList = PhotonNetwork.GetRoomList();
     }
 
 
@@ -141,7 +140,6 @@ public class NetworkManager : Photon.MonoBehaviour {
     {
 
         Debug.Log("Joined Lobby");
-        //PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
             
     }
     //Log if connected

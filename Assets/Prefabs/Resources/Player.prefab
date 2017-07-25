@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 95279314733623276}
   - component: {fileID: 195978006558438248}
   - component: {fileID: 114523089205092842}
+  - component: {fileID: 136274102989433096}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -858,6 +859,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1312529993761864, guid: 4e6c5c357ec6516419a2ac03471b1ef1, type: 2}
   agent: {fileID: 195978006558438248}
+--- !u!136 &136274102989433096
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985673168256512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137422375696752704
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

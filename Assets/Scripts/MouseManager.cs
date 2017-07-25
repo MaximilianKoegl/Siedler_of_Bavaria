@@ -172,7 +172,6 @@ public class MouseManager : Photon.MonoBehaviour {
 
         aufgabenManager = GameObject.Find("AufgabeManager");
 
-
         string playerName = PhotonNetwork.playerName;
         if (photonView.isMine)
         {
@@ -480,7 +479,7 @@ public class MouseManager : Photon.MonoBehaviour {
         GameObject house_go = (GameObject) PhotonNetwork.Instantiate(selectedHouse.name, parentHitObj.transform.position, Quaternion.identity, 0);
         if (house_name.Equals("Kaserne"))
         {
-            Vector3 position = new Vector3(parentHitObj.transform.position.x, parentHitObj.transform.position.y, parentHitObj.transform.position.z+2);
+            Vector3 position = new Vector3(parentHitObj.transform.position.x, parentHitObj.transform.position.y, parentHitObj.transform.position.z+3);
             GameObject soldat = Instantiate(player, position, Quaternion.identity);
             soldat.tag = "Soldat";
 

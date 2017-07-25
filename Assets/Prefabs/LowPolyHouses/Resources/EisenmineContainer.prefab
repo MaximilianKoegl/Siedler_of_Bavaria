@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33343348687489244}
   - component: {fileID: 23973691569046232}
   - component: {fileID: 64384639944062394}
+  - component: {fileID: 208410652643760942}
   m_Layer: 0
   m_Name: Eisenmine_Erz
   m_TagString: Untagged
@@ -512,7 +513,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: 22463e54406928f4c9c3368130f11961, type: 3}
@@ -556,3 +557,18 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!208 &208410652643760942
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118090480526718}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 17.23, y: 6.629, z: 17.23}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 2.1, y: 8.37, z: 8.246}
+  m_TimeToStationary: 0.5

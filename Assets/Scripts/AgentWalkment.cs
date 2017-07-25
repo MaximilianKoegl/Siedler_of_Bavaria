@@ -16,6 +16,7 @@ public class AgentWalkment : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         myAnimator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag(getCity(PhotonNetwork.playerName));
+
     }
 
     // Update is called once per frame
@@ -50,6 +51,8 @@ public class AgentWalkment : MonoBehaviour
 
     public void startWalk()
     {
+
+        target = GameObject.FindGameObjectWithTag(getCity(PhotonNetwork.playerName));
         myAnimator.SetFloat("VSpeed", 1);
         agent.SetDestination(target.transform.position);
     }

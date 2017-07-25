@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 33836499895378200}
   - component: {fileID: 23212199564585096}
   - component: {fileID: 64842649744426434}
+  - component: {fileID: 208585961094779176}
   m_Layer: 0
   m_Name: "Holzf\xE4llerh\xFCtteLow"
   m_TagString: Untagged
@@ -152,7 +153,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f71aa9c346a81f24182f6c6105d14467, type: 3}
@@ -182,3 +183,18 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!208 &208585961094779176
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872231255248458}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5350001, y: 1.4480001, z: 1.539}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.33400002, y: -0.25800002, z: 0.528}
+  m_TimeToStationary: 0.5

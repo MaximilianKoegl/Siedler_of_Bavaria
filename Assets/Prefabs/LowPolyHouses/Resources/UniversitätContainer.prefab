@@ -70,6 +70,8 @@ GameObject:
   - component: {fileID: 4670817163172412}
   - component: {fileID: 33814267825750462}
   - component: {fileID: 23512691732031728}
+  - component: {fileID: 64218680234064960}
+  - component: {fileID: 208303769456509754}
   m_Layer: 0
   m_Name: Mauer5
   m_TagString: Untagged
@@ -231,6 +233,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 898e477a1c92465418a79fcb442bb272, type: 3}
+--- !u!64 &64218680234064960
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1990647822571758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 898e477a1c92465418a79fcb442bb272, type: 3}
 --- !u!114 &114805695790541138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,3 +273,18 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!208 &208303769456509754
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1990647822571758}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.69, y: 1.973, z: 0.186}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.6700001, y: 1.8700001, z: 0.029000001}
+  m_TimeToStationary: 0.5
