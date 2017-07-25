@@ -20,7 +20,7 @@ public class Resources_Counter : MonoBehaviour {
     public int foodCount;
     public int einwohnerCount;
     private int einwohnerGesamt;
-    private int goldCount;
+    public int goldCount;
     
 
 	// Use this for initialization

@@ -16,6 +16,7 @@ public class PopUpManager : MonoBehaviour {
 
     private bool yourCity = false;
     private bool doIt = false;
+    public bool startet = false;
 
     public String actualHouseClicked;
 
@@ -52,9 +53,16 @@ public class PopUpManager : MonoBehaviour {
             Debug.Log("true");
             if(m_resources_counter.getKaserneDorfEinnehmbar())
             {
-                m_resources_counter.addGold(2000);
+
+                //losgehen
+                for(int i = 0; i< GameObject.FindGameObjectsWithTag("Soldat").Length; i++)
+                {
+                    AgentWalkment soldat = GameObject.FindGameObjectsWithTag("Soldat")[i].GetComponent<AgentWalkment>();
+                    soldat.startWalk();
+                }
+                startet = true;
+                //erst wenn erreicht
                 onClosePopUp();
-                yourCity = true;
                 doIt = false;
             }else{
                 if (m_resources_counter.getUniDorfEinnehmbar())
@@ -72,8 +80,30 @@ public class PopUpManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        if (startet)
+        {
+            //erst wenn erreicht
+            bool allOnDestination = true;
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Soldat").Length; i++)
+            {
+                AgentWalkment soldat = GameObject.FindGameObjectsWithTag("Soldat")[i].GetComponent<AgentWalkment>();
+                if (!soldat.getOnDestination())
+                {
+                    allOnDestination = false;
+                    break;
+                }
+            }
+            if (allOnDestination)
+            {
+                Debug.Log("Ziel");
+                m_resources_counter.addGold(2000);
+                yourCity = true;
+                startet = false;
+            }
+            
+        }
+        
+    }
 
     //Pop Up schließen
     public void onClosePopUp()
@@ -82,6 +112,8 @@ public class PopUpManager : MonoBehaviour {
         closePopUp.gameObject.SetActive(false);
         infoPopUp.gameObject.SetActive(false);
         detailsPopUp.gameObject.SetActive(false);
+
+        
     }
 
     //Öffnet Details Info
@@ -232,7 +264,7 @@ public class PopUpManager : MonoBehaviour {
             case ("Kaserne"): return "Dies ist eine Kaserne";
             case ("Schule"): return "Dies ist eine Schule";
             case ("Universität"): return "Dies ist eine Universität";
-            case ("Wahrzeichen"): return "Herzlichen Glückwunsch, du hast das Wahrzeichen gebaut und damit das Ende des Ziels erreicht!";
+            case ("Wahrzeichen"): return "Herzlichen Glückwunsch, du hast das Wahrzeichen gebaut und damit das Ende des Spiels erreicht!";
             case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschlossen.";
             case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";
             case ("Landshut"): return "Landshut wurde im 16. Jahrhundert von ... regiert.";
@@ -261,10 +293,11 @@ public class PopUpManager : MonoBehaviour {
                 int stone = m_resources_counter.stoneCount;
                 int iron = m_resources_counter.ironCount;
                 int food = m_resources_counter.foodCount;
+                int gold = m_resources_counter.goldCount;
                 int people = m_resources_counter.einwohnerCount;
                 float satisfaction = m_resources_counter.getSatisfaction();
                 float satisfactionFood = m_resources_counter.getSatisfactionFood();
-                return "Holz: " + wood + "\nStein: " + stone + "\nEisen: " + iron + "\nNahrung: " + food + "\nEinwohner: " + people + "\nZufriedenheit: " + satisfaction + "\nZufriedenheit Essen: " + satisfactionFood;
+                return "Holz: " + wood + "\nStein: " + stone + "\nEisen: " + iron + "\nNahrung: " + food + "\nGold: " + gold + "\nEinwohner: " + people + "\nZufriedenheit: " + satisfaction + "\nZufriedenheit Essen: " + satisfactionFood;
             default:
                 return "No Details found!";
         }

@@ -21,6 +21,9 @@ public class MouseManager : Photon.MonoBehaviour {
     public GameObject schule;
     public GameObject universität;
     public GameObject wahrzeichen;
+    public GameObject wahrzeichen2;
+    public GameObject wahrzeichen3;
+    public GameObject wahrzeichen4;
     private GameObject selectedHouse;
 
    // public GameObject aufgabenManager;
@@ -39,6 +42,12 @@ public class MouseManager : Photon.MonoBehaviour {
     //holzfäller, wohnhaus, kapelle, bäcker,stonefeeeder, brauerei, eisenmine, schule, schmiede, uni, kaserne, wahrzeichen
     private int[] resources_counter = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int counter_position;
+    private bool wahrzeichenBuildable = false;
+    private float timer = 180;
+    private GameObject wahrzeichenHitObject;
+
+
+
 
     //Empfängt und sendet die Daten für die gebauten Häuser
 
@@ -198,6 +207,38 @@ public class MouseManager : Photon.MonoBehaviour {
         if (photonView.isMine)
         {
             addObjects(Input.mousePosition);
+            updateWahrzeichenBuilding();
+            
+        }
+    }
+
+    //wird ausgeführt wenn das Wahrzeichen baubar ist
+    //zählt die Uhr langsam von 180 sec runter
+    //baut alle 60 sekunden die neue ausbaustufe des Wahrzeichens
+    //bei der letzten Stufe zeigt es glükwunschtext als aufgabe
+    void updateWahrzeichenBuilding()
+    {
+        if (wahrzeichenBuildable)
+        {
+            timer -= Time.deltaTime;
+            Debug.Log(timer);
+            Debug.Log(Mathf.Round(timer));
+            if (Mathf.Round(timer) == 120)
+            {
+                Debug.Log("step1 - GO: " + wahrzeichenHitObject);
+                buildWahrzeichen(1, wahrzeichen2);
+            }
+            if (Mathf.Round(timer) == 60)
+            {
+                Debug.Log("step2 - GO: " + wahrzeichenHitObject);
+                buildWahrzeichen(2, wahrzeichen3);
+            }
+            if (Mathf.Round(timer) == 0)
+            {
+                Debug.Log("step3 - GO: " + wahrzeichenHitObject);
+                buildWahrzeichen(3, wahrzeichen4);
+                wahrzeichenBuildable = false;
+            }
         }
     }
 
@@ -221,7 +262,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 if (Input.GetMouseButtonDown(0))
                 {
                     m_popup_manager.onClosePopUp();
-                    m_popup_manager.setDoItFalse();
+                    //m_popup_manager.setDoItFalse();
                     GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
 
                     //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
@@ -252,7 +293,8 @@ public class MouseManager : Photon.MonoBehaviour {
                         //Überprüft ob Entferntool aktiviert wurde
                         if (m_building_menu.getDestroyBool())
                         {
-
+                            Debug.Log(ourHitObject);
+                            Debug.Log(parentHitObject);
                             destroyBuilding(ourHitObject, parentHitObject);
 
                         }
@@ -393,6 +435,43 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 
+
+    //Wahrzeichen soll schrittweise gebaut werden
+    //dazu soll zuerst die Baustufe abgerissen werden
+    //anschließend wird die neue Baustufe gebaut
+    //wird die letzte Stufe gebaut, wird ein gewinntext als aufgabe angezeigt
+    void buildWahrzeichen(int step, GameObject wahrzeichen)
+    {
+
+        //zuerst zerstören
+        PhotonNetwork.Destroy(wahrzeichenHitObject.transform.GetChild(1).gameObject);
+        //Haus bauen im Netzwerk
+        GameObject wahrzeichen_go = (GameObject)PhotonNetwork.Instantiate(wahrzeichen.name, wahrzeichenHitObject.transform.position, Quaternion.identity, 0);
+        
+        wahrzeichen_go.name = "Wahrzeichen";
+
+        switch (step)
+        {
+            case (1): wahrzeichen_go.transform.GetChild(0).tag = wahrzeichen_go.name; break;
+            case (2): wahrzeichen_go.transform.GetChild(0).tag = wahrzeichen_go.name; break;
+            case (3):
+                wahrzeichen_go.transform.GetChild(0).tag = wahrzeichen_go.name;
+                resources_counter[11] += 1;
+                Text aufgabeTitel = aufgabenManager.transform.GetChild(0).GetComponent<Text>();
+                aufgabeTitel.text = "";
+                Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+                aufgabe.text = "Glückwunsch, du hast das Wahrzeichen deiner Stadt gebaut und das Spiel somit gewonnen!";
+                Debug.Log(aufgabe.text);
+                aufgabenManager.SetActive(true);
+                break;
+            default: break;
+        }
+
+        //Fügt dem Ortsobjekt das Haus als Child hinzu
+        wahrzeichen_go.transform.parent = wahrzeichenHitObject.transform;
+
+    }
+
     //bauen des Hauses
     void buildHouse(GameObject parentHitObj)
     {
@@ -401,8 +480,10 @@ public class MouseManager : Photon.MonoBehaviour {
         GameObject house_go = (GameObject) PhotonNetwork.Instantiate(selectedHouse.name, parentHitObj.transform.position, Quaternion.identity, 0);
         if (house_name.Equals("Kaserne"))
         {
-            Vector3 position = new Vector3(parentHitObj.transform.position.x, parentHitObj.transform.position.y, parentHitObj.transform.position.z+4);
-            Instantiate(player, position, Quaternion.identity);
+            Vector3 position = new Vector3(parentHitObj.transform.position.x, parentHitObj.transform.position.y, parentHitObj.transform.position.z+2);
+            GameObject soldat = Instantiate(player, position, Quaternion.identity);
+            soldat.tag = "Soldat";
+
         }
         //Erhöht Anzahl der bestimmen Hausart
         if(resources_counter[4] == 1)
@@ -488,7 +569,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     aufgabe.text = "Durch den Bau des Holzfällers hast du neue Einwohner hinzubekommen. Um weitere Gebäude bauen zu können, musst du Platz für neue Einwohner schaffen.";
                 }
                 house_go.transform.GetChild(0).tag = house_name;
-
+                
                 break;
             case ("Bäcker"):
                 if (resources_counter[3] == 1 && resources_counter[2] == 1)
@@ -506,19 +587,20 @@ public class MouseManager : Photon.MonoBehaviour {
                 }
                 house_go.transform.GetChild(0).tag = house_name;
                 break;
+            case ("Wahrzeichen"):
+                //house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                wahrzeichenHitObject = parentHitObj;
+                house_go.transform.GetChild(0).tag = house_name;
+                wahrzeichenBuildable = true;
+                break;
             default:
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 break;
 
         }
         
-        
-
         //Fügt dem Ortsobjekt das Haus als Child hinzu
         house_go.transform.parent = parentHitObj.transform;
-
-        MeshRenderer mr = parentHitObj.GetComponentInChildren<MeshRenderer>();
-        mr.material.color = Color.red;
 
     }
 
@@ -554,6 +636,9 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 
+  
+        
+
     //Sucht den Tag der geklickten Objekte und zerstört diese
     void destroyBuilding(GameObject hitObject, GameObject parentObject)
     {
@@ -579,7 +664,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     m_building_menu.fakeAnimationDestroy();
                     MeshRenderer mr1 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr1.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("Stonefeeder"):
                     m_resources_counter.destroyedBuilding("Stonefeeder");
@@ -587,7 +672,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     m_building_menu.fakeAnimationDestroy();
                     MeshRenderer mr2 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr2.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("LivingHouse"):
                     m_resources_counter.destroyedBuilding("LivingHouse");
@@ -595,7 +680,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     m_building_menu.fakeAnimationDestroy();
                     MeshRenderer mr3 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr3.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("Church"):
                     m_resources_counter.destroyedBuilding("Church");
@@ -603,7 +688,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     resources_counter[2] -= 1;
                     MeshRenderer mr4 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr4.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("Brauerei"):
                     m_resources_counter.destroyedBuilding("Brauerei");
@@ -611,7 +696,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     m_building_menu.fakeAnimationDestroy();
                     MeshRenderer mr5 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr5.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("Bäcker"):
                     m_resources_counter.destroyedBuilding("Bäcker");
@@ -619,7 +704,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     m_building_menu.fakeAnimationDestroy();
                     MeshRenderer mr6 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr6.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
 
                 case ("Schmiede"):
@@ -628,7 +713,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     resources_counter[8] -= 1;
                     MeshRenderer mr7 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr7.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("Kaserne"):
                     m_resources_counter.destroyedBuilding("Kaserne");
@@ -636,7 +721,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     resources_counter[10] -= 1;
                     MeshRenderer mr8 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr8.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("Schule"):
                     m_resources_counter.destroyedBuilding("Schule");
@@ -644,7 +729,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     m_building_menu.fakeAnimationDestroy();
                     MeshRenderer mr9 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr9.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 case ("Universität"):
                     m_resources_counter.destroyedBuilding("Universität");
@@ -652,7 +737,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     resources_counter[9] -= 1;
                     MeshRenderer mr10 = parentObject.transform.parent.gameObject.GetComponentInChildren<MeshRenderer>();
                     mr10.material.color = getColorBezirk(PhotonNetwork.playerName);
-                    PhotonNetwork.Destroy(parentObject);
+                    PhotonNetwork.Destroy(parentObject.transform.parent.gameObject);
                     break;
                 default:
                     m_building_menu.activateDestroy();
