@@ -606,7 +606,7 @@ public class MouseManager : Photon.MonoBehaviour {
     //Methode zum Überprüfen, ob das Feld bebaut werden darf/kann
     private Boolean checkIfHouseBuiltIsPossible(RaycastHit hitInfo, GameObject ourHitObject)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(hitInfo.point, 4.0f);
+        Collider[] hitColliders = Physics.OverlapSphere(hitInfo.point, 5.0f);
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
