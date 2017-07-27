@@ -270,8 +270,8 @@ public class MouseManager : Photon.MonoBehaviour {
                         //Falls auf ein Hexagon geklickt, dort noch nichts gebaut ist und das Entferntool nicht geklickt wurde, kann ein Haus gebaut werden
                         if (ourHitObject.transform.tag == PhotonNetwork.playerName && parentHitObject.transform.childCount <= 1 && !m_building_menu.getDestroyBool() && m_resources_counter.checkBuildingCosts(house_name))
                         {
-
-                            if (checkIfHouseBuiltIsPossible(hitInfo))
+                            //Überprüft, ob auf dem angeklickten Feld gebaut werden darf
+                            if (checkIfHouseBuiltIsPossible(hitInfo, ourHitObject))
                             {
                                 buildHouse(parentHitObject);
                                 m_resources_counter.reduceMaterials(house_name);
@@ -604,19 +604,53 @@ public class MouseManager : Photon.MonoBehaviour {
     }
 
     //Methode zum Überprüfen, ob das Feld bebaut werden darf/kann
-    private Boolean checkIfHouseBuiltIsPossible(RaycastHit hitInfo)
+    private Boolean checkIfHouseBuiltIsPossible(RaycastHit hitInfo, GameObject ourHitObject)
     {
-        /*Collider[] hitColliders = Physics.OverlapSphere(hitInfo.point, 3f);
+        Collider[] hitColliders = Physics.OverlapSphere(hitInfo.point, 4.0f);
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
-            //Debug.Log(hitColliders[i]);
-            if(hitColliders[i].gameObject.transform.childCount <= 1)
+
+            if(hitColliders[i].transform.parent.childCount ==2)
             {
                 return true;
             }
-        }*/
-        return true;
+            else
+            {
+               switch(hitColliders[i].tag)
+                {
+                    /*case ("LivingHouse"):
+                        return true;
+                    case ("Schule"):
+                        return true;
+                    case ("Schmiede"):
+                        return true;
+                    case ("Stonefeeder"):
+                        return true;
+                    case ("Ironfeeder"):
+                        return true;
+                    case ("Brauerei"):
+                        return true;
+                    case ("Bäcker"):
+                        return true;
+                    case ("Woodcuter"):
+                        return true;
+                    case ("Church"):
+                        return true;
+                    case ("Wahrzeichen"):
+                        return true;
+                    case ("Dorfzentrum"):
+                        return true;*/
+                    case ("forrest"):
+                        return true;
+                    case ("hopfen"):
+                        return true;
+
+                }
+            }
+
+        }
+        return false;
     }
 
 
