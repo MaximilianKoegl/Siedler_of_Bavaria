@@ -610,14 +610,16 @@ public class MouseManager : Photon.MonoBehaviour {
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
-
-            if(hitColliders[i].transform.parent.childCount ==2)
+            if (hitColliders[i].transform.parent != null)
             {
-                return true;
+                if (hitColliders[i].transform.parent.childCount == 2)
+                {
+                    return true;
+                }
             }
             else
             {
-               switch(hitColliders[i].tag)
+                switch (hitColliders[i].tag)
                 {
                     /*case ("LivingHouse"):
                         return true;
