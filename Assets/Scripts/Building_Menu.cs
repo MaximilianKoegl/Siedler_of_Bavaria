@@ -22,6 +22,7 @@ public class Building_Menu : MonoBehaviour {
     public Button schule;
     public Button universität;
     public Button delete;
+    public Button startPositionBuildList;
 
     
     public GameObject kostenstonefeeder;
@@ -67,6 +68,8 @@ public class Building_Menu : MonoBehaviour {
     private bool isShowing;
     private bool destroyIsActivated;
     private int building_Number;
+
+    private Vector3 startPositionOfBuildingGrid;
     
 
 	// Use this for initialization
@@ -81,6 +84,17 @@ public class Building_Menu : MonoBehaviour {
         kostenschmiede.SetActive(false);
         kostenuniversität.SetActive(false);
         kostenwahrzeichen.SetActive(false);
+
+        //Setzt den Button für die Startposition des Buildingsmenü auf false
+        startPositionBuildList.gameObject.SetActive(false);
+
+        //Setzt die StartPosition fest
+        startPositionOfBuildingGrid = first_buildings_list.transform.Find("GridWithHouses").position;
+
+        //startPositionOfBuildingGrid.x = first_buildings_list.transform.Find("GridWithHouses").position.x;
+        //startPositionOfBuildingGrid.y = 0;
+        //startPositionOfBuildingGrid.z = 0;
+
 
         //Setzt Listener für die Gebäude der ersten Auswahlseite
         woodcutter.onClick.AddListener(() => { onBuildingSelected(1); });
@@ -108,6 +122,10 @@ public class Building_Menu : MonoBehaviour {
     public void Update()
     {
         checkBuildable();
+        if (buildingCanvas.active)
+        {
+            checkBuildListPosition();
+        }
     }
 
 
@@ -121,6 +139,20 @@ public class Building_Menu : MonoBehaviour {
         checkFifthLevel(resourcesCounter);
         checkSixthLevel(resourcesCounter);
 
+    }
+
+    private void checkBuildListPosition()
+    {
+        if(first_buildings_list.transform.Find("GridWithHouses").position != startPositionOfBuildingGrid)
+        {
+            startPositionBuildList.gameObject.SetActive(true);
+        }
+    }
+
+    public void onStartPositionBuildListButtonClicked()
+    {
+        first_buildings_list.transform.Find("GridWithHouses").position = startPositionOfBuildingGrid;
+        startPositionBuildList.gameObject.SetActive(false);
     }
 
 
@@ -277,6 +309,8 @@ public class Building_Menu : MonoBehaviour {
     //Aktion die ausgeführt wird wenn der Plusbutton für das Baumenu geklickt wird
     public void onClickedPlusButton()
     {
+        startPositionBuildList.gameObject.SetActive(false);
+
         if (!m_popup_manager.getDoIt())
         {
 
