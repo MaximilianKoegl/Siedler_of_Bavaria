@@ -39,6 +39,8 @@ TagManager:
   - Hopfen
   - Getreide
   - Soldat
+  - See
+  - Wald
   layers:
   - Default
   - TransparentFX
