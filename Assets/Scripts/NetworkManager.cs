@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
+using System;
 
 public class NetworkManager : Photon.MonoBehaviour {
 
@@ -48,30 +49,64 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     private bool showGui = true;
 
-    private bool schwaben = true;
-    private bool niederbayern = true;
-    private bool oberbayern = true;
-    private bool oberpfalz = true;
-    private bool oberfranken = true;
-    private bool mittelfranken = true;
-    private bool unterfranken = true;
+    private bool schwabenFree = true;
+    private bool niederbayernFree = true;
+    private bool oberbayernFree = true;
+    private bool oberpfalzFree = true;
+    private bool oberfrankenFree = true;
+    private bool mittelfrankenFree = true;
+    private bool unterfrankenFree = true;
+
+    private bool lastConnection = false;
+    private bool exitPressed = false;
+    
 
     // Use this for initialization
     void Start () {
         PhotonNetwork.ConnectUsingSettings("v4.2");
-
-       
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
 
-    public void leaveRoom()
+        checkConnectionDuringGame();
+    }
+
+
+    //überprüft, ob eine Änderung der Verbindung zwischen dem letzten und dem aktuellen Frame von verbunden zu nicht verbunden besteht
+    //--> Änderung verbunden zu nicht verbunden --> Wenn der Exit Button nicht gedrückt wurde, wird das Spiel verlassen( Aufruf leaveRoom).
+    private void checkConnectionDuringGame()
+    {
+        if (lastConnection && !PhotonNetwork.connected)
+        {
+            if (!exitPressed)
+            {
+                leaveRoom(1);
+            }
+            else
+            {
+                exitPressed = false;
+            }
+        }
+        lastConnection = PhotonNetwork.connected;
+    }
+
+
+    //verlassen des Raumes = beenden des laufenden Spieles
+    //Anzeige abhängig ob Verbindung verloren oder Exit gedrückt
+    public void leaveRoom(int i)
     {
         Debug.Log("LeaveRoom");
+        if(i == 1)
+        {
+            leaveGame.text = "Verbindung verloren, verlasse Spiel";
+        }
+        else
+        {
+            Debug.Log("exit Pressed");
+            leaveGame.text = "Verlasse Spiel";
+            exitPressed = true;
+        }
         leaveGame.gameObject.SetActive(true);
         PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
         PhotonNetwork.LeaveRoom();
@@ -79,48 +114,80 @@ public class NetworkManager : Photon.MonoBehaviour {
         hardRestartGame();
     }
 
-    // then call this to restart game
+    // spiel wird neu gestartet in dem die Szene neu geladen wird
     void hardRestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+
+    
     void OnLeftRoom()
     {
         OnGUI();
     }
 
 
-
+    //zeigt gui elemente
     void OnGUI()
     {
         if (showGui)
         {
-            GUI.Box(new Rect(-5, -5, Screen.width + 10, Screen.height + 10), backgroundImage);
-            guiStyle.fontSize = 40;
-            guiStyle.font = captureIt2;
-            GUI.Label(new Rect(Screen.width/2 - 200, 75, 200, 50), "Siedler of Bavaria", guiStyle);
+            drawBackground();
+            drawExitGameButton();
             if (!PhotonNetwork.connected)
             {
-                GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+                drawReloadGameButton();
             }
             else if (PhotonNetwork.room == null)
             {
-                // nur 1 raum kann geöffnet werden!(Museum nur ein Tisch --> nur ein Raum!
-
-
-                if (GUI.Button(new Rect(Screen.width/8, Screen.height/8, Screen.width/2+ Screen.width/4, Screen.height/2+ Screen.height / 4), "Hier klicken um am Spiel teilzunehmen!"))
-                {
-
-                    PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
-                    showGui = false;
-                }
-                if(GUI.Button(new Rect(Screen.width - 250, 50, 200, 60), "Spiel verlassen"))
-                {
-                    Application.Quit();
-                }
+                drawStartGameButton();
             }
         }
+    }
+
+    //zeichne Spiel verlassen Button
+    private void drawExitGameButton()
+    {
+        if (GUI.Button(new Rect(Screen.width - 250, 50, 200, 60), "Spiel verlassen"))
+        {
+            Application.Quit();
+        }
+    }
+
+    // zeichnen des Start Spiel Buttons
+    //wenn der Button gedrückt wird der Raum erstellt oder betreten
+    private void drawStartGameButton()
+    {
+        if (GUI.Button(new Rect(Screen.width / 8, Screen.height / 8, Screen.width / 2 + Screen.width / 4, Screen.height / 2 + Screen.height / 4), "Hier klicken um am Spiel teilzunehmen!"))
+        {
+            //nur ein Raum aufgrund Museum
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 7, IsOpen = true, IsVisible = true }, lobbyName);
+            showGui = false;
+        }
+    }
+
+    // zeichnen des Reload Spiel Buttons
+    private void drawReloadGameButton()
+    {
+        //GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+        if (GUI.Button(new Rect(Screen.width / 8, Screen.height / 8, Screen.width / 2 + Screen.width / 4, Screen.height / 2 + Screen.height / 4), "Keine Verbindung! Neu laden!"))
+        {
+            Start();
+        }
+    }
+
+
+
+    //Hintergrund wird gezeichnet
+    //- Hintergrundbild
+    //- Text
+    private void drawBackground()
+    {
+        GUI.Box(new Rect(-5, -5, Screen.width + 10, Screen.height + 10), backgroundImage);
+        guiStyle.fontSize = 40;
+        guiStyle.font = captureIt2;
+        GUI.Label(new Rect(Screen.width / 2 - 200, 75, 200, 50), "Siedler of Bavaria", guiStyle);
     }
 
     void OnConnectedToMaster()
@@ -128,6 +195,8 @@ public class NetworkManager : Photon.MonoBehaviour {
         PhotonNetwork.JoinLobby(lobbyName);
     }
 
+
+    
 
 
     void OnReceivedRoomListUpdate()
@@ -152,95 +221,68 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     }
 
+    //überprüft, welcher Spieler hinzukommt und welche Stadt er bekommt
+
     private void checkPlayer(int playersCount)
     {
-        if(playersCount == 1)
+        Debug.Log(playersCount);
+        if (playersCount == 1)
         {
             instantiatePlayer(spawnPointOne.position, spawnPointOne.rotation, "Schwaben", spawnPointOneHex);
             instantiateDorfPlayer(spawnPointDorfOneHex, "Kempten");
         }
         else
         {
-            //mehr spieler als einer -->prüfen, welche Spieler vorhanden
-            for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-            {
-                if (PhotonNetwork.playerList[i].NickName.Equals("Schwaben"))
-                {
-                    schwaben = false;
-                }
-                if (PhotonNetwork.playerList[i].NickName.Equals("Oberpfalz"))
-                {
-                    oberpfalz = false;
-                }
-                if (PhotonNetwork.playerList[i].NickName.Equals("Oberbayern"))
-                {
-                    oberbayern = false;
-                }
-                if (PhotonNetwork.playerList[i].NickName.Equals("Niederbayern"))
-                {
-                    niederbayern = false;
-                }
-                if (PhotonNetwork.playerList[i].NickName.Equals("Unterfranken"))
-                {
-                    unterfranken = false;
-                }
-                if (PhotonNetwork.playerList[i].NickName.Equals("Mittelfranken"))
-                {
-                    mittelfranken = false;
-                }
-                if (PhotonNetwork.playerList[i].NickName.Equals("Oberfranken"))
-                {
-                    oberfranken = false;
-                }
-            }
+            checkBelegteStädte();
             //erstbeste noch nicht belegte Stadt wird zugewissen
-            if (schwaben)
+            assignCity();
+            
+        }
+    }
+
+    //runs through list of Citys an assigns the first free to the Player
+    //calls instantiateCity();
+    private void assignCity()
+    {
+        if (schwabenFree)
+        {
+            instantiateCity(spawnPointOne, spawnPointOneHex, spawnPointDorfOneHex, "Schwaben", "Kempten");
+        }
+        else
+        {
+            if (unterfrankenFree)
             {
-                instantiatePlayer(spawnPointOne.position, spawnPointOne.rotation, "Schwaben", spawnPointOneHex);
-                instantiateDorfPlayer(spawnPointDorfOneHex, "Kempten");
+                instantiateCity(spawnPointTwo, spawnPointTwoHex, spawnPointDorfTwoHex, "Unterfranken", "Aschaffenburg");
             }
             else
             {
-                if(unterfranken)
+                if (niederbayernFree)
                 {
-                    instantiatePlayer(spawnPointTwo.position, spawnPointTwo.rotation, "Unterfranken", spawnPointTwoHex);
-                    instantiateDorfPlayer(spawnPointDorfTwoHex, "Aschaffenburg");
+                    instantiateCity(spawnPointThree, spawnPointThreeHex, spawnPointDorfThreeHex, "Niederbayern", "Passau");
                 }
                 else
                 {
-                    if (niederbayern)
+                    if (oberbayernFree)
                     {
-                        instantiatePlayer(spawnPointThree.position, spawnPointThree.rotation, "Niederbayern", spawnPointThreeHex);
-                        instantiateDorfPlayer(spawnPointDorfThreeHex, "Passau");
+                        instantiateCity(spawnPointFour, spawnPointFourHex, spawnPointDorfFourHex, "Oberbayern", "Ingolstadt");
                     }
                     else
                     {
-                        if (oberbayern)
+                        if (oberpfalzFree)
                         {
-                            instantiatePlayer(spawnPointFour.position, spawnPointFour.rotation, "Oberbayern", spawnPointFourHex);
-                            instantiateDorfPlayer(spawnPointDorfFourHex, "Ingolstadt");
+                            instantiateCity(spawnPointFive, spawnPointFiveHex, spawnPointDorfFiveHex, "Oberpfalz", "Weiden");
                         }
                         else
                         {
-                            if (oberpfalz)
+                            if (oberfrankenFree)
                             {
-                                instantiatePlayer(spawnPointFive.position, spawnPointFive.rotation, "Oberpfalz", spawnPointFiveHex);
-                                instantiateDorfPlayer(spawnPointDorfFiveHex, "Weiden");
+                                instantiateCity(spawnPointSix, spawnPointSixHex, spawnPointDorfSixHex, "Oberfranken", "Bamberg");
                             }
                             else
                             {
-                                if (oberfranken)
+                                if (mittelfrankenFree)
                                 {
-                                    instantiatePlayer(spawnPointSix.position, spawnPointSix.rotation, "Oberfranken", spawnPointSixHex);
-                                    instantiateDorfPlayer(spawnPointDorfSixHex, "Bamberg");
-                                }
-                                else
-                                {
-                                    if (mittelfranken)
-                                    {
-                                        instantiatePlayer(spawnPointSeven.position, spawnPointSeven.rotation, "Mittelfranken", spawnPointSevenHex);
-                                        instantiateDorfPlayer(spawnPointDorfSevenHex, "Nürnberg");
-                                    }
+                                    instantiateCity(spawnPointSeven, spawnPointSevenHex, spawnPointDorfSevenHex, "Mittelfranken", "Nürnberg");
                                 }
                             }
                         }
@@ -250,25 +292,107 @@ public class NetworkManager : Photon.MonoBehaviour {
         }
     }
 
+    //ruft instantiatePlayer und instantiateDorfPlayer auf
+    //Übergibt die Spawn für Camera, die Hexagons für Dorfzentrum und Nachbardorf, Bezirknamen und Name des Nachbarsdorfes
+    private void instantiateCity(Transform spawnPoint, GameObject spawnPointHex, GameObject spawnPointDorfHex, string bezirk, string nachbarsdorf)
+    {
+        instantiatePlayer(spawnPoint.position, spawnPoint.rotation, bezirk, spawnPointHex);
+        instantiateDorfPlayer(spawnPointDorfHex, nachbarsdorf);
+    }
 
+    //läuft alle Spielernamen (= Stadt) ab und weißt einen bool wert zu, falls eine Stadt schon vorhanden ist
+    private void checkBelegteStädte()
+    {
+        
+        for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+        {
+            switch (PhotonNetwork.playerList[i].NickName)
+            {
+                case ("Schwaben"): schwabenFree = false; break;
+                case ("Oberpfalz"): oberpfalzFree = false; break;
+                case ("Oberbayern"): oberbayernFree = false; break;
+                case ("Niederbayern"): niederbayernFree = false; break;
+                case ("Unterfranken"): unterfrankenFree = false; break;
+                case ("Mittelfranken"): mittelfrankenFree = false; break;
+                case ("Oberfranken"): oberfrankenFree = false; break;
+                default: break;
+            }
+            /*
+            if (PhotonNetwork.playerList[i].NickName.Equals("Schwaben"))
+            {
+                schwabenFree = false;
+            }
+            if (PhotonNetwork.playerList[i].NickName.Equals("Oberpfalz"))
+            {
+                oberpfalzFree = false;
+            }
+            if (PhotonNetwork.playerList[i].NickName.Equals("Oberbayern"))
+            {
+                oberbayernFree = false;
+            }
+            if (PhotonNetwork.playerList[i].NickName.Equals("Niederbayern"))
+            {
+                niederbayernFree = false;
+            }
+            if (PhotonNetwork.playerList[i].NickName.Equals("Unterfranken"))
+            {
+                unterfrankenFree = false;
+            }
+            if (PhotonNetwork.playerList[i].NickName.Equals("Mittelfranken"))
+            {
+                mittelfrankenFree = false;
+            }
+            if (PhotonNetwork.playerList[i].NickName.Equals("Oberfranken"))
+            {
+                oberfrankenFree = false;
+            }*/
+        }
+    }
+
+
+    //camera, Interface, Button, MouseManager und Dorfzentrum instanziert
+    //Spielname wird zugewiesen
     private void instantiatePlayer(Vector3 spawnPosition, Quaternion spawnRotation, string playerName, GameObject spawnHex)
     {
         Instantiate(cameraPrefab, spawnPosition, spawnRotation);
         Instantiate(interfacePrefab, spawnPosition, spawnRotation);
-        exitButton = GameObject.Find("ExitButton").GetComponent<Button>();
-        exitButton.onClick.AddListener(() => { leaveRoom(); });
-        leaveGame = GameObject.Find("LeaveGameInfo").GetComponent<Text>();
-        leaveGame.gameObject.SetActive(false);
+
+        instantiateButtons();
+        
+        //als Netzwerkobject
         PhotonNetwork.Instantiate(mouseManagerPrefab.name, spawnPosition, spawnRotation, 0);
         PhotonNetwork.playerName = playerName;
+
+        spawnDorfzentrum(spawnHex);
+        
+    }
+    
+    
+    //exit ButtonListener wird gesetzt
+    //Spiel verlassen Button des Startmenüs wird ausgeblendet und inactive
+    private void instantiateButtons()
+    {
+        exitButton = GameObject.Find("ExitButton").GetComponent<Button>();
+        exitButton.onClick.AddListener(() => { leaveRoom(0); });
+        leaveGame = GameObject.Find("LeaveGameInfo").GetComponent<Text>();
+        leaveGame.gameObject.SetActive(false);
+    }
+
+    //Dorfzentrum wird instanziert und gesetzt
+    //Kindelemente bekommen Tags zugewiesen, um später auf click zu reagieren
+    private void spawnDorfzentrum(GameObject spawnHex)
+    {
         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(haupthaus.name, spawnHex.transform.position, Quaternion.identity, 0);
         house_go.name = "Dorfzentrum";
         house_go.transform.GetChild(0).GetChild(0).tag = "Dorfzentrum";
         house_go.transform.GetChild(0).GetChild(1).tag = "Dorfzentrum";
         house_go.transform.GetChild(0).GetChild(2).tag = "Dorfzentrum";
-        house_go.transform.parent = spawnHex.transform;    
+        house_go.transform.parent = spawnHex.transform;
     }
 
+
+    //Nachbarsdorf wird gesetzt
+    //Tags werden zugewiesen, um später auf click zu reagieren 
     private void instantiateDorfPlayer(GameObject spawnHex, string dorfName)
     {
         GameObject house_go = (GameObject)PhotonNetwork.Instantiate(dorf.name, spawnHex.transform.position, Quaternion.identity, 0);
