@@ -187,7 +187,7 @@ public class NetworkManager : Photon.MonoBehaviour {
         GUI.Box(new Rect(-5, -5, Screen.width + 10, Screen.height + 10), backgroundImage);
         guiStyle.fontSize = 40;
         guiStyle.font = captureIt2;
-        GUI.Label(new Rect(Screen.width / 2 - 200, 75, 200, 50), "Siedler of Bavaria", guiStyle);
+        GUI.Label(new Rect(Screen.width / 2 - 200, 75, 200, 50), "Settlers of Bavaria", guiStyle);
     }
 
     void OnConnectedToMaster()
