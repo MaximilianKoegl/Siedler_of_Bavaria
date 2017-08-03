@@ -61,8 +61,8 @@ public class CameraMovement : MonoBehaviour {
                     // initially, the temporary vector should equal the player's position
                     Vector3 clampedPosition = transform.position;
                     // Now we can manipulte it to clamp the y element
-                    clampedPosition.x = Mathf.Clamp(transform.position.x, -40.1f, 400.1f);
-                    clampedPosition.z = Mathf.Clamp(transform.position.z, -0.1f, 420.1f);
+                    clampedPosition.x = Mathf.Clamp(transform.position.x, 20.1f, 400.1f);
+                    clampedPosition.z = Mathf.Clamp(transform.position.z, 40.1f, 400.1f);
                     // re-assigning the transform's position will clamp it
                     transform.position = clampedPosition;
                 }
