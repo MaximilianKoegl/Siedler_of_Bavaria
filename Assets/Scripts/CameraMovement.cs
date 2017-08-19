@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour {
+
+    public Button cameraStartPosition;
+    public Vector3 startposition;
 
     private float speed = 0.05f;
     
@@ -11,11 +15,16 @@ public class CameraMovement : MonoBehaviour {
 	float rotationX = 0.0f;
 
 
+    public void onCameraStartPositionButtonClicked()
+    {
+        transform.position = startposition;
+    }
     
 
     private void Start()
     {
         //rotationX = transform.rotation.eulerAngles.y;
+        startposition = transform.position;
     }
 
     void Update () {
