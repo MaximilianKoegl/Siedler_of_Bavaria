@@ -41,6 +41,7 @@ TagManager:
   - Soldat
   - See
   - Wald
+  - CameraManager
   layers:
   - Default
   - TransparentFX

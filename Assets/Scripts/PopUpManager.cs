@@ -24,6 +24,10 @@ public class PopUpManager : MonoBehaviour {
 	void Start () {
         m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
 
+        //Test
+        closePopUp.onClick.AddListener(onClosePopUp);
+        infoPopUp.onClick.AddListener(onInfoButtonClicked);
+        detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
 
         popUpInfo.SetActive(false);
 
@@ -120,7 +124,7 @@ public class PopUpManager : MonoBehaviour {
     public void onDetailsButtonClicked()
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
-        title.text = actualHouseClicked;
+        title.text = getPopUpTitle(actualHouseClicked);
         Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
         infoText.text = getPopUpDetails(actualHouseClicked);
     }
@@ -129,7 +133,7 @@ public class PopUpManager : MonoBehaviour {
     public void onInfoButtonClicked()
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
-        title.text = actualHouseClicked;
+        title.text = getPopUpTitle(actualHouseClicked);
         Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
         infoText.text = getPopUpInfo(actualHouseClicked);
     }
@@ -184,6 +188,7 @@ public class PopUpManager : MonoBehaviour {
 
         Text title = popUpInfo.GetComponentInChildren<Text>();
         title.text = name;
+        //title.text = getPopUpTitle(tag);
         Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
         infoText.text = getPopUpInfo(name);
         popUpInfo.SetActive(true);
@@ -204,16 +209,18 @@ public class PopUpManager : MonoBehaviour {
         Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
         infoText.text = getPopUpInfo(tag);
         closePopUp.gameObject.SetActive(true);
-        infoPopUp.gameObject.SetActive(false);
-        detailsPopUp.gameObject.SetActive(false);
+        infoPopUp.gameObject.SetActive(true);
+        detailsPopUp.gameObject.SetActive(true);
         popUpInfo.SetActive(true);
 
-        if (tag == "Dorfzentrum")
-        {
-            infoPopUp.gameObject.SetActive(true);
-            detailsPopUp.gameObject.SetActive(true);
-        }
-        
+        //infoPopUp.gameObject.SetActive(false);
+        //detailsPopUp.gameObject.SetActive(false);
+        //if (tag == "Dorfzentrum")
+        //{
+        //    infoPopUp.gameObject.SetActive(true);
+        //    detailsPopUp.gameObject.SetActive(true);
+        //}
+
     }
 
 
@@ -256,7 +263,7 @@ public class PopUpManager : MonoBehaviour {
             case ("Ironfeeder"): return "Produziert Eisen.";
             case ("Stonefeeder"): return "Produziert Stein.";
             case ("Dorfzentrum"): return "Dies ist das Dorfzentrum.";
-            case ("LivingHouse"): float satisfaction = m_resources_counter.getSatisfaction(); float satisfactionFood = m_resources_counter.getSatisfactionFood(); return "Zufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction +"%\nFuggerei in Augsburg als erste Sozialsiedlung Deutschlands";
+            case ("LivingHouse"): return "Fuggerei in Augsburg als erste Sozialsiedlung Deutschlands";
             case ("Church"): return "16. Jahrhundert als Zeit der Reformation und Gegenreformation";
             case ("Brauerei"): return "Hofbräuhaus in München";
             case ("Bäcker"): return "Einwohner brauchen Essen";
@@ -286,18 +293,23 @@ public class PopUpManager : MonoBehaviour {
     //Details bei Häusern mit mehreren Tabs
     private string getPopUpDetails(String tag)
     {
+        int wood = m_resources_counter.woodCount;
+        int stone = m_resources_counter.stoneCount;
+        int iron = m_resources_counter.ironCount;
+        int food = m_resources_counter.foodCount;
+        int gold = m_resources_counter.goldCount;
+        int people = m_resources_counter.einwohnerCount;
+        float satisfaction = m_resources_counter.getSatisfaction();
+        float satisfactionFood = m_resources_counter.getSatisfactionFood();
+
         switch (tag)
         {
             case ("Dorfzentrum"):
-                int wood = m_resources_counter.woodCount;
-                int stone = m_resources_counter.stoneCount;
-                int iron = m_resources_counter.ironCount;
-                int food = m_resources_counter.foodCount;
-                int gold = m_resources_counter.goldCount;
-                int people = m_resources_counter.einwohnerCount;
-                float satisfaction = m_resources_counter.getSatisfaction();
-                float satisfactionFood = m_resources_counter.getSatisfactionFood();
                 return "Holz: " + wood + "\nStein: " + stone + "\nEisen: " + iron + "\nNahrung: " + food + "\nGold: " + gold + "\nEinwohner: " + people + "\nZufriedenheit: " + satisfaction + "\nZufriedenheit Essen: " + satisfactionFood;
+            case ("Woodcutter"): return "Aktuell " + wood + " Holz zur Verfügung!" ;
+            case ("Ironfeeder"): return "Aktuell " + iron + " Eisen zur Verfügung!";
+            case ("Stonefeeder"): return "Aktuell  " + stone + " Stein zur Verfügung!";
+            case ("LivingHouse"): return "Aktuell " + people + " in ihrem Regierungsbezirk!" + "\nZufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction + "%";
             default:
                 return "No Details found!";
         }
