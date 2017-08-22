@@ -16,7 +16,7 @@ public class PopUpManager : MonoBehaviour {
 
     private bool yourCity = false;
     private bool doIt = false;
-    public bool startet = false;
+    private bool startet = false;
 
     public String actualHouseClicked;
 
@@ -25,7 +25,7 @@ public class PopUpManager : MonoBehaviour {
         m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
 
         //Test
-        //closePopUp.onClick.AddListener(onClosePopUp);
+        closePopUp.onClick.AddListener(() => { onClosePopUp(); });
         //infoPopUp.onClick.AddListener(onInfoButtonClicked);
         //detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
 
