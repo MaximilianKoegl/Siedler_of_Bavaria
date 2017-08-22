@@ -8,6 +8,8 @@ public class CameraMovement : MonoBehaviour {
     public Button cameraStartPosition;
     public Vector3 startposition;
 
+    public GameObject cameraObject;
+
     private float speed = 0.05f;
     
 
@@ -24,7 +26,11 @@ public class CameraMovement : MonoBehaviour {
     private void Start()
     {
         //rotationX = transform.rotation.eulerAngles.y;
-        startposition = transform.position;
+        cameraObject = GameObject.FindGameObjectWithTag("CameraObject");
+        startposition = cameraObject.transform.position;
+        Debug.Log("TEST" + startposition);
+
+        //cameraStartPosition.onClick.AddListener(() => { onCameraStartPositionButtonClicked(); });
     }
 
     void Update () {

@@ -42,6 +42,7 @@ TagManager:
   - See
   - Wald
   - CameraManager
+  - CameraObject
   layers:
   - Default
   - TransparentFX

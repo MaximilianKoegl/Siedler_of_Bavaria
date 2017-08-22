@@ -25,9 +25,9 @@ public class PopUpManager : MonoBehaviour {
         m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
 
         //Test
-        closePopUp.onClick.AddListener(onClosePopUp);
-        infoPopUp.onClick.AddListener(onInfoButtonClicked);
-        detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
+        //closePopUp.onClick.AddListener(onClosePopUp);
+        //infoPopUp.onClick.AddListener(onInfoButtonClicked);
+        //detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
 
         popUpInfo.SetActive(false);
 

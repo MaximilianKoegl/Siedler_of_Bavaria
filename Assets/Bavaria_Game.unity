@@ -366,6 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraStartPosition: {fileID: 0}
   startposition: {x: 0, y: 0, z: 0}
+  cameraObject: {fileID: 0}
 --- !u!1 &1134709592 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1626989090648406, guid: b9c2f9988725d3044909e6e3cc4a51a8,
