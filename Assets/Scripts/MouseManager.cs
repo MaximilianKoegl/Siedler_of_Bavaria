@@ -43,7 +43,7 @@ public class MouseManager : Photon.MonoBehaviour {
     private int[] resources_counter = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int counter_position;
     private bool wahrzeichenBuildable = false;
-    private float timer = 180;
+    private float timer = 0;
     private GameObject wahrzeichenHitObject;
 
 
@@ -212,17 +212,22 @@ public class MouseManager : Photon.MonoBehaviour {
     }
 
     //wird ausgeführt wenn das Wahrzeichen baubar ist
-    //zählt die Uhr langsam von 180 sec runter
-    //baut alle 60 sekunden die neue ausbaustufe des Wahrzeichens
+    //zählt die Uhr auf 100 sec hoch
+    //baut alle 30-40 sekunden die neue ausbaustufe des Wahrzeichens
     //bei der letzten Stufe zeigt es glükwunschtext als aufgabe
     void updateWahrzeichenBuilding()
     {
         if (wahrzeichenBuildable)
         {
-            timer -= Time.deltaTime;
-            Debug.Log(timer);
-            Debug.Log(Mathf.Round(timer));
-            if (Mathf.Round(timer) == 120)
+            timer += Time.deltaTime;
+            int percentage = (int)timer;
+            Text aufgabeTitel = aufgabenManager.transform.GetChild(0).GetComponent<Text>();
+            aufgabeTitel.text = "";
+            Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+            aufgabe.text = "Wahrzeichen wird gebaut: "+ percentage + " %";
+            Debug.Log(aufgabe.text);
+            aufgabenManager.SetActive(true);
+            if (Mathf.Round(timer) == 30)
             {
                 Debug.Log("step1 - GO: " + wahrzeichenHitObject);
                 buildWahrzeichen(1, wahrzeichen2);
@@ -232,7 +237,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 Debug.Log("step2 - GO: " + wahrzeichenHitObject);
                 buildWahrzeichen(2, wahrzeichen3);
             }
-            if (Mathf.Round(timer) == 0)
+            if (Mathf.Round(timer) == 99)
             {
                 Debug.Log("step3 - GO: " + wahrzeichenHitObject);
                 buildWahrzeichen(3, wahrzeichen4);
@@ -451,10 +456,16 @@ public class MouseManager : Photon.MonoBehaviour {
 
         switch (step)
         {
-            case (1): wahrzeichen_go.transform.GetChild(0).tag = wahrzeichen_go.name; break;
-            case (2): wahrzeichen_go.transform.GetChild(0).tag = wahrzeichen_go.name; break;
+            case (1): wahrzeichen_go.transform.GetChild(0).GetChild(0).tag = wahrzeichen_go.name;
+                wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name; break;
+            case (2): wahrzeichen_go.transform.GetChild(0).GetChild(0).tag = wahrzeichen_go.name;
+                wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name;
+                wahrzeichen_go.transform.GetChild(0).GetChild(2).tag = wahrzeichen_go.name; break;
             case (3):
-                wahrzeichen_go.transform.GetChild(0).tag = wahrzeichen_go.name;
+                wahrzeichen_go.transform.GetChild(0).GetChild(0).tag = wahrzeichen_go.name;
+                wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name;
+                wahrzeichen_go.transform.GetChild(0).GetChild(2).tag = wahrzeichen_go.name;
+                wahrzeichen_go.transform.GetChild(0).GetChild(3).tag = wahrzeichen_go.name;
                 resources_counter[11] += 1;
                 Text aufgabeTitel = aufgabenManager.transform.GetChild(0).GetComponent<Text>();
                 aufgabeTitel.text = "";
@@ -589,7 +600,7 @@ public class MouseManager : Photon.MonoBehaviour {
             case ("Wahrzeichen"):
                 //house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 wahrzeichenHitObject = parentHitObj;
-                house_go.transform.GetChild(0).tag = house_name;
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 wahrzeichenBuildable = true;
                 break;
             default:

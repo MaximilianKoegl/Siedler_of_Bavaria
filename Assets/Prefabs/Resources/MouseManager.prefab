@@ -68,21 +68,20 @@ MonoBehaviour:
   schule: {fileID: 1120221238527162, guid: ff4fb98c026fbb1419382382b9d024f3, type: 2}
   "universit\xE4t": {fileID: 1248881009185640, guid: 8ccaa26a81a371c498327593755e75a5,
     type: 2}
-  wahrzeichen: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516,
+  wahrzeichen: {fileID: 1563940076521038, guid: a99895adebd3a4a4196f9d5d16b5a04d,
     type: 2}
-  wahrzeichen2: {fileID: 1079071216867982, guid: 242547276c5acca4094f7429ceff3358,
+  wahrzeichen2: {fileID: 1760595386383120, guid: 192ee7cbb8cc1194a8bd110a1e639d4f,
     type: 2}
-  wahrzeichen3: {fileID: 1079071216867982, guid: 56b47f7350ddbc64ca67b8ba598916d2,
+  wahrzeichen3: {fileID: 1341147143611738, guid: 89c017f27d53f8f45b37202cb27aafbb,
     type: 2}
-  wahrzeichen4: {fileID: 1079071216867982, guid: 9dd6ba69eb32e3944ad25797e38fad80,
+  wahrzeichen4: {fileID: 1507543007509458, guid: 1d518316191e59c4c93bd0008699412e,
     type: 2}
   player: {fileID: 1985673168256512, guid: 94b1a198ae98f134796d15c5cc6b8854, type: 2}
   m_building_menu: {fileID: 114027494014276582, guid: 09704502b90333d42b335449e2491d15,
     type: 2}
   m_resources_counter: {fileID: 114358063336072246, guid: 09704502b90333d42b335449e2491d15,
     type: 2}
-  m_popup_manager: {fileID: 114660749207932700, guid: 09704502b90333d42b335449e2491d15,
-    type: 2}
+  m_popup_manager: {fileID: 0}
 --- !u!114 &114628955397199278
 MonoBehaviour:
   m_ObjectHideFlags: 1
