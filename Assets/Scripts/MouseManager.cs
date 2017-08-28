@@ -20,15 +20,25 @@ public class MouseManager : Photon.MonoBehaviour {
     public GameObject kaserne;
     public GameObject schule;
     public GameObject universität;
-    public GameObject wahrzeichen;
-    public GameObject wahrzeichen2;
-    public GameObject wahrzeichen3;
-    public GameObject wahrzeichen4;
+    public GameObject burg;
+    public GameObject burg2;
+    public GameObject burg3;
+    public GameObject burg4;
+    public GameObject dom;
+    public GameObject dom2;
+    public GameObject dom3;
+    public GameObject dom4;
     private GameObject selectedHouse;
 
-   // public GameObject aufgabenManager;
-    
+    //wird burg zugewiesen wenn zuvor Kaserne gebaut, wird dom zugewiesen wenn schule gebaut
+    private GameObject wahrzeichen;
+    private GameObject wahrzeichen2;
+    private GameObject wahrzeichen3;
+    private GameObject wahrzeichen4;
 
+    // public GameObject aufgabenManager;
+
+    private bool wahrzeichenBurg;
 
     public GameObject player;
 
@@ -56,15 +66,12 @@ public class MouseManager : Photon.MonoBehaviour {
         Debug.Log("Serializing");
         if (stream.isWriting)
         {
-            Debug.Log("Writing " + Input.mousePosition);
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
         }
         else
         {
             Vector3 pos = (Vector3)stream.ReceiveNext();
-            //addObjects(pos);
-            Debug.Log("Receiving Reading " + pos);
         }
     }
 
@@ -214,7 +221,7 @@ public class MouseManager : Photon.MonoBehaviour {
     //wird ausgeführt wenn das Wahrzeichen baubar ist
     //zählt die Uhr auf 100 sec hoch
     //baut alle 30-40 sekunden die neue ausbaustufe des Wahrzeichens
-    //bei der letzten Stufe zeigt es glükwunschtext als aufgabe
+    //bei der letzten Stufe zeigt es glückwunschtext als aufgabe
     void updateWahrzeichenBuilding()
     {
         if (wahrzeichenBuildable)
@@ -225,21 +232,17 @@ public class MouseManager : Photon.MonoBehaviour {
             aufgabeTitel.text = "";
             Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
             aufgabe.text = "Wahrzeichen wird gebaut: "+ percentage + " %";
-            Debug.Log(aufgabe.text);
             aufgabenManager.SetActive(true);
             if (Mathf.Round(timer) == 30)
             {
-                Debug.Log("step1 - GO: " + wahrzeichenHitObject);
                 buildWahrzeichen(1, wahrzeichen2);
             }
             if (Mathf.Round(timer) == 60)
             {
-                Debug.Log("step2 - GO: " + wahrzeichenHitObject);
                 buildWahrzeichen(2, wahrzeichen3);
             }
             if (Mathf.Round(timer) == 99)
             {
-                Debug.Log("step3 - GO: " + wahrzeichenHitObject);
                 buildWahrzeichen(3, wahrzeichen4);
                 wahrzeichenBuildable = false;
             }
@@ -297,8 +300,6 @@ public class MouseManager : Photon.MonoBehaviour {
                         //Überprüft ob Entferntool aktiviert wurde
                         if (m_building_menu.getDestroyBool())
                         {
-                            Debug.Log(ourHitObject);
-                            Debug.Log(parentHitObject);
                             destroyBuilding(ourHitObject, parentHitObject);
 
                         }
@@ -333,83 +334,63 @@ public class MouseManager : Photon.MonoBehaviour {
         {
             case ("Woodcutter"):
                 m_popup_manager.onFirstTimeBuild("Woodcutter");
-                Debug.Log("Woodcutter clicked");
                 break;
             case ("Ironfeeder"):
                 m_popup_manager.onFirstTimeBuild("Ironfeeder");
-                Debug.Log("Ironfeeder clicked");
                 break;
             case ("Stonefeeder"):
                 m_popup_manager.onFirstTimeBuild("Stonefeeder");
-                Debug.Log("Stonefeeder clicked");
                 break;
             case ("LivingHouse"):
                 m_popup_manager.onFirstTimeBuild("LivingHouse");
-                Debug.Log("LivingHouse clicked");
                 break;
             case ("Church"):
                 m_popup_manager.onFirstTimeBuild("Church");
-                Debug.Log("Church clicked");
                 break;
             case ("Brauerei"):
                 m_popup_manager.onFirstTimeBuild("Brauerei");
-                Debug.Log("Brauerei clicked");
                 break;
             case ("Bäcker"):
                 m_popup_manager.onFirstTimeBuild("Bäcker");
-                Debug.Log("Bäcker clicked");
                 break;
             case ("Schmiede"):
                 m_popup_manager.onFirstTimeBuild("Schmiede");
-                Debug.Log("Schmiede clicked");
                 break;
             case ("Kaserne"):
                 m_popup_manager.onFirstTimeBuild("Kaserne");
-                Debug.Log("Kaserne clicked");
                 break;
             case ("Schule"):
                 m_popup_manager.onFirstTimeBuild("Schule");
-                Debug.Log("Schule clicked");
                 break;
             case ("Universität"):
                 m_popup_manager.onFirstTimeBuild("Universität");
-                Debug.Log("Universität clicked");
                 break;
             case ("Wahrzeichen"):
                 m_popup_manager.onFirstTimeBuild("Wahrzeichen");
-                Debug.Log("Wahrzeichen clicked");
                 break;
             case ("Dorfzentrum"):
                 m_popup_manager.onFirstTimeBuild("Dorfzentrum");
-                Debug.Log("Dorfzentrum clicked");
                 break;
             case ("Bamberg"):
                 checkPopUp("Bamberg");
-                Debug.Log("Bamberg clicked");
                 break;
             case ("Nürnberg"):
                 checkPopUp("Nürnberg");
-                Debug.Log("Nürnberg clicked");
                 break;
             case ("Aschaffenburg"):
                 checkPopUp("Aschaffenburg");
-                Debug.Log("Aschaffenburg clicked");
                 break;
             case ("Weiden"):
                 checkPopUp("Weiden");
-                Debug.Log("Weiden clicked");
                 break;
             case ("Ingolstadt"):
                 checkPopUp("Ingolstadt");
-                Debug.Log("Ingolstadt clicked");
                 break;
             case ("Kempten"):
                 checkPopUp("Kempten");
-                Debug.Log("Kempten clicked");
                 break;
             case ("Passau"):
                 checkPopUp("Passau");
-                Debug.Log("Passau clicked");
                 break;
             default:
            
@@ -457,15 +438,26 @@ public class MouseManager : Photon.MonoBehaviour {
         switch (step)
         {
             case (1): wahrzeichen_go.transform.GetChild(0).GetChild(0).tag = wahrzeichen_go.name;
-                wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name; break;
+                if (wahrzeichenBurg)
+                {
+                    wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name;
+                }
+                break;
             case (2): wahrzeichen_go.transform.GetChild(0).GetChild(0).tag = wahrzeichen_go.name;
-                wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name;
-                wahrzeichen_go.transform.GetChild(0).GetChild(2).tag = wahrzeichen_go.name; break;
+                if (wahrzeichenBurg)
+                {
+                    wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name;
+                    wahrzeichen_go.transform.GetChild(0).GetChild(2).tag = wahrzeichen_go.name;
+                }
+                break;
             case (3):
                 wahrzeichen_go.transform.GetChild(0).GetChild(0).tag = wahrzeichen_go.name;
-                wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name;
-                wahrzeichen_go.transform.GetChild(0).GetChild(2).tag = wahrzeichen_go.name;
-                wahrzeichen_go.transform.GetChild(0).GetChild(3).tag = wahrzeichen_go.name;
+                if (wahrzeichenBurg)
+                {
+                    wahrzeichen_go.transform.GetChild(0).GetChild(1).tag = wahrzeichen_go.name;
+                    wahrzeichen_go.transform.GetChild(0).GetChild(2).tag = wahrzeichen_go.name;
+                    wahrzeichen_go.transform.GetChild(0).GetChild(3).tag = wahrzeichen_go.name;
+                }
                 resources_counter[11] += 1;
                 Text aufgabeTitel = aufgabenManager.transform.GetChild(0).GetComponent<Text>();
                 aufgabeTitel.text = "";
@@ -506,8 +498,21 @@ public class MouseManager : Photon.MonoBehaviour {
 
         //Setzt Namen des Hauses
         house_go.name = house_name;
+                
+        setTagsAndAufgaben(house_name,house_go,parentHitObj);
+        
+        
+        //Fügt dem Ortsobjekt das Haus als Child hinzu
+        house_go.transform.parent = parentHitObj.transform;
 
-        //holzfäller, wohnhaus, kapelle, bäcker,stonefeeeder, brauerei, eisenmine, schule, schmiede, uni, kaserne, wahrzeichen
+    }
+
+    //unterscheidet welches ausgebaut wurde
+    //setzt neue aufgabe, oder blendet sie aus
+    //weißt den richtigen Unterobjekten mit mesh collider den Hausnamen als Tag zu
+    //legt fest, ob burg oder dom als wahrzeichen gebaut wird
+    private void setTagsAndAufgaben(string house_name,GameObject house_go, GameObject parentHitObj)
+    {
         switch (house_name)
         {
             case ("LivingHouse"):
@@ -554,7 +559,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 house_go.transform.GetChild(0).GetChild(8).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(9).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(10).tag = house_name;
-                
+
                 break;
             case ("Ironfeeder"):
                 if (resources_counter[6] == 1)
@@ -579,7 +584,7 @@ public class MouseManager : Photon.MonoBehaviour {
                     aufgabe.text = "Durch den Bau des Holzfällers hast du neue Einwohner hinzubekommen. Um weitere Gebäude bauen zu können, musst du Platz für neue Einwohner schaffen.";
                 }
                 house_go.transform.GetChild(0).tag = house_name;
-                
+
                 break;
             case ("Bäcker"):
                 if (resources_counter[3] == 1 && resources_counter[2] == 1)
@@ -597,8 +602,23 @@ public class MouseManager : Photon.MonoBehaviour {
                 }
                 house_go.transform.GetChild(0).tag = house_name;
                 break;
+            case ("Kaserne"):
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                wahrzeichenBurg = true;
+                wahrzeichen = burg;
+                wahrzeichen2 = burg2;
+                wahrzeichen3 = burg3;
+                wahrzeichen4 = burg4;
+                break;
+            case ("Universität"):
+                house_go.transform.GetChild(0).GetChild(0).tag = house_name;
+                wahrzeichenBurg = false;
+                wahrzeichen = dom;
+                wahrzeichen2 = dom2;
+                wahrzeichen3 = dom3;
+                wahrzeichen4 = dom4;
+                break;
             case ("Wahrzeichen"):
-                //house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 wahrzeichenHitObject = parentHitObj;
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 wahrzeichenBuildable = true;
@@ -608,10 +628,6 @@ public class MouseManager : Photon.MonoBehaviour {
                 break;
 
         }
-        
-        //Fügt dem Ortsobjekt das Haus als Child hinzu
-        house_go.transform.parent = parentHitObj.transform;
-
     }
 
     //Methode zum Überprüfen, ob das Feld bebaut werden darf/kann

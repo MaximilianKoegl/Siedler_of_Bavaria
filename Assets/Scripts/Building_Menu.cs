@@ -36,7 +36,8 @@ public class Building_Menu : MonoBehaviour {
     public Sprite imagestonefeeder;
     public Sprite imageironfeeder;
     public Sprite imagebrauerei;
-    public Sprite imagewahrzeichen;
+    public Sprite imageBurg;
+    public Sprite imageDom;
     public Sprite imageschmiede;
     public Sprite imagekaserne;
     public Sprite imageschule;
@@ -61,7 +62,7 @@ public class Building_Menu : MonoBehaviour {
     
     public Resources_Counter m_resource_counter;
 
-    //stonefeeeder, brauerei, eisenmine, schule, scmiede, uni, kaserne, wahrzeichen 
+    //stonefeeeder, brauerei, eisenmine, schule, schmiede, uni, kaserne, wahrzeichen 
     private bool[] buildable = new bool[] { false, false, false, false, false, false, false, false};
 
 
@@ -292,7 +293,16 @@ public class Building_Menu : MonoBehaviour {
         {
             kostenwahrzeichen.SetActive(true);
             buildable[7] = true;
-            wahrzeichen.GetComponentsInChildren<Image>()[1].sprite = imagewahrzeichen;
+            if(resourcesCounter[9] > 0)
+            {
+
+                wahrzeichen.GetComponentsInChildren<Image>()[1].sprite = imageDom;
+            }
+            else
+            {
+
+                wahrzeichen.GetComponentsInChildren<Image>()[1].sprite = imageBurg;
+            }
             wahrzeichen.GetComponentInChildren<Text>().text = "Wahrzeichen";
         }
         else

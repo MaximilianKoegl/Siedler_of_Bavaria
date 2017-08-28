@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forrest: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516, type: 2}
   haupthaus: {fileID: 1559764908079472, guid: 822b6ef753f8bf34f959a7f16028915b, type: 2}
-  "holzf\xE4ller": {fileID: 1382771991535326, guid: fb22b9dba33830b47abd6d6f54fd8f66,
+  "holzf\xE4ller": {fileID: 1762722311621296, guid: 3974592b9e334524fbed9a3473e5e002,
     type: 2}
   steinmine: {fileID: 1893528248295628, guid: 4d385cb889fa1f543972540422579407, type: 2}
   eisenmine: {fileID: 1977645907905374, guid: 434761114701de14f9c5f3445c624577, type: 2}
@@ -68,14 +68,14 @@ MonoBehaviour:
   schule: {fileID: 1120221238527162, guid: ff4fb98c026fbb1419382382b9d024f3, type: 2}
   "universit\xE4t": {fileID: 1248881009185640, guid: 8ccaa26a81a371c498327593755e75a5,
     type: 2}
-  wahrzeichen: {fileID: 1563940076521038, guid: a99895adebd3a4a4196f9d5d16b5a04d,
-    type: 2}
-  wahrzeichen2: {fileID: 1760595386383120, guid: 192ee7cbb8cc1194a8bd110a1e639d4f,
-    type: 2}
-  wahrzeichen3: {fileID: 1341147143611738, guid: 89c017f27d53f8f45b37202cb27aafbb,
-    type: 2}
-  wahrzeichen4: {fileID: 1507543007509458, guid: 1d518316191e59c4c93bd0008699412e,
-    type: 2}
+  burg: {fileID: 1563940076521038, guid: a99895adebd3a4a4196f9d5d16b5a04d, type: 2}
+  burg2: {fileID: 1760595386383120, guid: 192ee7cbb8cc1194a8bd110a1e639d4f, type: 2}
+  burg3: {fileID: 1341147143611738, guid: 89c017f27d53f8f45b37202cb27aafbb, type: 2}
+  burg4: {fileID: 1507543007509458, guid: 1d518316191e59c4c93bd0008699412e, type: 2}
+  dom: {fileID: 1932777388581252, guid: b33d59b9195507541a6a1e327cf42ab2, type: 2}
+  dom2: {fileID: 1164150148227600, guid: 2e63a63953cef32469cb80eb8b351e4e, type: 2}
+  dom3: {fileID: 1571947988775550, guid: 71f52798e0404cd4a974e5fd21696e29, type: 2}
+  dom4: {fileID: 1762722311621296, guid: 3974592b9e334524fbed9a3473e5e002, type: 2}
   player: {fileID: 1985673168256512, guid: 94b1a198ae98f134796d15c5cc6b8854, type: 2}
   m_building_menu: {fileID: 114027494014276582, guid: 09704502b90333d42b335449e2491d15,
     type: 2}
