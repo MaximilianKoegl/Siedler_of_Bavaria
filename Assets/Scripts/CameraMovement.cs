@@ -6,16 +6,16 @@ using System;
 
 public class CameraMovement : MonoBehaviour {
 
-    public Button cameraStartPosition;
-    public Vector3 startposition;
+    private Button cameraStartPosition;
+    private Vector3 startposition;
 
-    public GameObject cameraObject;
+    private GameObject cameraObject;
 
     private float speed = 0.05f;
     
     
     // Überschreibt die aktuelle Camera - Position mit der Startposition der Camera
-    public void onCameraStartPositionButtonClicked()
+    private void onCameraStartPositionButtonClicked()
     {
         cameraObject.transform.position = startposition;
     }
