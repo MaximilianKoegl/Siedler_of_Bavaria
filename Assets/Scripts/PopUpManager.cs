@@ -25,7 +25,7 @@ public class PopUpManager : MonoBehaviour {
         m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
 
         //Test
-        closePopUp.onClick.AddListener(() => { onClosePopUp(); });
+        //closePopUp.onClick.AddListener(() => { onClosePopUp(); });
         //infoPopUp.onClick.AddListener(onInfoButtonClicked);
         //detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
 
@@ -307,7 +307,7 @@ public class PopUpManager : MonoBehaviour {
             case ("Woodcutter"): return "Aktuell " + wood + " Holz zur Verfügung!" ;
             case ("Ironfeeder"): return "Aktuell " + iron + " Eisen zur Verfügung!";
             case ("Stonefeeder"): return "Aktuell  " + stone + " Stein zur Verfügung!";
-            case ("LivingHouse"): return "Aktuell " + people + " in ihrem Regierungsbezirk!" + "\nZufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction + "%";
+            case ("LivingHouse"): return "Aktuell " + people + " Leute in ihrem Regierungsbezirk!" + "\nZufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction + "%";
             default:
                 return "No Details found!";
         }
