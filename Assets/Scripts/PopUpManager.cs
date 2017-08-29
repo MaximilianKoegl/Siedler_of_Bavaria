@@ -200,16 +200,18 @@ public class PopUpManager : MonoBehaviour {
     //Erzeugt ein Pop Up
     public void onFirstTimeBuild(string tag)
     {
-
-        actualHouseClicked = tag;
-        Text title = popUpInfo.GetComponentInChildren<Text>();
-        title.text = getPopUpTitle(tag);
-        Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
-        infoText.text = getPopUpInfo(tag);
-        closePopUp.gameObject.SetActive(true);
-        infoPopUp.gameObject.SetActive(true);
-        detailsPopUp.gameObject.SetActive(true);
-        popUpInfo.SetActive(true);
+        if (!popUpInfo.active)
+        {
+            actualHouseClicked = tag;
+            Text title = popUpInfo.GetComponentInChildren<Text>();
+            title.text = getPopUpTitle(tag);
+            Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
+            infoText.text = getPopUpInfo(tag);
+            closePopUp.gameObject.SetActive(true);
+            infoPopUp.gameObject.SetActive(true);
+            detailsPopUp.gameObject.SetActive(true);
+            popUpInfo.SetActive(true);
+        }
 
         //infoPopUp.gameObject.SetActive(false);
         //detailsPopUp.gameObject.SetActive(false);
@@ -269,7 +271,7 @@ public class PopUpManager : MonoBehaviour {
             case ("Kaserne"): return "Dies ist eine Kaserne";
             case ("Schule"): return "Dies ist eine Schule";
             case ("Universität"): return "Dies ist eine Universität";
-            case ("Wahrzeichen"): return "Herzlichen Glückwunsch, du hast das Wahrzeichen gebaut und damit das Ende des Spiels erreicht!";
+            case ("Wahrzeichen"): return "Dies ist ein Wahrzeichen";
             case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschlossen.";
             case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";
             case ("Landshut"): return "Landshut wurde im 16. Jahrhundert von ... regiert.";
@@ -308,6 +310,8 @@ public class PopUpManager : MonoBehaviour {
             case ("Ironfeeder"): return "Aktuell " + iron + " Eisen zur Verfügung!";
             case ("Stonefeeder"): return "Aktuell  " + stone + " Stein zur Verfügung!";
             case ("LivingHouse"): return "Aktuell " + people + " Leute in ihrem Regierungsbezirk!" + "\nZufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction + "%";
+            case ("Universität"): return "Die Universität ermöglicht den Bewohnern die Bildung zu verbessern";
+            case ("Wahrzeichen"): return "Das Wahrzeichen ist das Aushängeschild der Stadt!";
             default:
                 return "No Details found!";
         }
