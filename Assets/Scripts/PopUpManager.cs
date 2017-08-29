@@ -154,7 +154,7 @@ public class PopUpManager : MonoBehaviour {
         else
         {
             doIt = true;
-            infoText.text = "Durch ihre Bildung konnten sie einen Bünisvertrag mit " + name + " aushandeln. Laut Vertrag erhalten sie beim Abschluss des Bündnisses 2000 Gold, müssen im Gegenzug jedoch 2000 Holz, 1000 Stein und 2000 Nahrung abgeben. Drücken sie den + Button, um das Bündnis " + name + " zu schließen! ";
+            infoText.text = "Durch ihre Bildung konnten sie einen Bünisvertrag mit " + name + " aushandeln.\n Laut Vertrag erhalten sie beim Abschluss des Bündnisses 2000 Gold, müssen im Gegenzug jedoch 2000 Holz, 1000 Stein und 2000 Nahrung abgeben.";
         }
         jaButton.gameObject.SetActive(true);
         neinButton.gameObject.SetActive(true);
@@ -177,7 +177,7 @@ public class PopUpManager : MonoBehaviour {
         else
         {
             doIt = true;
-            infoText.text = "Sie können " + name + " durch ihr Militär einnehmen! Dazu brauchen sie mindestens 3 Soldaten(Kaserne bauen)! Drücken sie den + Button, um " + name + " einzunhemen!";
+            infoText.text = "Sie können " + name + " durch ihr Militär einnehmen!\n Dazu brauchen sie mindestens 3 Soldaten(Kaserne bauen)!";
         }
 
         

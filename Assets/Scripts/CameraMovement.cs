@@ -13,10 +13,7 @@ public class CameraMovement : MonoBehaviour {
 
     private float speed = 0.05f;
     
-
-    float rotationY = 0.0f;
-	float rotationX = 0.0f;
-
+    
     // Überschreibt die aktuelle Camera - Position mit der Startposition der Camera
     public void onCameraStartPositionButtonClicked()
     {

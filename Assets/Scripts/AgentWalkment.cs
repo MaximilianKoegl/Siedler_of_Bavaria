@@ -9,7 +9,6 @@ public class AgentWalkment : MonoBehaviour
     private Animator myAnimator;
     public GameObject target;
     public NavMeshAgent agent;
-    private bool onDestination = false;
     
 
 
