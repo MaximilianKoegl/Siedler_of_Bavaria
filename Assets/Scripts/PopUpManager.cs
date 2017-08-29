@@ -12,6 +12,9 @@ public class PopUpManager : MonoBehaviour {
     public Button infoPopUp;
     public Button detailsPopUp;
 
+    public Button jaButton;
+    public Button neinButton;
+
     private Resources_Counter m_resources_counter;
 
     private bool yourCity = false;
@@ -30,6 +33,8 @@ public class PopUpManager : MonoBehaviour {
         //detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
 
         popUpInfo.SetActive(false);
+        jaButton.gameObject.SetActive(false);
+        neinButton.gameObject.SetActive(false);
 
     }
 
@@ -79,6 +84,9 @@ public class PopUpManager : MonoBehaviour {
             }
             
         }
+
+        jaButton.gameObject.SetActive(false);
+        neinButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -115,7 +123,9 @@ public class PopUpManager : MonoBehaviour {
         infoPopUp.gameObject.SetActive(false);
         detailsPopUp.gameObject.SetActive(false);
 
-        
+        jaButton.gameObject.SetActive(false);
+        neinButton.gameObject.SetActive(false);
+
     }
 
     //Öffnet Details Info
@@ -152,6 +162,8 @@ public class PopUpManager : MonoBehaviour {
             doIt = true;
             infoText.text = "Durch ihre Bildung konnten sie einen Bünisvertrag mit " + name + " aushandeln. Laut Vertrag erhalten sie beim Abschluss des Bündnisses 2000 Gold, müssen im Gegenzug jedoch 2000 Holz, 1000 Stein und 2000 Nahrung abgeben. Drücken sie den + Button, um das Bündnis " + name + " zu schließen! ";
         }
+        jaButton.gameObject.SetActive(true);
+        neinButton.gameObject.SetActive(true);
         popUpInfo.SetActive(true);
         closePopUp.gameObject.SetActive(true);
     }
@@ -177,6 +189,8 @@ public class PopUpManager : MonoBehaviour {
         
         popUpInfo.SetActive(true);
         closePopUp.gameObject.SetActive(true);
+        jaButton.gameObject.SetActive(true);
+        neinButton.gameObject.SetActive(true);
     }
 
 

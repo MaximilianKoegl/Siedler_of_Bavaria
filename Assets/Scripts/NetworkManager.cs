@@ -45,7 +45,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     public Font captureIt2;
 
-    private GUIStyle guiStyle = new GUIStyle(); //create a new variable
+    private GUIStyle guiStyle = new GUIStyle(); 
 
     private bool showGui = true;
 
@@ -103,7 +103,6 @@ public class NetworkManager : Photon.MonoBehaviour {
         }
         else
         {
-            Debug.Log("exit Pressed");
             leaveGame.text = "Verlasse Spiel";
             exitPressed = true;
         }
