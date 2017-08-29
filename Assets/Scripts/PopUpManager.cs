@@ -28,7 +28,7 @@ public class PopUpManager : MonoBehaviour {
         m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
 
         //Test
-        closePopUp.onClick.AddListener(() => { onClosePopUp(); });
+        //closePopUp.onClick.AddListener(() => { onClosePopUp(); });
         //infoPopUp.onClick.AddListener(onInfoButtonClicked);
         //detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
 
@@ -244,24 +244,9 @@ public class PopUpManager : MonoBehaviour {
             case ("Woodcutter"): return "Holzfäller";
             case ("Ironfeeder"): return "Eisenmine";
             case ("Stonefeeder"): return "Steinmine";
-            case ("Dorfzentrum"): return "Dorfzentrum";
             case ("LivingHouse"): return "Wohnhaus";
             case ("Church"): return "Kapelle";
-            case ("Brauerei"): return "Brauerei";
-            case ("Bäcker"): return "Bäcker";
-            case ("Schmiede"): return "Schmiede";
-            case ("Kaserne"): return "Kaserne";
-            case ("Schule"): return "Schule";
-            case ("Universität"): return "Universität";
-            case ("Wahrzeichen"): return "Wahrzeichen";
-            case ("Bamberg"): return "Bamberg.";
-            case ("Nürnberg"): return "Nürnberg.";
-            case ("Aschaffenburg"): return "Aschaffenburg.";
-            case ("Weiden"): return "Weiden.";
-            case ("Ingolstadt"): return "Ingolstadt.";
-            case ("Kempten"): return "Kempten.";
-            case ("Passau"): return "Passau.";
-            default: return "";
+            default: return tag;
         }
     }
 
@@ -321,7 +306,7 @@ public class PopUpManager : MonoBehaviour {
             case ("Woodcutter"): return "Aktuell " + wood + " Holz zur Verfügung!" ;
             case ("Ironfeeder"): return "Aktuell " + iron + " Eisen zur Verfügung!";
             case ("Stonefeeder"): return "Aktuell  " + stone + " Stein zur Verfügung!";
-            case ("LivingHouse"): return "Aktuell " + people + " in ihrem Regierungsbezirk!" + "\nZufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction + "%";
+            case ("LivingHouse"): return "Aktuell " + people + " Leute in ihrem Regierungsbezirk!" + "\nZufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction + "%";
             default:
                 return "No Details found!";
         }
