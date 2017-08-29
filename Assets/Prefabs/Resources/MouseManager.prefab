@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forrest: {fileID: 1709598926384320, guid: f7ad5da0dab18704d98e2d619509f516, type: 2}
   haupthaus: {fileID: 1559764908079472, guid: 822b6ef753f8bf34f959a7f16028915b, type: 2}
-  "holzf\xE4ller": {fileID: 1877842625030276, guid: e36108ac36aa9454e96caa61c4823519,
+  "holzf\xE4ller": {fileID: 1382771991535326, guid: fb22b9dba33830b47abd6d6f54fd8f66,
     type: 2}
   steinmine: {fileID: 1893528248295628, guid: 4d385cb889fa1f543972540422579407, type: 2}
   eisenmine: {fileID: 1977645907905374, guid: 434761114701de14f9c5f3445c624577, type: 2}
