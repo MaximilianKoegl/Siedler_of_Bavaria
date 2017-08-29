@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Wurde anfangs benutzt, um die Karte zu erstellen - überflüssige Hexagons wurden nachher händisch gelöscht, um die Bayernform zu erzeugen
+
 public class Map : MonoBehaviour {
 
     public GameObject hexPrefab;

@@ -23,14 +23,8 @@ public class PopUpManager : MonoBehaviour {
 
     public String actualHouseClicked;
 
-	// Use this for initialization
 	void Start () {
         m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
-
-        //Test
-        //closePopUp.onClick.AddListener(() => { onClosePopUp(); });
-        //infoPopUp.onClick.AddListener(onInfoButtonClicked);
-        //detailsPopUp.onClick.AddListener(onDetailsButtonClicked);
 
         popUpInfo.SetActive(false);
         jaButton.gameObject.SetActive(false);
@@ -115,7 +109,7 @@ public class PopUpManager : MonoBehaviour {
         
     }
 
-    //Pop Up schließen
+    //Pop Up schließen und setzt alle Button auf inaktiv
     public void onClosePopUp()
     {
         popUpInfo.SetActive(false);
@@ -128,7 +122,7 @@ public class PopUpManager : MonoBehaviour {
 
     }
 
-    //Öffnet Details Info
+    //Öffnet Details des PopUps
     public void onDetailsButtonClicked()
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
@@ -137,7 +131,7 @@ public class PopUpManager : MonoBehaviour {
         infoText.text = getPopUpDetails(actualHouseClicked);
     }
 
-    //Öffnet Details Info
+    //Öffnet Info des PopUps
     public void onInfoButtonClicked()
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
@@ -147,7 +141,7 @@ public class PopUpManager : MonoBehaviour {
     }
 
 
-    //öffnet dieses popUp wenn Uni gebaut wurde und Nachbarstadt angeklickt wird
+    //Öffnet dieses PopUp wenn Uni gebaut wurde und Nachbarstadt angeklickt wird
     public void dorfInfoUni(String name)
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
@@ -169,7 +163,7 @@ public class PopUpManager : MonoBehaviour {
     }
 
 
-    //öffnet dieses popUp wenn Kaserne gebaut wurde und Nachbarstadt angeklickt wird
+    //Öffnet dieses PopUp wenn Kaserne gebaut wurde und Nachbarstadt angeklickt wird
     public void dorfInfoKaserne(String name)
     {
         Text title = popUpInfo.GetComponentInChildren<Text>();
@@ -194,13 +188,12 @@ public class PopUpManager : MonoBehaviour {
     }
 
 
-    //öffnet dieses Popup zu Spielbeginn
+    //Öffnet dieses Popup zu Spielbeginn
     public void OnGameStartInfo(String name)
     {
 
         Text title = popUpInfo.GetComponentInChildren<Text>();
         title.text = name;
-        //title.text = getPopUpTitle(tag);
         Text infoText = popUpInfo.transform.Find("InfoText").GetComponentInChildren<Text>();
         infoText.text = getPopUpInfo(name);
         popUpInfo.SetActive(true);
@@ -211,7 +204,7 @@ public class PopUpManager : MonoBehaviour {
 
     }
 
-    //Erzeugt ein Pop Up
+    //Erzeugt das Pop Up - kann nur geöffnet werden wenn kein PopUp zurzeit offen ist
     public void onFirstTimeBuild(string tag)
     {
         if (!popUpInfo.active)
@@ -226,19 +219,10 @@ public class PopUpManager : MonoBehaviour {
             detailsPopUp.gameObject.SetActive(true);
             popUpInfo.SetActive(true);
         }
-
-        //infoPopUp.gameObject.SetActive(false);
-        //detailsPopUp.gameObject.SetActive(false);
-        //if (tag == "Dorfzentrum")
-        //{
-        //    infoPopUp.gameObject.SetActive(true);
-        //    detailsPopUp.gameObject.SetActive(true);
-        //}
-
     }
 
 
-    //gibt den Titel eines popUps anhand des zugewiesen Tags zurück
+    //Gibt den Titel eines PopUps anhand des zugewiesen Tags zurück
     private string getPopUpTitle(String tag)
     {
         switch (tag)

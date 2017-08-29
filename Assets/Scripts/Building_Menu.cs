@@ -72,8 +72,6 @@ public class Building_Menu : MonoBehaviour {
 
     private Vector3 startPositionOfBuildingGrid;
     
-
-	// Use this for initialization
 	void Start () {
         //Setzt Auswahlmenu und zweite und dritte Seite auf false
         buildingCanvas.SetActive(false);
@@ -91,11 +89,6 @@ public class Building_Menu : MonoBehaviour {
 
         //Setzt die StartPosition fest
         startPositionOfBuildingGrid = first_buildings_list.transform.Find("GridWithHouses").position;
-
-        //startPositionOfBuildingGrid.x = first_buildings_list.transform.Find("GridWithHouses").position.x;
-        //startPositionOfBuildingGrid.y = 0;
-        //startPositionOfBuildingGrid.z = 0;
-
 
         //Setzt Listener für die Gebäude der ersten Auswahlseite
         woodcutter.onClick.AddListener(() => { onBuildingSelected(1); });
@@ -142,6 +135,7 @@ public class Building_Menu : MonoBehaviour {
 
     }
 
+    //Überprüft die aktuelle Position der Liste des Baumenüs
     private void checkBuildListPosition()
     {
         if(first_buildings_list.transform.Find("GridWithHouses").position != startPositionOfBuildingGrid)
@@ -150,6 +144,7 @@ public class Building_Menu : MonoBehaviour {
         }
     }
 
+    //Setzt die Liste des Baumenüs auf den Startwert zurück
     public void onStartPositionBuildListButtonClicked()
     {
         first_buildings_list.transform.Find("GridWithHouses").position = startPositionOfBuildingGrid;
@@ -157,9 +152,9 @@ public class Building_Menu : MonoBehaviour {
     }
 
 
-    //überprüft ob Steinmine und Brauerei Baubar sind
-    //wenn ja --> anzeige in Baumenü wird verändert
-    //wenn nein --> anzeige in Baumenü ist ?
+    //Überprüft ob Steinmine und Brauerei baubar sind
+    //wenn ja --> Anzeige in Baumenü wird verändert
+    //wenn nein --> Anzeige in Baumenü ist ?
     private void checkSecondLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[0] > 0 && resourcesCounter[1] > 0 && resourcesCounter[2] > 0 && resourcesCounter[3] > 0)
@@ -188,9 +183,9 @@ public class Building_Menu : MonoBehaviour {
     }
 
 
-    //überprüft ob Eisenmine baubar ist
-    //wenn ja --> anzeige in Baumenü wird verändert
-    //wenn nein --> anzeige in Baumenü ist ?
+    //Überprüft ob Eisenmine baubar ist
+    //wenn ja --> Anzeige in Baumenü wird verändert
+    //wenn nein --> Anzeige in Baumenü ist ?
     private void checkThirdLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[4] > 0 && resourcesCounter[5] > 0)
@@ -210,9 +205,9 @@ public class Building_Menu : MonoBehaviour {
     }
 
 
-    //überprüft ob Schule und Schmiede Baubar sind
-    //wenn ja --> anzeige in Baumenü wird verändert
-    //wenn nein --> anzeige in Baumenü ist ?
+    //Überprüft ob Schule und Schmiede baubar sind
+    //wenn ja --> Anzeige in Baumenü wird verändert
+    //wenn nein --> Anzeige in Baumenü ist ?
     private void checkFourthLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[6] > 0)
@@ -240,9 +235,9 @@ public class Building_Menu : MonoBehaviour {
     }
 
 
-    //überprüft ob Uni und Kaserne Baubar sind
-    //wenn ja --> anzeige in Baumenü wird verändert
-    //wenn nein --> anzeige in Baumenü ist ?
+    //Überprüft ob Uni und Kaserne baubar sind
+    //wenn ja --> Anzeige in Baumenü wird verändert
+    //wenn nein --> Anzeige in Baumenü ist ?
     private void checkFifthLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[7] > 0)
@@ -284,9 +279,9 @@ public class Building_Menu : MonoBehaviour {
     }
 
 
-    //überprüft ob Wahrzeichen Baubar sind
-    //wenn ja --> anzeige in Baumenü wird verändert
-    //wenn nein --> anzeige in Baumenü ist ?
+    //Überprüft ob Wahrzeichen baubar ist
+    //wenn ja --> Anzeige in Baumenü wird verändert
+    //wenn nein --> Anzeige in Baumenü ist ?
     private void checkSixthLevel(int[] resourcesCounter)
     {
         if (resourcesCounter[9] > 0 || resourcesCounter[10] > 0)
@@ -335,6 +330,7 @@ public class Building_Menu : MonoBehaviour {
 
     }
 
+    // Löscht die Auswahl des gebauten Elements
     public void deactivateBuildMode()
     {
         switch (building_Number)
@@ -389,7 +385,7 @@ public class Building_Menu : MonoBehaviour {
     }
 
 
-    //ändert Cursor und Auswahlfarbe im Baumenü auf null
+    //Ändert Cursor und Auswahlfarbe im Baumenü auf null
     public void deselectAll()
     {
         changeCursor(null);
@@ -407,7 +403,7 @@ public class Building_Menu : MonoBehaviour {
         wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
     }
 
-    //Listener für die geklickten Gebäude mit Index übergabe
+    //Listener für die geklickten Gebäude mit Index Übergabe
     public void onBuildingSelected(int count)
     {
         
@@ -654,31 +650,24 @@ public class Building_Menu : MonoBehaviour {
                 break;
             case (2):
                 stonefeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-
                 break;
             case (3):
                 ironfeeder.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-
                 break;
             case (4):
                 livingHouse.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-
                 break;
             case (5):
                 church.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-
                 break;
             case (6):
                 brauerei.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-
                 break;
             case (7):
                 bäcker.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-
                 break;
             case (8):
                 wahrzeichen.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
-
                 break;
             case (9):
                 schmiede.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
@@ -703,6 +692,7 @@ public class Building_Menu : MonoBehaviour {
         }
     }
 
+    //Nur bei der Windows Version nützlich / anwendbar
     public void fakeAnimationDestroy()
     {
         Cursor.SetCursor(cursorMoveTexture, hotSpot, cursorMode);
@@ -723,7 +713,7 @@ public class Building_Menu : MonoBehaviour {
 
     }
 
-    //Gibt den zustand des Destroy-Button weiter
+    //Gibt den Zustand des Destroy-Button zurück
     public bool getDestroyBool()
     {
         return destroyIsActivated;

@@ -10,7 +10,6 @@ public class CameraMovement : MonoBehaviour {
     public Vector3 startposition;
 
     public GameObject cameraObject;
-    //public GameObject cameraButtonObject;
 
     private float speed = 0.05f;
     
@@ -18,21 +17,18 @@ public class CameraMovement : MonoBehaviour {
     float rotationY = 0.0f;
 	float rotationX = 0.0f;
 
-
+    // Überschreibt die aktuelle Camera - Position mit der Startposition der Camera
     public void onCameraStartPositionButtonClicked()
     {
         cameraObject.transform.position = startposition;
-        //Debug.Log("ON CAMERA BUTTON CLICKED" + cameraObject.transform.position);
     }
     
 
     private void Start()
     {
-        //rotationX = transform.rotation.eulerAngles.y;
         cameraObject = GameObject.FindGameObjectWithTag("CameraObject");
         cameraStartPosition = GameObject.FindGameObjectWithTag("CameraPositionButton").GetComponent<Button>();
         startposition = cameraObject.transform.position;
-        //Debug.Log("TEST" + startposition);
 
         cameraStartPosition.onClick.AddListener(() => { onCameraStartPositionButtonClicked(); });
     }
