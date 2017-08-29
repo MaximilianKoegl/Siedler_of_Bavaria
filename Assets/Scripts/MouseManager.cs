@@ -268,8 +268,6 @@ public class MouseManager : Photon.MonoBehaviour {
                 onHouseSwitch();
                 if (Input.GetMouseButtonDown(0))
                 {
-                    m_popup_manager.onClosePopUp();
-                    //m_popup_manager.setDoItFalse();
                     GameObject parentHitObject = ourHitObject.transform.parent.gameObject;
 
                     //Wird ausgeführt falls ein Haus ausgewählt wurde zum bauen
@@ -319,7 +317,6 @@ public class MouseManager : Photon.MonoBehaviour {
                 if (Input.GetMouseButtonDown(0))
                 {
                     m_building_menu.deactivateBuildMode();
-                    m_popup_manager.onClosePopUp();
                     m_popup_manager.setDoItFalse();
                 }
             }

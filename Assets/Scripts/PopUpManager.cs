@@ -54,7 +54,6 @@ public class PopUpManager : MonoBehaviour {
     {
         if (doIt)
         {
-            Debug.Log("true");
             if(m_resources_counter.getKaserneDorfEinnehmbar())
             {
 
@@ -99,7 +98,6 @@ public class PopUpManager : MonoBehaviour {
             }
             if (allOnDestination)
             {
-                Debug.Log("Ziel");
                 m_resources_counter.addGold(2000);
                 yourCity = true;
                 startet = false;
