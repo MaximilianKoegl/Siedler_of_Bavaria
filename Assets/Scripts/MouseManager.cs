@@ -35,8 +35,7 @@ public class MouseManager : Photon.MonoBehaviour {
     private GameObject wahrzeichen2;
     private GameObject wahrzeichen3;
     private GameObject wahrzeichen4;
-
-    // public GameObject aufgabenManager;
+    
 
     private bool wahrzeichenBurg;
 
@@ -56,14 +55,42 @@ public class MouseManager : Photon.MonoBehaviour {
     private float timer = 0;
     private GameObject wahrzeichenHitObject;
 
+    void Start()
+    {
 
+        m_building_menu = GameObject.FindGameObjectWithTag("BuildingMenuManager").GetComponent<Building_Menu>();
 
+        m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
+
+        m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
+
+        aufgabenManager = GameObject.Find("AufgabeManager");
+
+        string playerName = PhotonNetwork.playerName;
+        if (photonView.isMine)
+        {
+            m_popup_manager.OnGameStartInfo(getCityName(playerName));
+            Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+            aufgabe.text = "Um dein Dorf ausbauen zu können, benötigst du Rohstoffe. Baue einen Holzfäller, um dein Dorf mit Holz zu versorgen.";
+
+        }
+
+    }
+
+   
+    void Update()
+    {
+        if (photonView.isMine)
+        {
+            addObjects(Input.mousePosition);
+            updateWahrzeichenBuilding();
+
+        }
+    }
 
     //Empfängt und sendet die Daten für die gebauten Häuser
-
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        Debug.Log("Serializing");
         if (stream.isWriting)
         {
             stream.SendNext(transform.position);
@@ -74,6 +101,7 @@ public class MouseManager : Photon.MonoBehaviour {
             Vector3 pos = (Vector3)stream.ReceiveNext();
         }
     }
+
 
     //Gibt Anzahl der momentan gebauten Gebäude weiter, als Rohstoff Multiplikator
     public int[] getResourcesCounter()          
@@ -92,102 +120,67 @@ public class MouseManager : Photon.MonoBehaviour {
             case (1): selectedHouse = holzfäller;
                 house_name = "Woodcutter";
                 counter_position = 0;
-                // add needed people 
                 break;
             case (2):
                 selectedHouse = steinmine;
                 house_name = "Stonefeeder";
                 counter_position = 4;
-                // add needed people 
                 break;
             case (3): 
                 selectedHouse = eisenmine;
                 house_name = "Ironfeeder";
                 counter_position = 6;
-                // add needed people 
                 break;
             case (4):
                 selectedHouse = wohnhaus;
                 house_name = "LivingHouse";
                 counter_position = 1;
-                // add people space
                 break;
             case (5):
                 selectedHouse = kapelle;
                 house_name = "Church";
                 counter_position = 2;
-                // add needed people 
                 break;
             case (6):
                 selectedHouse = brauerei;
                 house_name = "Brauerei";
                 counter_position = 5;
-                // add needed people 
                 break;
             case (7):
                 selectedHouse = bäcker;
                 house_name = "Bäcker";
                 counter_position = 3;
-                // add needed people 
                 break;
             case (8):
                 selectedHouse = wahrzeichen;
                 house_name = "Wahrzeichen";
                 counter_position = 11;
-                // add needed people 
                 break;
             case (9):
                 selectedHouse = schmiede;
                 house_name = "Schmiede";
                 counter_position = 8;
-                // add needed people 
                 break;
             case (10):
                 selectedHouse = kaserne;
                 house_name = "Kaserne";
                 counter_position = 10;
-                // add needed people 
                 break;
             case (11):
                 selectedHouse = schule;
                 house_name = "Schule";
                 counter_position = 7;
-                // add needed people 
                 break;
             case (12):
                 selectedHouse = universität;
                 house_name = "Universität";
                 counter_position = 9;
-                // add needed people 
                 break;
             default: selectedHouse = null;
                 house_name = "";
                 break;
                 
         }
-    }
-
-
-    // initialization of GameObjects
-    void Start () {
-
-        m_building_menu = GameObject.FindGameObjectWithTag("BuildingMenuManager").GetComponent<Building_Menu>();
-        
-        m_resources_counter = GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<Resources_Counter>();
-        
-        m_popup_manager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
-
-        aufgabenManager = GameObject.Find("AufgabeManager");
-
-        string playerName = PhotonNetwork.playerName;
-        if (photonView.isMine)
-        {
-            m_popup_manager.OnGameStartInfo(getCityName(playerName));
-            Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
-            aufgabe.text = "Um dein Dorf ausbauen zu können, benötigst du Rohstoffe. Baue einen Holzfäller, um dein Dorf mit Holz zu versorgen.";
-
-        }
-
     }
 
 
@@ -208,15 +201,7 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
-        if (photonView.isMine)
-        {
-            addObjects(Input.mousePosition);
-            updateWahrzeichenBuilding();
-            
-        }
-    }
+	
 
     //wird ausgeführt wenn das Wahrzeichen baubar ist
     //zählt die Uhr auf 100 sec hoch
@@ -286,10 +271,6 @@ public class MouseManager : Photon.MonoBehaviour {
                                 {
                                     m_popup_manager.onFirstTimeBuild(house_name);
                                 }
-                            }
-                            else
-                            {
-                                //Möglichkeit weiteres Pop-up einzubauen mit Hinweis dass dort noch nicht gebaut werden kann
                             }
                         }
                     }
@@ -395,6 +376,8 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 
+
+    //überprüft, ob eine Schule oder Schmiede gebaut wurde und zeigt entsprechendes PopUp für nachbarsdorf an
     private void checkPopUp(string tag)
     {
         resources_counter = m_resources_counter.getResourcesCounter();
@@ -679,9 +662,6 @@ public class MouseManager : Photon.MonoBehaviour {
         return false;
     }
 
-
-    
-        
 
     //Sucht den Tag der geklickten Objekte und zerstört diese
     void destroyBuilding(GameObject hitObject, GameObject parentObject)

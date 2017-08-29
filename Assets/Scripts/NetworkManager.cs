@@ -61,12 +61,12 @@ public class NetworkManager : Photon.MonoBehaviour {
     private bool exitPressed = false;
     
 
-    // Use this for initialization
+    
     void Start () {
         PhotonNetwork.ConnectUsingSettings("v4.2");
     }
 	
-	// Update is called once per frame
+	
 	void Update () {
 
         checkConnectionDuringGame();
@@ -113,14 +113,14 @@ public class NetworkManager : Photon.MonoBehaviour {
         hardRestartGame();
     }
 
-    // spiel wird neu gestartet in dem die Szene neu geladen wird
+    // spiel wird neu gestartet indem die Szene neu geladen wird
     void hardRestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
-    
+    //wird aufgerufen, wenn der Raum verlassen wurde
     void OnLeftRoom()
     {
         OnGUI();
@@ -146,6 +146,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     }
 
     //zeichne Spiel verlassen Button
+    //wenn der Button geklickt wird, wird das SPiel verlassen
     private void drawExitGameButton()
     {
         if (GUI.Button(new Rect(Screen.width - 250, 50, 200, 60), "Spiel verlassen"))
@@ -167,6 +168,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     }
 
     // zeichnen des Reload Spiel Buttons
+    //bei cklick wird das Spiel gestartet
     private void drawReloadGameButton()
     {
         //GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
@@ -179,8 +181,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 
 
     //Hintergrund wird gezeichnet
-    //- Hintergrundbild
-    //- Text
+    //Label = Spielname wird gesetzt
     private void drawBackground()
     {
         GUI.Box(new Rect(-5, -5, Screen.width + 10, Screen.height + 10), backgroundImage);
@@ -189,6 +190,8 @@ public class NetworkManager : Photon.MonoBehaviour {
         GUI.Label(new Rect(Screen.width / 2 - 200, 75, 200, 50), "Settlers of Bavaria", guiStyle);
     }
 
+
+    //wenn eine Verbindung mit dem Masterserver aufgebaut wurde, wird die Lobby automatisch betreten
     void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby(lobbyName);
@@ -197,23 +200,23 @@ public class NetworkManager : Photon.MonoBehaviour {
 
     
 
-
+    
     void OnReceivedRoomListUpdate()
     {
-        Debug.Log("Room was created");
     }
 
 
     void OnJoinedLobby()
     {
-
-        Debug.Log("Joined Lobby");
+        
             
     }
-    //Log if connected
+
+
+    //Wenn der Spieler einen Raum beigetreten ist, wird checkPlayers aufgerufen
+    //--> Anzahl der vorhnanden Spieler wird übergeben
     void OnJoinedRoom()
     {
-        Debug.Log("Connected to Room");
         // Spawn player
         checkPlayer(PhotonNetwork.countOfPlayers);
 
@@ -221,7 +224,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     }
 
     //überprüft, welcher Spieler hinzukommt und welche Stadt er bekommt
-
+    //Überprüfung anhand Spieleranzahl
     private void checkPlayer(int playersCount)
     {
         Debug.Log(playersCount);
@@ -239,8 +242,9 @@ public class NetworkManager : Photon.MonoBehaviour {
         }
     }
 
-    //runs through list of Citys an assigns the first free to the Player
-    //calls instantiateCity();
+    //durchläuft die Liste der Spieler und überprüft, welche Stadt belegt ist.
+    //weißt dem Spieler die erste frei Stadt zu
+    //ruft instantiateCity auf
     private void assignCity()
     {
         if (schwabenFree)

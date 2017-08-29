@@ -10,7 +10,9 @@ public class AgentWalkment : MonoBehaviour
     public GameObject target;
     public NavMeshAgent agent;
     private bool onDestination = false;
-    // Use this for initialization
+    
+
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,7 +21,7 @@ public class AgentWalkment : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -36,6 +38,9 @@ public class AgentWalkment : MonoBehaviour
         }
     }
 
+
+    //gibt true zurück wenn der Soldat sich nicht mehr bewegt
+    //gibt false zurück wenn er sich noch bewegt
     public bool getOnDestination()
     {
         if(myAnimator.GetFloat("VSpeed") == 0)
@@ -49,6 +54,8 @@ public class AgentWalkment : MonoBehaviour
         }
     }
 
+
+    //lässt den Soldat zum Ziel losgehen
     public void startWalk()
     {
 
@@ -57,7 +64,7 @@ public class AgentWalkment : MonoBehaviour
         agent.SetDestination(target.transform.position);
     }
 
-
+    //gibt anahdn des Bezirkes die Stadt zurück, zu der er laufen muss
     private string getCity(string tag)
     {
         switch (tag)

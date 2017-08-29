@@ -23,7 +23,7 @@ public class Resources_Counter : MonoBehaviour {
     public int goldCount;
     
 
-	// Use this for initialization
+	
 	void Start () {
         woodCount = 1000;
         ironCount = 200;
@@ -38,6 +38,8 @@ public class Resources_Counter : MonoBehaviour {
         InvokeRepeating("updateCounters", 2.0f, 1.0f);
 	}
 
+
+    //kann vom anderen Objecten aus aufgerufen werden, um Gold hinzuzufügen
     public void addGold(int number)
     {
         goldCount = number;
@@ -86,13 +88,13 @@ public class Resources_Counter : MonoBehaviour {
         foodCount -= 2000;
     }
 
-
+    //holt sich den aktuellen ResourceCounter vom MouseManager
     public int[] getResourcesCounter()
     {
         return m_mouseManager.getResourcesCounter();
     }
 
-    // Update is called once per frame
+   
     void Update () {
         wood_Counter.text = woodCount.ToString();
         iron_Counter.text = ironCount.ToString();
@@ -167,33 +169,37 @@ public class Resources_Counter : MonoBehaviour {
         return satisfaction;
     }
 
+
+    //zählt die Rohstoffe hoch, abhängig von der Anzahl der jeweils gebauten Gebäude
+    //abhängig von der zufriedenheit der Einwohner, sinkt die Produktion
+    //zählt Einwohner nach unten
     void updateCounters()
     {
         int[] resourcesCounter = m_mouseManager.getResourcesCounter();
         if (getSatisfaction() < 50)
         {
-            woodCount += 7 * resourcesCounter[0]; //10
-            ironCount += 3 * resourcesCounter[6]; //2
-            stoneCount += 5 * resourcesCounter[4]; //5
+            woodCount += 7 * resourcesCounter[0]; 
+            ironCount += 3 * resourcesCounter[6];
+            stoneCount += 5 * resourcesCounter[4];
         }
         else
         {
             if(getSatisfaction() < 25)
             {
-                woodCount += 5 * resourcesCounter[0]; //10
-                ironCount += 2 * resourcesCounter[6]; //2
-                stoneCount += 4 * resourcesCounter[4]; //5
+                woodCount += 5 * resourcesCounter[0]; 
+                ironCount += 2 * resourcesCounter[6]; 
+                stoneCount += 4 * resourcesCounter[4]; 
             }
             else
             {
-                woodCount += 10 * resourcesCounter[0]; //10
-                ironCount += 4 * resourcesCounter[6]; //2
-                stoneCount += 7 * resourcesCounter[4]; //5
+                woodCount += 10 * resourcesCounter[0]; 
+                ironCount += 4 * resourcesCounter[6]; 
+                stoneCount += 7 * resourcesCounter[4]; 
             }
         }
         foodCount += 50 * resourcesCounter[3];
         foodCount += 60 * resourcesCounter[5];
-        if(foodCount> 0)
+        if(foodCount > (2 * einwohnerCount - 1))
         {
 
             foodCount -= 2 * einwohnerCount;
