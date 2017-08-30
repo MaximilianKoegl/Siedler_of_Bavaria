@@ -537,7 +537,7 @@ public class MouseManager : Photon.MonoBehaviour {
                 if (resources_counter[4] == 1)
                 {
                     Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
-                    aufgabe.text = "Baue dein Dorf nun weiter aus. Neue Gebäude werden stets freigeschaltet, wenn du alle vorherigen gebaut hast.";
+                    aufgabe.text = "Baue dein Dorf nun weiter aus. Neue Gebäude werden stets freigeschaltet, wenn du alle vorherigen gebaut hast. Das Ziel ist es, dein Dorf durch ein Wahrzeichen einzigartig zu machen!";
                 }
                 house_go.transform.GetChild(0).GetChild(0).tag = house_name;
                 house_go.transform.GetChild(0).GetChild(1).tag = house_name;
