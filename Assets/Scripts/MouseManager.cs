@@ -35,6 +35,7 @@ public class MouseManager : Photon.MonoBehaviour {
     private GameObject wahrzeichen2;
     private GameObject wahrzeichen3;
     private GameObject wahrzeichen4;
+
     
 
     private bool wahrzeichenBurg;
@@ -102,6 +103,16 @@ public class MouseManager : Photon.MonoBehaviour {
         }
     }
 
+
+    public void showWahrzeichenBuildable()
+    {
+
+        Text aufgabeTitel = aufgabenManager.transform.GetChild(0).GetComponent<Text>();
+        aufgabeTitel.text = "";
+        Text aufgabe = aufgabenManager.transform.GetChild(1).GetComponent<Text>();
+        aufgabe.text = "Sie haben nun genug Gold um ihr Wahrzeichen zu bauen! Um das Wahrzeichen bauen zu können, muss die Zufriedenheit ihrer Einwohner über 75% liegen!";
+        aufgabenManager.SetActive(true);
+    }
 
     //Gibt Anzahl der momentan gebauten Gebäude weiter, als Rohstoff Multiplikator
     public int[] getResourcesCounter()          

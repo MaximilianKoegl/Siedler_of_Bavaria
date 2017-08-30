@@ -40,9 +40,15 @@ public class Resources_Counter : MonoBehaviour {
 
 
     //kann vom anderen Objecten aus aufgerufen werden, um Gold hinzuzufügen
+    //ruft methode aus mouseManager auf, um zu zeigen, dass Wahrzeichen baubar ist
     public void addGold(int number)
     {
         goldCount = number;
+        if (goldCount >= 2000)
+        {
+
+            m_mouseManager.showWahrzeichenBuildable();
+        }
     }
 
 

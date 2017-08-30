@@ -315,18 +315,14 @@ public class Building_Menu : MonoBehaviour {
     public void onClickedPlusButton()
     {
         startPositionBuildList.gameObject.SetActive(false);
-
-        if (!m_popup_manager.getDoIt())
-        {
-
+        
             deactivateBuildMode();
             isShowing = !isShowing;
             buildingCanvas.SetActive(isShowing);
             building_Number = 0;
-            Debug.Log(transform);
 
             m_popup_manager.onClosePopUp();
-        }
+        
 
     }
 

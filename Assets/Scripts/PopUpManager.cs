@@ -46,7 +46,7 @@ public class PopUpManager : MonoBehaviour {
     }
 
 
-    //wird aufgerufen, wenn + Button gedrückt wird
+    //
     //wird nur ausgeführt, wenn Uni oder Kaserne gebaut und dass PopUp der Nachbarstadt geöffnet ist
     //wenn vorraussetzungen stimmen wird dorf eingenommen, gold zu den Rohstoffen hinzugefügt 
     public void onGetDorf()
@@ -154,10 +154,11 @@ public class PopUpManager : MonoBehaviour {
         else
         {
             doIt = true;
-            infoText.text = "Durch ihre Bildung konnten sie einen Bünisvertrag mit " + name + " aushandeln.\n Laut Vertrag erhalten sie beim Abschluss des Bündnisses 2000 Gold, müssen im Gegenzug jedoch 2000 Holz, 1000 Stein und 2000 Nahrung abgeben.";
+            infoText.text = "Durch ihre Bildung konnten sie einen Bünsisvertrag\n mit " + name + " aushandeln. Laut Vertrag erhalten sie beim Abschluss\n des Bündnisses 2000 Gold, müssen im Gegenzug jedoch 2000 Holz,\n 1000 Stein und 2000 Nahrung abgeben.";
+            jaButton.gameObject.SetActive(true);
+            neinButton.gameObject.SetActive(true);
         }
-        jaButton.gameObject.SetActive(true);
-        neinButton.gameObject.SetActive(true);
+        
         popUpInfo.SetActive(true);
         closePopUp.gameObject.SetActive(true);
     }
@@ -177,14 +178,14 @@ public class PopUpManager : MonoBehaviour {
         else
         {
             doIt = true;
-            infoText.text = "Sie können " + name + " durch ihr Militär einnehmen!\n Dazu brauchen sie mindestens 3 Soldaten(Kaserne bauen)!";
+            infoText.text = "Sie können " + name + " durch ihr Militär\n einnehmen! Dazu brauchen sie mindestens\n 3 Soldaten(1 Soldat pro Kaserne)!";
+            jaButton.gameObject.SetActive(true);
+            neinButton.gameObject.SetActive(true);
         }
 
         
         popUpInfo.SetActive(true);
         closePopUp.gameObject.SetActive(true);
-        jaButton.gameObject.SetActive(true);
-        neinButton.gameObject.SetActive(true);
     }
 
 
@@ -236,7 +237,7 @@ public class PopUpManager : MonoBehaviour {
         }
     }
 
-    // Unterscheidung zwischen Städten! Auch bei Holzfäller und Co wsl!
+    
     //gibt die Info eines popUps anhand des zugewiesen Tag zurück
     private string getPopUpInfo(String tag)
     {
@@ -256,11 +257,11 @@ public class PopUpManager : MonoBehaviour {
             case ("Universität"): return "Dies ist eine Universität";
             case ("Wahrzeichen"): return "Dies ist ein Wahrzeichen";
             case ("Augsburg"): return "Augsburg erlebte im  16. Jahrhundert eine wirtschaftliche Blütezeit. Auch die Glaubenspaltung ist mit Augsburg verbunden. So wurde auf dem Reichstag 1555 der Religionsfrieden beschlossen.";
-            case ("Regensburg"): return "Regensburg wurde im 16. Jahrhundert von ... regiert.";
-            case ("Landshut"): return "Landshut wurde im 16. Jahrhundert von ... regiert.";
-            case ("Bayreuth"): return "Bayreuth wurde im 16. Jahrhundert von ... regiert.";
-            case ("München"): return "München wurde im 16. Jahrhundert von ... regiert.";
-            case ("Ansbach"): return "Ansbach wurde im 16. Jahrhundert von ... regiert.";
+            case ("Regensburg"): return "Zu Beginn des 16. Jahrhunderts lieferte sich Regensburg eine Auseinanersetzung mit Kaiser Maximilian den I. und widersetzte sich der Berufung des Kaiserlichen Reichshauptmanns für Regensburg.";
+            case ("Landshut"): return "Der Beginn des 16. Jahrhunderts stellte für Landshut die Ende seiner glanzvollen Zeit dar. Mit dem Tod von Georg dem Reichen wurde Landshut mit München vereinigt, da dieser keine nachfahren hatte.";
+            case ("Bayreuth"): return "Bayreuth stellte sich bereits 1528 - also bereits 11 Jahre nach Beginn der Reformation - den lutheranischen Glaubensbekenntnis an.";
+            case ("München"): return "München stellte mit des 16. Jahrhundert das Zentrum der Gegenreformation dar. Der Protstantismus wurde hier  1555 komplett verboten.";
+            case ("Ansbach"): return "In Ansbach wurden im 16. Jahrhundert mehrere Frauen der Hexerei bezichtigt in hingerichtet.";
             case ("Würzburg"): return "Während des Bauernkrieges 1525 wurde die Würzburger Festung Mariental mehrfach berannt. Die Würzburger stellten sich dabei auf die Seite der Bauern.";
             case ("Bamberg"): return "Dies ist Bamberg.";
             case ("Nürnberg"): return "Dies ist Nürnberg.";
@@ -293,8 +294,21 @@ public class PopUpManager : MonoBehaviour {
             case ("Ironfeeder"): return "Aktuell " + iron + " Eisen zur Verfügung!";
             case ("Stonefeeder"): return "Aktuell  " + stone + " Stein zur Verfügung!";
             case ("LivingHouse"): return "Aktuell " + people + " Leute in ihrem Regierungsbezirk!" + "\nZufriedenheit Essen: " + satisfactionFood + "%\nZufriedenheit: " + satisfaction + "%";
-            case ("Universität"): return "Die Universität ermöglicht den Bewohnern die Bildung zu verbessern";
+            case ("Universität"): return "Die Universität ermöglicht den Bewohnern die Bildung zu verbessern und hilft so den Lebensstandart und die Zufriedenheit zu erhöhen.";
+            case ("Kaserne"): return "Die Kaserne hilft ihren Einwohnern, sich sicherer zu fühlen und trägt dadurch zur Zufriedenheit ihrer Einwohner bei! Jede Kaserne beherbergt einen Soldaten!";
+            case ("Schmiede"): return "Die Schmiede ist  die Grundvoraussetzung, um eine Kaserne bauen zu können. Hier werden die Waffen geschmiedet, welche die Soldaten spöter benutzen.";
+            case ("Schule"): return "Die Schule ist die Grundvoraussetzung, um eine Universität bauen zu können.";
+            case ("Church"): return "Die Kapelle hilft ihren Bewohnern dabei, ihren Glauben auszuleben. Dadurch sind sie zufriedener un fühlen sich von Gott beschützt.";
+            case ("Brauerei"): return "Die Brauerei stellt die Getränke für ihre Einwohner her.";
+            case ("Bäcker"): return "Die Bäckerei nutzt das Getreide dazu, um die Stadt mit Lebensmitteln zu versorgen, und so das Leben zu ermöglichen. Ist zu wenig Nahrung vorhanden, sinkt die Zufriedenheit der Bürger, und dadurch die Rohstoffproduktion";
             case ("Wahrzeichen"): return "Das Wahrzeichen ist das Aushängeschild der Stadt!";
+            case ("Bamberg"): return "Bamberg ist die zweitgrößte Stadt in ihren Regierungsbezirk. In ihr wird Gold abgebaut.";
+            case ("Nürnberg"): return "Nürnberg ist die zweitgrößte Stadt in ihren Regierungsbezirk. In ihr wird Gold abgebaut.";
+            case ("Aschaffenburg"): return "Aschaffenburg ist die zweitgrößte Stadt in ihren Regierungsbezirk. In ihr wird Gold abgebaut.";
+            case ("Weiden"): return "Weiden ist die zweitgrößte Stadt in ihren Regierungsbezirk. In ihr wird Gold abgebaut.";
+            case ("Ingolstadt"): return "Ingolstadt ist die zweitgrößte Stadt in ihren Regierungsbezirk. In ihr wird Gold abgebaut.";
+            case ("Kempten"): return "Kempten ist die zweitgrößte Stadt in ihren Regierungsbezirk. In ihr wird Gold abgebaut.";
+            case ("Passau"): return "Passau ist die zweitgrößte Stadt in ihren Regierungsbezirk. In ihr wird Gold abgebaut.";
             default:
                 return "No Details found!";
         }
